@@ -1,0 +1,32 @@
+{
+  "common": {
+    "name": "netatmo",
+    "version": "0.0.1",
+    "title": "Javascript/Node.js based netatmo adapter",
+    "desc": {
+      "en": "ioBroker netatmo Adapter",
+      "de": "ioBroker Netatmo Adapter",
+      "ru": "ioBroker Netatmo драйвер как образец"
+    },
+    "license": "GPLv2",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "netatmo.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+    "keywords": [
+      "netatmo"
+    ],
+    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+    "loglevel": "info",
+    "type": "hardware"
+  },
+  "native": {
+    "client_id": "574ddd152baa3cf9598b46cd",
+    "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
+    "username": "",
+    "password": ""
+  },
+  "objects": [
+  ]
+}

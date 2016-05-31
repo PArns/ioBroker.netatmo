@@ -2,7 +2,7 @@
   "common": {
     "name": "netatmo",
     "version": "0.0.1",
-    "title": "Javascript/Node.js based netatmo adapter",
+    "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
       "de": "ioBroker Netatmo Adapter",
@@ -25,7 +25,8 @@
     "client_id": "574ddd152baa3cf9598b46cd",
     "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
     "username": "",
-    "password": ""
+    "password": "",
+    "access_token": null
   },
   "objects": [
   ]

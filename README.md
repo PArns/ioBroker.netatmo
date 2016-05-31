@@ -2,7 +2,7 @@
 # ioBroker.netatmo
 =================
 
-NetAtmo Adapter for ioBroker
+Netatmo Adapter for ioBroker
 
 ## Changelog
 

@@ -114,12 +114,12 @@ function handleModule(aModule, aParent) {
     });
 
     if (aModule.wifi_status) {
-        var wifiStatus = "Good";
+        var wifiStatus = "good";
 
         if (aModule.wifi_status > 85)
-            wifiStatus = "Bad";
+            wifiStatus = "bad";
         else if (aModule.wifi_status > 70)
-            wifiStatus = "Average";
+            wifiStatus = "average";
 
         adapter.setObjectNotExists(aParent + ".WifiStatus", {
             type: "state",
@@ -152,12 +152,12 @@ function handleModule(aModule, aParent) {
     }
 
     if (aModule.rf_status) {
-        var rfStatus = "Good";
+        var rfStatus = "good";
 
         if (aModule.rf_status > 85)
-            rfStatus = "Bad";
+            rfStatus = "bad";
         else if (aModule.rf_status > 70)
-            rfStatus = "Average";
+            rfStatus = "average";
 
         adapter.setObjectNotExists(aParent + ".RfStatus", {
             type: "state",
@@ -284,6 +284,19 @@ function handleCO2(aModule, aParent) {
     });
 
     adapter.setState(aParent + ".CO2", {val: aModule.dashboard_data.CO2, ack: true});
+
+    adapter.setObjectNotExists(aParent + ".Calibrating", {
+        type: "state",
+        common: {
+            name: "Calibrating",
+            type: "boolean",
+            role: "indicator.calibrating",
+            read: true,
+            write: false,
+        }
+    });
+
+    adapter.setState(aParent + ".Calibrating", {val: aModule.co2_calibrating, ack: true});
 }
 
 function handleHumidity(aModule, aParent) {

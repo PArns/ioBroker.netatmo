@@ -107,6 +107,11 @@ function handleModule(aModule, aParent) {
             case "Pressure":
                 handlePressure(aModule, aParent);
                 break;
+            case "Rain":
+                handleRain(aModule, aParent);
+                break;
+            case "Wind":
+                handleWind(aModule, aParent);
             default:
                 adapter.log.info("UNKNOWN DEVICE TYPE: " + aDeviceType + " " + JSON.stringify(aModule));
                 break;
@@ -378,4 +383,112 @@ function handlePressure(aModule, aParent) {
     });
 
     adapter.setState(aParent + ".PressureTrend", {val: aModule.dashboard_data.pressure_trend, ack: true});
+}
+
+function handleRain(aModule, aParent) {
+    aParent += ".Rain";
+
+    adapter.setObjectNotExists(aParent + ".Rain", {
+        type: "state",
+        common: {
+            name: "Rain",
+            type: "number",
+            role: "indicator.rain",
+            read: true,
+            write: false,
+            unit: "mm"
+        }
+    });
+
+    adapter.setState(aParent + ".Rain", {val: aModule.dashboard_data.Rain, ack: true});
+
+    adapter.setObjectNotExists(aParent + ".SumRain1", {
+        type: "state",
+        common: {
+            name: "Rain in the last hour",
+            type: "number",
+            role: "indicator.rain",
+            read: true,
+            write: false,
+            unit: "mm"
+        }
+    });
+
+    adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+
+    adapter.setObjectNotExists(aParent + ".SumRain24", {
+        type: "state",
+        common: {
+            name: "Rain in the last 24 hours",
+            type: "number",
+            role: "indicator.rain",
+            read: true,
+            write: false,
+            unit: "mm"
+        }
+    });
+
+    adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_24, ack: true});
+}
+
+function handleWind(aModule, aParent) {
+    aParent += ".Wind";
+
+    adapter.setObjectNotExists(aParent + ".WindStrength", {
+        type: "state",
+        common: {
+            name: "Wind strength",
+            type: "number",
+            role: "indicator.windstrength",
+            read: true,
+            write: false,
+            unit: "km/h"
+        }
+    });
+
+    adapter.setState(aParent + ".WindStrength", {val: aModule.dashboard_data.WindStrength, ack: true});
+
+    adapter.setObjectNotExists(aParent + ".WindAngle", {
+        type: "state",
+        common: {
+            name: "Wind angle",
+            type: "number",
+            role: "indicator.windangle",
+            read: true,
+            write: false,
+            unit: "°"
+        }
+    });
+
+    adapter.setState(aParent + ".WindAngle", {val: aModule.dashboard_data.WindAngle, ack: true});
+
+
+
+    adapter.setObjectNotExists(aParent + ".GustStrenght", {
+        type: "state",
+        common: {
+            name: "Wind strength",
+            type: "Gust",
+            role: "indicator.guststrength",
+            read: true,
+            write: false,
+            unit: "km/h"
+        }
+    });
+
+    adapter.setState(aParent + ".GustStrenght", {val: aModule.dashboard_data.GustStrenght, ack: true});
+
+    adapter.setObjectNotExists(aParent + ".GustAngle", {
+        type: "state",
+        common: {
+            name: "Gust angle",
+            type: "number",
+            role: "indicator.windangle",
+            read: true,
+            write: false,
+            unit: "°"
+        }
+    });
+
+    adapter.setState(aParent + ".GustAngle", {val: aModule.dashboard_data.GustAngle, ack: true});
 }

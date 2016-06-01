@@ -10,6 +10,6 @@ Netatmo Adapter for ioBroker
 * Initial release
 
 ## License
-GPL V2
+MIT
 
 Copyright (c) 2016 Patrick Arns <iobroker@patrick-arns.de>

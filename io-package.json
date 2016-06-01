@@ -8,7 +8,7 @@
       "de": "ioBroker Netatmo Adapter",
       "ru": "ioBroker Netatmo драйвер как образец"
     },
-    "license": "GPLv2",
+    "license": "MIT",
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "netatmo.png",

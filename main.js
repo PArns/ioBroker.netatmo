@@ -182,313 +182,367 @@ function handleModule(aModule, aParent) {
 function handleTemperature(aModule, aParent) {
     aParent += ".Temperature";
 
-    adapter.setObjectNotExists(aParent + ".Temperature", {
-        type: "state",
-        common: {
-            name: "Temperature",
-            type: "number",
-            role: "indicator.temperature",
-            read: true,
-            write: false,
-            unit: "°C"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".Temperature", {val: aModule.dashboard_data.Temperature, ack: true});
+    if (typeof aModule.dashboard_data.Temperature !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Temperature", {
+            type: "state",
+            common: {
+                name: "Temperature",
+                type: "number",
+                role: "indicator.temperature",
+                read: true,
+                write: false,
+                unit: "°C"
+            }
+        });
 
-
-    adapter.setObjectNotExists(aParent + ".TemperatureMin", {
-        type: "state",
-        common: {
-            name: "Temperature minimum",
-            type: "number",
-            role: "indicator.temperature",
-            read: true,
-            write: false,
-            unit: "°C"
-        }
-    });
-
-    adapter.setState(aParent + ".TemperatureMin", {val: aModule.dashboard_data.min_temp, ack: true});
-
-    adapter.setObjectNotExists(aParent + ".TemperatureMinDate", {
-        type: "state",
-        common: {
-            name: "Temperature minimum date",
-            type: "string",
-            role: "indicator.datetime",
-            read: true,
-            write: false,
-        }
-    });
-
-    adapter.setState(aParent + ".TemperatureMinDate", {
-        val: new Date(aModule.dashboard_data.date_min_temp * 1000),
-        ack: true
-    });
+        adapter.setState(aParent + ".Temperature", {val: aModule.dashboard_data.Temperature, ack: true});
+    }
 
 
-    adapter.setObjectNotExists(aParent + ".TemperatureMax", {
-        type: "state",
-        common: {
-            name: "Temperature maximum",
-            type: "number",
-            role: "indicator.temperature",
-            read: true,
-            write: false,
-            unit: "°C"
-        }
-    });
+    if (typeof aModule.dashboard_data.min_temp !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".TemperatureMin", {
+            type: "state",
+            common: {
+                name: "Temperature minimum",
+                type: "number",
+                role: "indicator.temperature",
+                read: true,
+                write: false,
+                unit: "°C"
+            }
+        });
 
-    adapter.setState(aParent + ".TemperatureMax", {val: aModule.dashboard_data.max_temp, ack: true});
+        adapter.setState(aParent + ".TemperatureMin", {val: aModule.dashboard_data.min_temp, ack: true});
+    }
 
-    adapter.setObjectNotExists(aParent + ".TemperatureMaxDate", {
-        type: "state",
-        common: {
-            name: "Temperature maximum date",
-            type: "string",
-            role: "indicator.datetime",
-            read: true,
-            write: false,
-        }
-    });
+    if (typeof aModule.dashboard_data.date_min_temp !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".TemperatureMinDate", {
+            type: "state",
+            common: {
+                name: "Temperature minimum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false,
+            }
+        });
 
-    adapter.setState(aParent + ".TemperatureMaxDate", {
-        val: new Date(aModule.dashboard_data.date_max_temp * 1000),
-        ack: true
-    });
+        adapter.setState(aParent + ".TemperatureMinDate", {
+            val: new Date(aModule.dashboard_data.date_min_temp * 1000),
+            ack: true
+        });
+    }
 
+    if (typeof aModule.dashboard_data.max_temp !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".TemperatureMax", {
+            type: "state",
+            common: {
+                name: "Temperature maximum",
+                type: "number",
+                role: "indicator.temperature",
+                read: true,
+                write: false,
+                unit: "°C"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".TemperatureTrend", {
-        type: "state",
-        common: {
-            name: "Temperature trend",
-            type: "string",
-            role: "indicator.trend",
-            read: true,
-            write: false
-        }
-    });
+        adapter.setState(aParent + ".TemperatureMax", {val: aModule.dashboard_data.max_temp, ack: true});
+    }
 
-    adapter.setState(aParent + ".TemperatureTrend", {val: aModule.dashboard_data.temp_trend, ack: true});
+    if (typeof aModule.dashboard_data.date_max_temp !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".TemperatureMaxDate", {
+            type: "state",
+            common: {
+                name: "Temperature maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false,
+            }
+        });
+
+        adapter.setState(aParent + ".TemperatureMaxDate", {
+            val: new Date(aModule.dashboard_data.date_max_temp * 1000),
+            ack: true
+        });
+    }
+
+    if (typeof aModule.dashboard_data.temp_trend !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".TemperatureTrend", {
+            type: "state",
+            common: {
+                name: "Temperature trend",
+                type: "string",
+                role: "indicator.trend",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.setState(aParent + ".TemperatureTrend", {val: aModule.dashboard_data.temp_trend, ack: true});
+    }
 }
 
 function handleCO2(aModule, aParent) {
     aParent += ".CO2";
 
-    adapter.setObjectNotExists(aParent + ".CO2", {
-        type: "state",
-        common: {
-            name: "CO2",
-            type: "number",
-            role: "indicator.co2",
-            read: true,
-            write: false,
-            unit: "ppm"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".CO2", {val: aModule.dashboard_data.CO2, ack: true});
+    if (typeof aModule.dashboard_data.CO2 !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".CO2", {
+            type: "state",
+            common: {
+                name: "CO2",
+                type: "number",
+                role: "indicator.co2",
+                read: true,
+                write: false,
+                unit: "ppm"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".Calibrating", {
-        type: "state",
-        common: {
-            name: "Calibrating",
-            type: "boolean",
-            role: "indicator.calibrating",
-            read: true,
-            write: false,
-        }
-    });
+        adapter.setState(aParent + ".CO2", {val: aModule.dashboard_data.CO2, ack: true});
+    }
 
-    adapter.setState(aParent + ".Calibrating", {val: aModule.co2_calibrating, ack: true});
+    if (typeof aModule.dashboard_data.co2_calibrating !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Calibrating", {
+            type: "state",
+            common: {
+                name: "Calibrating",
+                type: "boolean",
+                role: "indicator.calibrating",
+                read: true,
+                write: false,
+            }
+        });
+
+        adapter.setState(aParent + ".Calibrating", {val: aModule.co2_calibrating, ack: true});
+    }
 }
 
 function handleHumidity(aModule, aParent) {
     aParent += ".Humidity";
 
-    adapter.setObjectNotExists(aParent + ".Humidity", {
-        type: "state",
-        common: {
-            name: "Humidity",
-            type: "number",
-            role: "indicator.humidity",
-            read: true,
-            write: false,
-            unit: "%"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".Humidity", {val: aModule.dashboard_data.Humidity, ack: true});
+    if (typeof aModule.dashboard_data.Humidity !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Humidity", {
+            type: "state",
+            common: {
+                name: "Humidity",
+                type: "number",
+                role: "indicator.humidity",
+                read: true,
+                write: false,
+                unit: "%"
+            }
+        });
+
+        adapter.setState(aParent + ".Humidity", {val: aModule.dashboard_data.Humidity, ack: true});
+    }
 }
 
 function handleNoise(aModule, aParent) {
     aParent += ".Noise";
 
-    adapter.setObjectNotExists(aParent + ".Noise", {
-        type: "state",
-        common: {
-            name: "Noise",
-            type: "number",
-            role: "indicator.noise",
-            read: true,
-            write: false,
-            unit: "dB"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".Noise", {val: aModule.dashboard_data.Noise, ack: true});
+    if (typeof aModule.dashboard_data.Noise !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Noise", {
+            type: "state",
+            common: {
+                name: "Noise",
+                type: "number",
+                role: "indicator.noise",
+                read: true,
+                write: false,
+                unit: "dB"
+            }
+        });
+
+        adapter.setState(aParent + ".Noise", {val: aModule.dashboard_data.Noise, ack: true});
+    }
 }
 
 function handlePressure(aModule, aParent) {
     aParent += ".Pressure";
 
-    adapter.setObjectNotExists(aParent + ".Pressure", {
-        type: "state",
-        common: {
-            name: "Pressure",
-            type: "number",
-            role: "indicator.pressure",
-            read: true,
-            write: false,
-            unit: "mbar"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".Pressure", {val: aModule.dashboard_data.Pressure, ack: true});
+    if (typeof aModule.dashboard_data.Pressure !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Pressure", {
+            type: "state",
+            common: {
+                name: "Pressure",
+                type: "number",
+                role: "indicator.pressure",
+                read: true,
+                write: false,
+                unit: "mbar"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".AbsolutePressure", {
-        type: "state",
-        common: {
-            name: "Absolute pressure",
-            type: "number",
-            role: "indicator.pressure",
-            read: true,
-            write: false,
-            unit: "mbar"
-        }
-    });
+        adapter.setState(aParent + ".Pressure", {val: aModule.dashboard_data.Pressure, ack: true});
+    }
 
-    adapter.setState(aParent + ".AbsolutePressure", {val: aModule.dashboard_data.AbsolutePressure, ack: true});
+    if (typeof aModule.dashboard_data.AbsolutePressure !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".AbsolutePressure", {
+            type: "state",
+            common: {
+                name: "Absolute pressure",
+                type: "number",
+                role: "indicator.pressure",
+                read: true,
+                write: false,
+                unit: "mbar"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".PressureTrend", {
-        type: "state",
-        common: {
-            name: "Pressure trend",
-            type: "string",
-            role: "indicator.trend",
-            read: true,
-            write: false
-        }
-    });
+        adapter.setState(aParent + ".AbsolutePressure", {val: aModule.dashboard_data.AbsolutePressure, ack: true});
+    }
 
-    adapter.setState(aParent + ".PressureTrend", {val: aModule.dashboard_data.pressure_trend, ack: true});
+    if (typeof aModule.dashboard_data.pressure_trend !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".PressureTrend", {
+            type: "state",
+            common: {
+                name: "Pressure trend",
+                type: "string",
+                role: "indicator.trend",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.setState(aParent + ".PressureTrend", {val: aModule.dashboard_data.pressure_trend, ack: true});
+    }
 }
 
 function handleRain(aModule, aParent) {
     aParent += ".Rain";
 
-    adapter.setObjectNotExists(aParent + ".Rain", {
-        type: "state",
-        common: {
-            name: "Rain",
-            type: "number",
-            role: "indicator.rain",
-            read: true,
-            write: false,
-            unit: "mm"
-        }
-    });
+    if (!aModule.dashboard_data)
+        return;
 
-    adapter.setState(aParent + ".Rain", {val: aModule.dashboard_data.Rain, ack: true});
+    if (typeof aModule.dashboard_data.Rain !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".Rain", {
+            type: "state",
+            common: {
+                name: "Rain",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".SumRain1", {
-        type: "state",
-        common: {
-            name: "Rain in the last hour",
-            type: "number",
-            role: "indicator.rain",
-            read: true,
-            write: false,
-            unit: "mm"
-        }
-    });
+        adapter.setState(aParent + ".Rain", {val: aModule.dashboard_data.Rain, ack: true});
+    }
 
-    adapter.setState(aParent + ".SumRain1", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+    if (typeof aModule.dashboard_data.sum_rain_1 !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".SumRain1", {
+            type: "state",
+            common: {
+                name: "Rain in the last hour",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
 
-    adapter.setObjectNotExists(aParent + ".SumRain24", {
-        type: "state",
-        common: {
-            name: "Rain in the last 24 hours",
-            type: "number",
-            role: "indicator.rain",
-            read: true,
-            write: false,
-            unit: "mm"
-        }
-    });
+        adapter.setState(aParent + ".SumRain1", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+    }
 
-    adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_24, ack: true});
+    if (typeof aModule.dashboard_data.sum_rain_24 !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".SumRain24", {
+            type: "state",
+            common: {
+                name: "Rain in the last 24 hours",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
+
+        adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_24, ack: true});
+    }
 }
 
 function handleWind(aModule, aParent) {
     aParent += ".Wind";
 
-    adapter.setObjectNotExists(aParent + ".WindStrength", {
-        type: "state",
-        common: {
-            name: "Wind strength",
-            type: "number",
-            role: "indicator.windstrength",
-            read: true,
-            write: false,
-            unit: "km/h"
-        }
-    });
+    if (typeof aModule.dashboard_data.WindStrength !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".WindStrength", {
+            type: "state",
+            common: {
+                name: "Wind strength",
+                type: "number",
+                role: "indicator.windstrength",
+                read: true,
+                write: false,
+                unit: "km/h"
+            }
+        });
 
-    adapter.setState(aParent + ".WindStrength", {val: aModule.dashboard_data.WindStrength, ack: true});
+        adapter.setState(aParent + ".WindStrength", {val: aModule.dashboard_data.WindStrength, ack: true});
+    }
 
-    adapter.setObjectNotExists(aParent + ".WindAngle", {
-        type: "state",
-        common: {
-            name: "Wind angle",
-            type: "number",
-            role: "indicator.windangle",
-            read: true,
-            write: false,
-            unit: "°"
-        }
-    });
+    if (typeof aModule.dashboard_data.WindAngle !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".WindAngle", {
+            type: "state",
+            common: {
+                name: "Wind angle",
+                type: "number",
+                role: "indicator.windangle",
+                read: true,
+                write: false,
+                unit: "°"
+            }
+        });
 
-    adapter.setState(aParent + ".WindAngle", {val: aModule.dashboard_data.WindAngle, ack: true});
+        adapter.setState(aParent + ".WindAngle", {val: aModule.dashboard_data.WindAngle, ack: true});
+    }
 
+    if (typeof aModule.dashboard_data.GustStrenght !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".GustStrenght", {
+            type: "state",
+            common: {
+                name: "Wind strength",
+                type: "Gust",
+                role: "indicator.guststrength",
+                read: true,
+                write: false,
+                unit: "km/h"
+            }
+        });
 
+        adapter.setState(aParent + ".GustStrenght", {val: aModule.dashboard_data.GustStrenght, ack: true});
+    }
 
-    adapter.setObjectNotExists(aParent + ".GustStrenght", {
-        type: "state",
-        common: {
-            name: "Wind strength",
-            type: "Gust",
-            role: "indicator.guststrength",
-            read: true,
-            write: false,
-            unit: "km/h"
-        }
-    });
+    if (typeof aModule.dashboard_data.GustAngle !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".GustAngle", {
+            type: "state",
+            common: {
+                name: "Gust angle",
+                type: "number",
+                role: "indicator.windangle",
+                read: true,
+                write: false,
+                unit: "°"
+            }
+        });
 
-    adapter.setState(aParent + ".GustStrenght", {val: aModule.dashboard_data.GustStrenght, ack: true});
-
-    adapter.setObjectNotExists(aParent + ".GustAngle", {
-        type: "state",
-        common: {
-            name: "Gust angle",
-            type: "number",
-            role: "indicator.windangle",
-            read: true,
-            write: false,
-            unit: "°"
-        }
-    });
-
-    adapter.setState(aParent + ".GustAngle", {val: aModule.dashboard_data.GustAngle, ack: true});
+        adapter.setState(aParent + ".GustAngle", {val: aModule.dashboard_data.GustAngle, ack: true});
+    }
 }

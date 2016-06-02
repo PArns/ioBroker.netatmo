@@ -6,6 +6,9 @@ Netatmo Adapter for ioBroker
 
 ## Changelog
 
+#### 0.0.3
+* Added error handling to prevent exceptions for missing parameters
+
 #### 0.0.2
 * Fixed rain sensor
 

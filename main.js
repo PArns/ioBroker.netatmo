@@ -21,7 +21,7 @@ adapter.on('ready', function () {
         var auth = {
             "client_id": "574ddd152baa3cf9598b46cd",
             "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
-            "scope": "read_station read_thermostat",
+            "scope": "read_station",
             "username": adapter.config.username,
             "password": adapter.config.password
         };
@@ -414,7 +414,7 @@ function handleRain(aModule, aParent) {
         }
     });
 
-    adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+    adapter.setState(aParent + ".SumRain1", {val: aModule.dashboard_data.sum_rain_1, ack: true});
 
     adapter.setObjectNotExists(aParent + ".SumRain24", {
         type: "state",

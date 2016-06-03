@@ -514,8 +514,8 @@ function handleWind(aModule, aParent) {
         adapter.setState(aParent + ".WindAngle", {val: aModule.dashboard_data.WindAngle, ack: true});
     }
 
-    if (typeof aModule.dashboard_data.GustStrenght !== "undefined") {
-        adapter.setObjectNotExists(aParent + ".GustStrenght", {
+    if (typeof aModule.dashboard_data.GustStrength !== "undefined") {
+        adapter.setObjectNotExists(aParent + ".GustStrength", {
             type: "state",
             common: {
                 name: "Wind strength",
@@ -527,7 +527,7 @@ function handleWind(aModule, aParent) {
             }
         });
 
-        adapter.setState(aParent + ".GustStrenght", {val: aModule.dashboard_data.GustStrenght, ack: true});
+        adapter.setState(aParent + ".GustStrength", {val: aModule.dashboard_data.GustStrength, ack: true});
     }
 
     if (typeof aModule.dashboard_data.GustAngle !== "undefined") {

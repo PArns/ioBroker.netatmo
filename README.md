@@ -6,6 +6,8 @@ Netatmo Adapter for ioBroker
 
 ## Changelog
 
+#### 0.0.4
+* Fixed typo/missing parameter in GustStrength
 #### 0.0.3
 * Added error handling to prevent exceptions for missing parameters
 

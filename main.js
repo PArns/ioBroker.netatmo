@@ -281,15 +281,16 @@ function handleTemperature(aModule, aParent) {
             }
         });
 
-        adapter.getState(aParent + ".TemperatureAbsoluteMin", function(state) {
-            if (!state || state.val < aModule.dashboard_data.Temperature) {
+
+        adapter.getState(aParent + ".TemperatureAbsoluteMin", function(err, state) {
+            if (!state || state.val > aModule.dashboard_data.Temperature) {
                 adapter.setState(aParent + ".TemperatureAbsoluteMin", {val: aModule.dashboard_data.Temperature, ack: true});
                 adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: new Date(), ack: true});
             }
         });
 
-        adapter.getState(aParent + ".TemperatureAbsoluteMax", function(state) {
-            if (!state || state.val > aModule.dashboard_data.Temperature) {
+        adapter.getState(aParent + ".TemperatureAbsoluteMax", function(err, state) {
+            if (!state || state.val < aModule.dashboard_data.Temperature) {
                 adapter.setState(aParent + ".TemperatureAbsoluteMax", {val: aModule.dashboard_data.Temperature, ack: true});
                 adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: new Date(), ack: true});
             }

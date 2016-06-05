@@ -6,6 +6,9 @@ Netatmo Adapter for ioBroker
 
 ## Changelog
 
+#### 0.1.1
+* Fixed TemperatureAbsoluteMin/TemperatureAbsoluteMax
+
 #### 0.1.0
 * Fixed CO2 calibrating status
 * Added last update for devices

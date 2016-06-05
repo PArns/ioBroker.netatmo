@@ -1,6 +1,5 @@
 ![Logo](admin/netatmo.png)
 # ioBroker.netatmo
-============
 
 [![NPM version](http://img.shields.io/npm/v/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)

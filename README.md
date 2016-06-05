@@ -2,9 +2,20 @@
 # ioBroker.netatmo
 =================
 
-Netatmo Adapter for ioBroker
+[![NPM version](http://img.shields.io/npm/v/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
+
+[![NPM](https://nodei.co/npm/iobroker.netatmo.png?downloads=true)](https://nodei.co/npm/iobroker.netatmo/)
+
+Netatmo adapter for ioBroker
+
+## Installation
+Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
+
+#### 0.2.0
+* Added SumRain1Max/SumRain1MaxDate & SumRain24Max/SumRain24MaxDate to get overall rain max since adapter installation
 
 #### 0.1.1
 * Fixed TemperatureAbsoluteMin/TemperatureAbsoluteMax

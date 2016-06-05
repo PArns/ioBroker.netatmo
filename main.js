@@ -266,7 +266,7 @@ function handleTemperature(aModule, aParent) {
                 type: "string",
                 role: "indicator.datetime",
                 read: true,
-                write: false,
+                write: false
             }
         });
 
@@ -277,21 +277,27 @@ function handleTemperature(aModule, aParent) {
                 type: "string",
                 role: "indicator.datetime",
                 read: true,
-                write: false,
+                write: false
             }
         });
 
 
-        adapter.getState(aParent + ".TemperatureAbsoluteMin", function(err, state) {
+        adapter.getState(aParent + ".TemperatureAbsoluteMin", function (err, state) {
             if (!state || state.val > aModule.dashboard_data.Temperature) {
-                adapter.setState(aParent + ".TemperatureAbsoluteMin", {val: aModule.dashboard_data.Temperature, ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMin", {
+                    val: aModule.dashboard_data.Temperature,
+                    ack: true
+                });
                 adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: new Date(), ack: true});
             }
         });
 
-        adapter.getState(aParent + ".TemperatureAbsoluteMax", function(err, state) {
+        adapter.getState(aParent + ".TemperatureAbsoluteMax", function (err, state) {
             if (!state || state.val < aModule.dashboard_data.Temperature) {
-                adapter.setState(aParent + ".TemperatureAbsoluteMax", {val: aModule.dashboard_data.Temperature, ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMax", {
+                    val: aModule.dashboard_data.Temperature,
+                    ack: true
+                });
                 adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: new Date(), ack: true});
             }
         });
@@ -322,7 +328,7 @@ function handleTemperature(aModule, aParent) {
                 type: "string",
                 role: "indicator.datetime",
                 read: true,
-                write: false,
+                write: false
             }
         });
 
@@ -356,7 +362,7 @@ function handleTemperature(aModule, aParent) {
                 type: "string",
                 role: "indicator.datetime",
                 read: true,
-                write: false,
+                write: false
             }
         });
 
@@ -412,7 +418,7 @@ function handleCO2(aModule, aParent) {
                 type: "boolean",
                 role: "indicator.calibrating",
                 read: true,
-                write: false,
+                write: false
             }
         });
 
@@ -572,6 +578,69 @@ function handleRain(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_24, ack: true});
+
+
+        adapter.setObjectNotExists(aParent + ".SumRain1Max", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 1 hour maximum",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".SumRain24Max", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 24 hours maximum",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
+
+
+        adapter.setObjectNotExists(aParent + ".SumRain1MaxDate", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 1 hour maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".SumRain24MaxDate", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 24 hours maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false
+            }
+        });
+
+
+        adapter.getState(aParent + ".SumRain1Max", function (err, state) {
+            if (!state || state.val < aModule.dashboard_data.sum_rain_1) {
+                adapter.setState(aParent + ".SumRain1Max", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+                adapter.setState(aParent + ".SumRain1MaxDate", {val: new Date(), ack: true});
+            }
+        });
+
+        adapter.getState(aParent + ".SumRain24Max", function (err, state) {
+            if (!state || state.val < aModule.dashboard_data.sum_rain_24) {
+                adapter.setState(aParent + ".SumRain24Max", {val: aModule.dashboard_data.sum_rain_24, ack: true});
+                adapter.setState(aParent + ".SumRain24MaxDate", {val: new Date(), ack: true});
+            }
+        });
     }
 }
 

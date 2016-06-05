@@ -177,6 +177,40 @@ function handleModule(aModule, aParent) {
 
         adapter.setState(aParent + ".RfStatus", {val: rfStatus, ack: true});
     }
+
+    if (aModule.last_status_store) {
+        var theDate = new Date(aModule.last_status_store * 1000);
+
+        adapter.setObjectNotExists(aParent + ".LastUpdate", {
+            type: "state",
+            common: {
+                name: "Last update",
+                type: "datetime",
+                role: "indicator.date",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.setState(aParent + ".LastUpdate", {val: theDate, ack: true});
+    }
+
+    if (aModule.last_seen) {
+        var theDate = new Date(aModule.last_seen * 1000);
+
+        adapter.setObjectNotExists(aParent + ".LastUpdate", {
+            type: "state",
+            common: {
+                name: "Last update",
+                type: "datetime",
+                role: "indicator.date",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.setState(aParent + ".LastUpdate", {val: theDate, ack: true});
+    }
 }
 
 function handleTemperature(aModule, aParent) {
@@ -199,6 +233,67 @@ function handleTemperature(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".Temperature", {val: aModule.dashboard_data.Temperature, ack: true});
+
+
+        adapter.setObjectNotExists(aParent + ".TemperatureAbsoluteMin", {
+            type: "state",
+            common: {
+                name: "Absolute temperature minimum",
+                type: "number",
+                role: "indicator.temperature",
+                read: true,
+                write: false,
+                unit: "°C"
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".TemperatureAbsoluteMax", {
+            type: "state",
+            common: {
+                name: "Absolute temperature maximum",
+                type: "number",
+                role: "indicator.temperature",
+                read: true,
+                write: false,
+                unit: "°C"
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".TemperatureAbsoluteMinDate", {
+            type: "state",
+            common: {
+                name: "Absolute temperature maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false,
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".TemperatureAbsoluteMaxDate", {
+            type: "state",
+            common: {
+                name: "Absolute temperature maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false,
+            }
+        });
+
+        adapter.getState(aParent + ".TemperatureAbsoluteMin", function(state) {
+            if (!state || state.val < aModule.dashboard_data.Temperature) {
+                adapter.setState(aParent + ".TemperatureAbsoluteMin", {val: aModule.dashboard_data.Temperature, ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: new Date(), ack: true});
+            }
+        });
+
+        adapter.getState(aParent + ".TemperatureAbsoluteMax", function(state) {
+            if (!state || state.val > aModule.dashboard_data.Temperature) {
+                adapter.setState(aParent + ".TemperatureAbsoluteMax", {val: aModule.dashboard_data.Temperature, ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: new Date(), ack: true});
+            }
+        });
     }
 
 
@@ -308,7 +403,7 @@ function handleCO2(aModule, aParent) {
         adapter.setState(aParent + ".CO2", {val: aModule.dashboard_data.CO2, ack: true});
     }
 
-    if (typeof aModule.dashboard_data.co2_calibrating !== "undefined") {
+    if (typeof aModule.co2_calibrating !== "undefined") {
         adapter.setObjectNotExists(aParent + ".Calibrating", {
             type: "state",
             common: {

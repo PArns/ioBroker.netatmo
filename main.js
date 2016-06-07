@@ -562,6 +562,36 @@ function handleRain(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".SumRain1", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+
+        adapter.setObjectNotExists(aParent + ".SumRain1Max", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 1 hour maximum",
+                type: "number",
+                role: "indicator.rain",
+                read: true,
+                write: false,
+                unit: "mm"
+            }
+        });
+
+        adapter.setObjectNotExists(aParent + ".SumRain1MaxDate", {
+            type: "state",
+            common: {
+                name: "Absolute rain in 1 hour maximum date",
+                type: "string",
+                role: "indicator.datetime",
+                read: true,
+                write: false
+            }
+        });
+
+        adapter.getState(aParent + ".SumRain1Max", function (err, state) {
+            if (!state || state.val < aModule.dashboard_data.sum_rain_1) {
+                adapter.setState(aParent + ".SumRain1Max", {val: aModule.dashboard_data.sum_rain_1, ack: true});
+                adapter.setState(aParent + ".SumRain1MaxDate", {val: (new Date()).toString(), ack: true});
+            }
+        });
     }
 
     if (typeof aModule.dashboard_data.sum_rain_24 !== "undefined") {
@@ -579,19 +609,6 @@ function handleRain(aModule, aParent) {
 
         adapter.setState(aParent + ".SumRain24", {val: aModule.dashboard_data.sum_rain_24, ack: true});
 
-
-        adapter.setObjectNotExists(aParent + ".SumRain1Max", {
-            type: "state",
-            common: {
-                name: "Absolute rain in 1 hour maximum",
-                type: "number",
-                role: "indicator.rain",
-                read: true,
-                write: false,
-                unit: "mm"
-            }
-        });
-
         adapter.setObjectNotExists(aParent + ".SumRain24Max", {
             type: "state",
             common: {
@@ -604,18 +621,6 @@ function handleRain(aModule, aParent) {
             }
         });
 
-
-        adapter.setObjectNotExists(aParent + ".SumRain1MaxDate", {
-            type: "state",
-            common: {
-                name: "Absolute rain in 1 hour maximum date",
-                type: "string",
-                role: "indicator.datetime",
-                read: true,
-                write: false
-            }
-        });
-
         adapter.setObjectNotExists(aParent + ".SumRain24MaxDate", {
             type: "state",
             common: {
@@ -624,14 +629,6 @@ function handleRain(aModule, aParent) {
                 role: "indicator.datetime",
                 read: true,
                 write: false
-            }
-        });
-
-
-        adapter.getState(aParent + ".SumRain1Max", function (err, state) {
-            if (!state || state.val < aModule.dashboard_data.sum_rain_1) {
-                adapter.setState(aParent + ".SumRain1Max", {val: aModule.dashboard_data.sum_rain_1, ack: true});
-                adapter.setState(aParent + ".SumRain1MaxDate", {val: (new Date()).toString(), ack: true});
             }
         });
 

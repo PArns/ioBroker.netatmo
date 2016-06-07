@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.2.2
+* Fixed SumRain24MaxDate & SumRain24Max which won't update in some rare cases
+
 #### 0.2.1
 * Corrected DateTime values & object types
 

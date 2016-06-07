@@ -192,7 +192,7 @@ function handleModule(aModule, aParent) {
             }
         });
 
-        adapter.setState(aParent + ".LastUpdate", {val: theDate, ack: true});
+        adapter.setState(aParent + ".LastUpdate", {val: theDate.toString(), ack: true});
     }
 
     if (aModule.last_seen) {
@@ -209,7 +209,7 @@ function handleModule(aModule, aParent) {
             }
         });
 
-        adapter.setState(aParent + ".LastUpdate", {val: theDate, ack: true});
+        adapter.setState(aParent + ".LastUpdate", {val: theDate.toString(), ack: true});
     }
 }
 
@@ -288,7 +288,7 @@ function handleTemperature(aModule, aParent) {
                     val: aModule.dashboard_data.Temperature,
                     ack: true
                 });
-                adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: new Date(), ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: (new Date()).toString(), ack: true});
             }
         });
 
@@ -298,7 +298,7 @@ function handleTemperature(aModule, aParent) {
                     val: aModule.dashboard_data.Temperature,
                     ack: true
                 });
-                adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: new Date(), ack: true});
+                adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: (new Date()).toString(), ack: true});
             }
         });
     }
@@ -333,7 +333,7 @@ function handleTemperature(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".TemperatureMinDate", {
-            val: new Date(aModule.dashboard_data.date_min_temp * 1000),
+            val: (new Date(aModule.dashboard_data.date_min_temp * 1000)).toString(),
             ack: true
         });
     }
@@ -367,7 +367,7 @@ function handleTemperature(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".TemperatureMaxDate", {
-            val: new Date(aModule.dashboard_data.date_max_temp * 1000),
+            val: (new Date(aModule.dashboard_data.date_max_temp * 1000)).toString(),
             ack: true
         });
     }
@@ -631,14 +631,14 @@ function handleRain(aModule, aParent) {
         adapter.getState(aParent + ".SumRain1Max", function (err, state) {
             if (!state || state.val < aModule.dashboard_data.sum_rain_1) {
                 adapter.setState(aParent + ".SumRain1Max", {val: aModule.dashboard_data.sum_rain_1, ack: true});
-                adapter.setState(aParent + ".SumRain1MaxDate", {val: new Date(), ack: true});
+                adapter.setState(aParent + ".SumRain1MaxDate", {val: (new Date()).toString(), ack: true});
             }
         });
 
         adapter.getState(aParent + ".SumRain24Max", function (err, state) {
             if (!state || state.val < aModule.dashboard_data.sum_rain_24) {
                 adapter.setState(aParent + ".SumRain24Max", {val: aModule.dashboard_data.sum_rain_24, ack: true});
-                adapter.setState(aParent + ".SumRain24MaxDate", {val: new Date(), ack: true});
+                adapter.setState(aParent + ".SumRain24MaxDate", {val: (new Date()).toString(), ack: true});
             }
         });
     }
@@ -684,7 +684,7 @@ function handleWind(aModule, aParent) {
             type: "state",
             common: {
                 name: "Wind strength",
-                type: "Gust",
+                type: "number",
                 role: "indicator.guststrength",
                 read: true,
                 write: false,

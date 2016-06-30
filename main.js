@@ -16,25 +16,32 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 
 adapter.on('ready', function () {
-    if (adapter.config.username && adapter.config.password) {
+
+    if (adapter.config.username && adapter.config.password && adapter.config.scope) {
 
         var auth = {
             "client_id": "574ddd152baa3cf9598b46cd",
             "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
-            "scope": "read_station",
+            "scope": adapter.config.scope,
             "username": adapter.config.username,
             "password": adapter.config.password
         };
 
         api = new netatmo(auth);
 
-        // Update all stations
-        requestUpdate();
+        if(adapter.config.scope == "read_station") {
+            // Update all stations
+            requestUpdateWeatherStation();
+        }
+        else if (adapter.config.scope == "read_camera") {
+            // Update all stations
+            requestUpdateIndoorCamera();
+        }
     } else
-        adapter.log.error("Please add username and password within the adapter settings!");
+        adapter.log.error("Please add username, password and product within the adapter settings!");
 });
 
-function requestUpdate() {
+function requestUpdateWeatherStation() {
     api.getStationsData({}, function (err, data) {
         if (err !== null)
             adapter.log.error(err);
@@ -49,7 +56,30 @@ function requestUpdate() {
         }
     });
 
-    _deviceUpdateTimer = setTimeout(requestUpdate, 1000 * 60 * 5);
+    _deviceUpdateTimer = setTimeout(requestUpdateWeatherStation, 1000 * 60 * 5);
+}
+
+function requestUpdateIndoorCamera() {
+
+    adapter.log.error("Indoor camera under construction");
+
+    api.getHomeData({}, function (err, data) {
+        if (err !== null)
+            adapter.log.error(err);
+        else {
+            var homes = data.homes;
+
+            if (Array.isArray(homes)) {
+                homes.forEach(function (aHome) {
+                    handleHome(aHome);
+                });
+            } else {
+                handleHome(homes);
+            }
+        }
+    });
+
+    _deviceUpdateTimer = setTimeout(requestUpdateIndoorCamera, 1000 * 60 * 5);
 }
 
 function getDeviceName(aDeviceName) {
@@ -706,5 +736,571 @@ function handleWind(aModule, aParent) {
         });
 
         adapter.setState(aParent + ".GustAngle", {val: aModule.dashboard_data.GustAngle, ack: true});
+    }
+}
+
+
+// Welcome Indoor Camera implementation
+function getHomeName(aHomeName) {
+    return aHomeName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
+}
+
+function handleHome(aHome, aParent) {
+    if (!aParent) {
+        handleHome(aHome, "Welcome-Camera");
+    } else {
+        var homeName = getHomeName(aHome.name);
+        var fullPath = aParent ? aParent + "." + homeName : homeName;
+
+        adapter.setObject(fullPath, {
+            type: "location",
+            common: {
+                name: homeName,
+                type: "location",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        }, function () {
+
+
+            if (aHome.id) {
+                adapter.setObjectNotExists(fullPath + ".id", {
+                    type: "place",
+                    common: {
+                        name: "Home ID",
+                        type: "string",
+                        role: "indicator.place",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".id", {val: aHome.id, ack: true});
+            }
+
+            if (aHome.place) {
+                handlePlace(aHome.place, fullPath);
+            }
+
+            if (aHome.cameras) {
+                aHome.cameras.forEach(function (aCamera) {
+                    handleCamera(aCamera, fullPath);
+                });
+            }
+
+            if (aHome.persons) {
+                aHome.persons.forEach(function (aPerson) {
+                    handlePerson(aPerson, fullPath);
+                });
+            }
+
+            if (aHome.events) {
+                aHome.events.forEach(function (aEvent) {
+                    handleEvent(aEvent, fullPath);
+                });
+            }
+
+        });
+    }
+}
+
+function handlePlace(aPlace, aParent) {
+    var fullPath = aParent + ".Place";
+
+    adapter.setObject(fullPath, {
+        type: "place",
+        common: {
+            name: "place",
+            type: "place",
+            read: true,
+            write: false
+        }
+    }, function () {
+
+        if (aPlace.city) {
+            adapter.setObjectNotExists(fullPath + ".city", {
+                type: "place",
+                common: {
+                    name: "city",
+                    type: "string",
+                    role: "indicator.place",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".city", {val: aPlace.city, ack: true});
+        }
+
+        if (aPlace.country) {
+            adapter.setObjectNotExists(fullPath + ".country", {
+                type: "place",
+                common: {
+                    name: "country",
+                    type: "string",
+                    role: "indicator.place",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".country", {val: aPlace.country, ack: true});
+        }
+
+        if (aPlace.timezone) {
+            adapter.setObjectNotExists(fullPath + ".timezone", {
+                type: "place",
+                common: {
+                    name: "timezone",
+                    type: "string",
+                    role: "indicator.place",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".timezone", {val: aPlace.timezone, ack: true});
+        }
+    });
+}
+
+function getCameraName(aCameraName) {
+    return aCameraName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
+}
+
+function handleCamera(aCamera, aParent) {
+
+    if (aCamera.type == "NACamera") {
+        var aCameraName = getCameraName(aCamera.name);
+        var fullPath = aParent ? aParent + ".Cameras." + aCameraName : ".Cameras." + aCameraName;
+
+        adapter.setObject(fullPath, {
+            type: "camera",
+            common: {
+                name: aCameraName,
+                type: "camera",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aCamera.id,
+                type: aCamera.type
+            }
+        }, function () {
+
+            if (aCamera.id) {
+                adapter.setObjectNotExists(fullPath + ".id", {
+                    type: "camera",
+                    common: {
+                        name: "Camera ID",
+                        type: "string",
+                        role: "indicator.camera",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".id", {val: aCamera.id, ack: true});
+            }
+
+            if (aCamera.status) {
+                adapter.setObjectNotExists(fullPath + ".status", {
+                    type: "state",
+                    common: {
+                        name: "Monitoring State (on/off)",
+                        type: "state",
+                        role: "indicator.camera",
+                        read: true,
+                        write: false
+                    },
+                    native: {
+                        status: aCamera.status
+                    }
+                });
+
+                adapter.setState(fullPath + ".status", {val: aCamera.status, ack: true});
+            }
+
+            if (aCamera.sd_status) {
+                adapter.setObjectNotExists(fullPath + ".sd_status", {
+                    type: "state",
+                    common: {
+                        name: "SD card State (on/off)",
+                        type: "state",
+                        role: "indicator.camera",
+                        read: true,
+                        write: false
+                    },
+                    native: {
+                        sd_status: aCamera.sd_status
+                    }
+                });
+
+                adapter.setState(fullPath + ".sd_status", {val: aCamera.sd_status, ack: true});
+            }
+
+            if (aCamera.alim_status) {
+                adapter.setObjectNotExists(fullPath + ".alim_status", {
+                    type: "state",
+                    common: {
+                        name: "Power Supply State (on/off)",
+                        type: "state",
+                        role: "indicator.camera",
+                        read: true,
+                        write: false
+                    },
+                    native: {
+                        alim_status: aCamera.alim_status
+                    }
+                });
+
+                adapter.setState(fullPath + ".alim_status", {val: aCamera.alim_status, ack: true});
+            }
+        });
+    }
+}
+
+function getPersonName(aPersonName) {
+    return aPersonName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
+}
+
+function handlePerson(aPerson, aParent) {
+
+    var aPersonName;
+    if(aPerson.pseudo){
+        aPersonName = getPersonName(aPerson.pseudo);
+    } else {
+        aPersonName = "Unknown." + aPerson.id;
+    }
+
+    var fullPath = aParent ? aParent + ".Persons." + aPersonName : ".Persons." + aPersonName;
+
+    adapter.setObject(fullPath, {
+        type: "person",
+        common: {
+            name: aPersonName,
+            type: "person",
+            read: true,
+            write: false
+        },
+        native: {
+            id: aPerson.id
+        }
+    }, function () {
+
+        if (aPerson.id) {
+            adapter.setObjectNotExists(fullPath + ".id", {
+                type: "person",
+                common: {
+                    name: "Person ID",
+                    type: "string",
+                    role: "indicator.person",
+                    read: true,
+                    write: false
+                }
+            });
+            adapter.setState(fullPath + ".id", {val: aPerson.id, ack: true});
+        }
+
+        if (aPerson.out_of_sight !== "undefined") {
+            adapter.setObjectNotExists(fullPath + ".out_of_sight", {
+                type: "state",
+                common: {
+                    name: "Person away (true/false)",
+                    type: "state",
+                    role: "indicator.person",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".out_of_sight", {val: aPerson.out_of_sight, ack: true});
+        }
+
+        if (aPerson.last_seen) {
+            adapter.setObjectNotExists(fullPath + ".last_seen", {
+                type: "state",
+                common: {
+                    name: "Last seen",
+                    type: "date",
+                    role: "indicator.person",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".last_seen", {
+                val: (new Date(aPerson.last_seen * 1000)).toString(),
+                ack: true
+            });
+        }
+        if (aPerson.face !== "undefined") {
+            handleFace(aPerson.face, fullPath);
+        }
+    });
+}
+
+
+function handleFace(aFace, aParent) {
+
+    var fullPath = aParent + ".face";
+
+    if (aFace.id) {
+        adapter.setObjectNotExists(fullPath + ".id", {
+            type: "face",
+            common: {
+                name: "Face ID",
+                type: "string",
+                role: "indicator.face",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".id", {val: aFace.id, ack: true});
+    }
+
+    if (aFace.key) {
+        adapter.setObjectNotExists(fullPath + ".key", {
+            type: "face",
+            common: {
+                name: "Face Key",
+                type: "string",
+                role: "indicator.face",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".key", {val: aFace.key, ack: true});
+    }
+
+    if (aFace.version) {
+        adapter.setObjectNotExists(fullPath + ".version", {
+            type: "face",
+            common: {
+                name: "Version",
+                type: "string",
+                role: "indicator.face",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".version", {val: aFace.version, ack: true});
+    }
+}
+
+function handleEvent(aEvent, aParent) {
+
+    if (aEvent.id != "undefined") {
+        var fullPath = aParent ? aParent + ".Events." + aEvent.id : ".Events." + aEvent.id;
+
+        adapter.setObject(fullPath, {
+            type: "event",
+            common: {
+                name: aEvent.id,
+                type: aEvent.type,
+                read: true,
+                write: false
+            },
+            native: {
+                id: aEvent.id
+            }
+        }, function () {
+
+            if (aEvent.id) {
+                adapter.setObjectNotExists(fullPath + ".id", {
+                    type: "event",
+                    common: {
+                        name: "Event ID",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".id", {val: aEvent.id, ack: true});
+            }
+
+            if (aEvent.message) {
+                adapter.setObjectNotExists(fullPath + ".message", {
+                    type: "event",
+                    common: {
+                        name: "Message",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".message", {val: aEvent.message, ack: true});
+            }
+
+            if (aEvent.type) {
+                adapter.setObjectNotExists(fullPath + ".type", {
+                    type: "event",
+                    common: {
+                        name: "Type",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".type", {val: aEvent.type, ack: true});
+            }
+
+            if (aEvent.time) {
+                adapter.setObjectNotExists(fullPath + ".time", {
+                    type: "event",
+                    common: {
+                        name: "Time",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".time", {
+                    val: (new Date(aEvent.time * 1000)).toString(),
+                    ack: true
+                });
+            }
+
+            if (aEvent.person_id) {
+                adapter.setObjectNotExists(fullPath + ".person_id", {
+                    type: "event",
+                    common: {
+                        name: "Person ID",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".person_id", {val: aEvent.person_id, ack: true});
+            }
+
+            if (aEvent.camera_id) {
+                adapter.setObjectNotExists(fullPath + ".camera_id", {
+                    type: "event",
+                    common: {
+                        name: "Camera ID",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".camera_id", {val: aEvent.camera_id, ack: true});
+            }
+
+            if (aEvent.sub_type) {
+                adapter.setObjectNotExists(fullPath + ".sub_type", {
+                    type: "event",
+                    common: {
+                        name: "Sub Type",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".sub_type", {val: aEvent.sub_type, ack: true});
+            }
+
+            if (aEvent.video_id) {
+                adapter.setObjectNotExists(fullPath + ".video_id", {
+                    type: "event",
+                    common: {
+                        name: "Video ID",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".video_id", {val: aEvent.video_id, ack: true});
+            }
+
+            if (aEvent.video_status) {
+                adapter.setObjectNotExists(fullPath + ".video_status", {
+                    type: "event",
+                    common: {
+                        name: "Video Status",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".video_status", {val: aEvent.video_status, ack: true});
+            }
+
+            if (aEvent.is_arrival !== "undefined") {
+                adapter.setObjectNotExists(fullPath + ".is_arrival", {
+                    type: "event",
+                    common: {
+                        name: "Is Arrival",
+                        type: "string",
+                        role: "indicator.event",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".is_arrival", {val: aEvent.is_arrival, ack: true});
+            }
+
+            if (aEvent.snapshot) {
+                handleSnapshot(aEvent.snapshot, fullPath);
+            }
+
+        });
+    }
+}
+
+function handleSnapshot(aSnapshot, aParent) {
+
+    var fullPath = aParent + ".snapshot";
+
+    if (aSnapshot.id) {
+        adapter.setObjectNotExists(fullPath + ".id", {
+            type: "snapshot",
+            common: {
+                name: "Snapshot ID",
+                type: "string",
+                role: "indicator.snapshot",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".id", {val: aSnapshot.id, ack: true});
+    }
+
+    if (aSnapshot.key) {
+        adapter.setObjectNotExists(fullPath + ".key", {
+            type: "snapshot",
+            common: {
+                name: "Snapshot Key",
+                type: "string",
+                role: "indicator.snapshot",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".key", {val: aSnapshot.key, ack: true});
+    }
+
+    if (aSnapshot.version) {
+        adapter.setObjectNotExists(fullPath + ".version", {
+            type: "snapshot",
+            common: {
+                name: "Version",
+                type: "string",
+                role: "indicator.snapshot",
+                read: true,
+                write: false
+            }
+        });
+        adapter.setState(fullPath + ".version", {val: aSnapshot.version, ack: true});
     }
 }

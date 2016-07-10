@@ -3,7 +3,7 @@ module.exports = function (myapi, myadapter) {
     var api = myapi;
     var adapter = myadapter;
 
-    this.requestUpdateWeatherStation = function() {
+    this.requestUpdateWeatherStation = function () {
         api.getStationsData({}, function (err, data) {
             if (err !== null)
                 adapter.log.error(err);
@@ -17,7 +17,7 @@ module.exports = function (myapi, myadapter) {
                 }
             }
         });
-    }
+    };
 
     function getDeviceName(aDeviceName) {
         return aDeviceName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
@@ -255,7 +255,10 @@ module.exports = function (myapi, myadapter) {
                         val: aModule.dashboard_data.Temperature,
                         ack: true
                     });
-                    adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {val: (new Date()).toString(), ack: true});
+                    adapter.setState(aParent + ".TemperatureAbsoluteMinDate", {
+                        val: (new Date()).toString(),
+                        ack: true
+                    });
                 }
             });
 
@@ -265,7 +268,10 @@ module.exports = function (myapi, myadapter) {
                         val: aModule.dashboard_data.Temperature,
                         ack: true
                     });
-                    adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {val: (new Date()).toString(), ack: true});
+                    adapter.setState(aParent + ".TemperatureAbsoluteMaxDate", {
+                        val: (new Date()).toString(),
+                        ack: true
+                    });
                 }
             });
         }
@@ -675,5 +681,4 @@ module.exports = function (myapi, myadapter) {
             adapter.setState(aParent + ".GustAngle", {val: aModule.dashboard_data.GustAngle, ack: true});
         }
     }
-
-}
+};

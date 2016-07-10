@@ -23,21 +23,41 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 
 adapter.on('ready', function () {
+    if (adapter.config.username && adapter.config.password) {
+        var scope = "";
 
-    if (adapter.config.username && adapter.config.password && adapter.config.client_id && adapter.config.client_secret && (adapter.config.netatmoWeather || adapter.config.netatmoWelcome) ) {
+        // Backward compatibility begin ...
+        // --------------------------------------------------------
+        // If nothing is set, activate at least the Weatherstation
+        if (!(adapter.config.netatmoWeather || adapter.config.netatmoWelcome)) {
+            adapter.log.info("No product was choosen, using WeatherStation as default!");
+            adapter.config.netatmoWeather = true;
+        }
 
-        var scope ="";
+        if (!adapter.config.check_interval)
+            adapter.config.check_interval = 5;
+
+        if (!adapter.config.cleanup_interval)
+            adapter.config.cleanup_interval = 60;
+
+        if (!adapter.config.unknown_person_time)
+            adapter.config.unknown_person_time = 24;
+
         if (adapter.config.netatmoWeather) {
             scope += " read_station";
         }
+        // --------------------------------------------------------
+        // Backward compatibility end ...
+
         if (adapter.config.netatmoWelcome) {
             scope += " read_camera";
         }
+
         scope = scope.trim();
 
         var auth = {
-            "client_id": adapter.config.client_id,
-            "client_secret": adapter.config.client_secret,
+            "client_id": "574ddd152baa3cf9598b46cd",
+            "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
             "scope": scope,
             "username": adapter.config.username,
             "password": adapter.config.password
@@ -50,7 +70,7 @@ adapter.on('ready', function () {
             station.requestUpdateWeatherStation();
             _deviceUpdateTimer = setInterval(function () {
                 station.requestUpdateWeatherStation();
-            },  adapter.config.check_interval *  60 * 1000);
+            }, adapter.config.check_interval * 60 * 1000);
         }
 
         if (adapter.config.netatmoWelcome) {
@@ -63,7 +83,7 @@ adapter.on('ready', function () {
         }
 
     } else
-        adapter.log.error("Please add username, password, client_id, client_secret and choose a product within the adapter settings!");
+        adapter.log.error("Please add username, password and choose at least one product within the adapter settings!");
 });
 
 

@@ -22,14 +22,14 @@ module.exports = function (myapi, myadapter) {
 
                         var homeName = getHomeName(aHome.name);
 
-                        if (! EventCleanUpTimer[homeName]) {
+                        if (!EventCleanUpTimer[homeName]) {
                             var _welcomeCleanUpTimer = setInterval(function () {
                                 cleanUpEvents(homeName);
                             }, cleanUpInterval * 60 * 1000);
                             EventCleanUpTimer[homeName] = _welcomeCleanUpTimer;
                         }
 
-                        if (! PersonCleanUpTimer[homeName]) {
+                        if (!PersonCleanUpTimer[homeName]) {
                             var _welcomeCleanUpTimer = setInterval(function () {
                                 cleanUpUnknownPersons(homeName);
                             }, cleanUpInterval * 60 * 1000);
@@ -319,7 +319,7 @@ module.exports = function (myapi, myadapter) {
 
         var personDate = aPerson.last_seen ? aPerson.last_seen * 1000 : cleanupDate;
 
-        if ( bKnown || cleanupDate < personDate) {
+        if (bKnown || cleanupDate < personDate) {
 
 
             var fullPath = aParent + ".Persons";
@@ -479,7 +479,10 @@ module.exports = function (myapi, myadapter) {
                             vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
                         }
                     });
-                    adapter.setState(fullPath + ".face_url", {val: adapter.namespace + "." + fullPath + ".jpg", ack: true});
+                    adapter.setState(fullPath + ".face_url", {
+                        val: adapter.namespace + "." + fullPath + ".jpg",
+                        ack: true
+                    });
 
 
                     adapter.setObjectNotExists(fullPath + ".jpg", {
@@ -740,7 +743,10 @@ module.exports = function (myapi, myadapter) {
                             vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
                         }
                     });
-                    adapter.setState(fullPath + ".snapshot_url", {val: adapter.namespace + "." + fullPath + ".jpg", ack: true});
+                    adapter.setState(fullPath + ".snapshot_url", {
+                        val: adapter.namespace + "." + fullPath + ".jpg",
+                        ack: true
+                    });
 
 
                     adapter.setObjectNotExists(fullPath + ".jpg", {
@@ -792,7 +798,7 @@ module.exports = function (myapi, myadapter) {
 
                                 var eventDate = Date.parse(objTime[aTimeId].val);
                                 if (cleanupDate > eventDate) {
-                                    var parentId = aTimeId.substring(0, aTimeId.length-5);
+                                    var parentId = aTimeId.substring(0, aTimeId.length - 5);
 
                                     adapter.getForeignObjects(parentId + ".*", "state", function (errState, objState) {
                                         if (errState) {
@@ -819,7 +825,6 @@ module.exports = function (myapi, myadapter) {
     }
 
 
-
     function cleanUpUnknownPersons(home) {
 
         adapter.getForeignObjects("netatmo." + adapter.instance + "." + home + ".Persons.Unknown.*", "channel", function (errPerson, objPerson) {
@@ -837,7 +842,7 @@ module.exports = function (myapi, myadapter) {
 
                                 var personDate = Date.parse(objTime[aTimeId].val);
                                 if (cleanupDate > personDate) {
-                                    var parentId = aTimeId.substring(0, aTimeId.length-10);
+                                    var parentId = aTimeId.substring(0, aTimeId.length - 10);
 
                                     adapter.getForeignObjects(parentId + ".*", "state", function (errState, objState) {
                                         if (errState) {
@@ -859,7 +864,5 @@ module.exports = function (myapi, myadapter) {
                 }
             }
         });
-
-
     }
-}
+};

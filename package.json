@@ -1,6 +1,6 @@
 {
   "name": "iobroker.netatmo",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "ioBroker netatmo Adapter",
   "author": {
     "name": "Patrick Arns",
@@ -10,6 +10,10 @@
     {
       "name": "Patrick Arns",
       "email": "iobroker@patrick-arns.de"
+    },
+    {
+      "name": "Peter Weiss",
+      "email": "peter.weiss@wep4you.com"
     }
   ],
   "homepage": "https://github.com/PArns/ioBroker.netatmo/",
@@ -17,6 +21,8 @@
   "keywords": [
     "ioBroker",
     "netatmo",
+    "welcome",
+    "camera",
     "Smart Home",
     "home automation"
   ],

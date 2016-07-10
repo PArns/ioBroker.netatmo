@@ -13,66 +13,126 @@
 <!-- you have to define 2 functions in the global scope: -->
 <script type="text/javascript">
 
-	// Dictionary (systemDictionary is global variable from adapter-settings.js)
-	systemDictionary = {
-		"Netatmo Adapter settings": {"de": "Netatmo Adapter Einstellungen"},
-		"E-Mail": {"de": "E-Mail"},
-		"Password": {"de": "Passwort"},
-		"on save adapter restarts with new config immediately": {
-			"de": "Beim Speichern von Einstellungen der Adapter wird sofort neu gestartet.",
-			"ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
-		}
-	};
+    // Dictionary (systemDictionary is global variable from adapter-settings.js)
+    systemDictionary = {
+        "Netatmo Adapter settings": {"de": "Netatmo Adapter Einstellungen", "en": "Netatmo adapter settings"},
+        "E-Mail": {"de": "E-Mail", "en": "mail"},
+        "Password": {"de": "Passwort", "en": "password"},
+        "Weather": {"de": "Wetter Station", "en": "weather station"},
+        "Welcome": {"de": "Welcome Innenkamera", "en": "welcome indoor cam"},
+        "on save adapter restarts with new config immediately": {
+            "de": "Beim Speichern von Einstellungen wird der Adapter sofort neu gestartet.",
+            "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
+        },
+        "ClientID": {"de": "Client ID (Netatmo App)", "en": "Client ID (Your Netatmo APP)"},
+        "ClientSecret": {"de": "Client Secret (Netatmo App)", "en": "Client Secret (Your Netatmo APP)"},
+        "CheckIntervall": {"de": "Daten erneut laden (Minuten)", "en": "Check Intervall (minutes)"},
+        "CleanupIntervall": {"de": "Daten bereinigen (Minuten)", "en": "Cleanup Intervall (minutes)"},
+        "RemoveEvents": {"de": "Ereignisse nach (Stunden) löschen", "en": "Remove events older than (hours)"},
+        "RemoveUnknownPerson": {"de": "Unbekannte Personen nach (Stunden) löschen", "en": "Remove unknown persons last seen older than (hours)"}
 
-	// the function loadSettings has to exist ...
-	function load(settings, onChange) {
-		// example: select elements with id=key and class=value and insert value
-		for (var key in settings) {
-			// example: select elements with id=key and class=value and insert value
-			if ($('#' + key + '.value').attr('type') == 'checkbox') {
-				$('#' + key + '.value').prop('checked', settings[key]).change(function () {
-					onChange();
-				});
-			} else {
-				$('#' + key + '.value').val(settings[key]).change(function () {
-					onChange();
-				}).keyup(function () {
-					$(this).trigger('change');
-				});
-			}
-		}
-		// Signal to admin, that no changes yet
-		onChange(false);
-	}
+    };
 
-	// ... and the function save has to exist.
-	// you have to make sure the callback is called with the settings object as first param!
-	function save(callback) {
-		// example: select elements with class=value and build settings object
-		var obj = {};
-		$('.value').each(function () {
-			var $this = $(this);
-			obj[$this.attr('id')] = $this.val();
-		});
-		callback(obj);
-	}
+    // the function loadSettings has to exist ...
+    function load(settings, onChange) {
+        // example: select elements with id=key and class=value and insert value
+        for (var key in settings) {
+            // example: select elements with id=key and class=value and insert value
+            if ($('#' + key + '.value').attr('type') == 'checkbox') {
+                $('#' + key + '.value').prop('checked', settings[key]).change(function () {
+                    onChange();
+                });
+            } else {
+                $('#' + key + '.value').val(settings[key]).change(function () {
+                    onChange();
+                }).keyup(function () {
+                    $(this).trigger('change');
+                });
+            }
+        }
+        // Signal to admin, that no changes yet
+        onChange(false);
+    }
+
+    // ... and the function save has to exist.
+    // you have to make sure the callback is called with the settings object as first param!
+    function save(callback) {
+        // example: select elements with class=value and build settings object
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            var id = $this.attr('id');
+
+            if ($this.attr('type') == 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
+        });
+
+        callback(obj);
+    }
+
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->
 <div id="adapter-container">
 
-	<table>
-		<tr>
-			<td><img src="netatmo.png"/></td>
-			<td><h3 class="translate">Netatmo Adapter settings</h3></td>
-		</tr>
-	</table>
-	<p>
-		<span class="translate">E-Mail</span> <input class="value" id="username"/><br>
-		<span class="translate">Password</span> <input class="value" type="password" id="password"/><br>
-	</p>
+    <table>
+        <tr>
+            <td><img src="netatmo.png"/></td>
+            <td><h3 class="translate">Netatmo Adapter settings</h3></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td class="translate">Weather</td>
+            <td><input type="checkbox" id="netatmoWeather" value="true" class="value"></td>
 
-	<p class="translate">on save adapter restarts with new config immediately</p>
+        </tr>
+        <tr>
+            <td class="translate">Welcome</td>
+            <td><input type="checkbox" id="netatmoWelcome" value="true" class="value"></td>
+        </tr>
+
+        <tr>
+            <td class="translate">E-Mail</td>
+            <td><input class="value" id="username"></td>
+        </tr>
+        <tr>
+            <td class="translate">Password</td>
+            <td><input class="value" type="password" id="password"></td>
+        </tr>
+
+        <tr>
+            <td class="translate">ClientID</td>
+            <td><input class="value" id="client_id"></td>
+        </tr>
+        <tr>
+            <td class="translate">ClientSecret</td>
+            <td><input class="value" id="client_secret"></td>
+        </tr>
+
+        <tr>
+            <td class="translate">CheckIntervall</td>
+            <td><input type="number" id="check_interval" class="value number"></td>
+        </tr>
+        <tr>
+            <td class="translate">CleanupIntervall</td>
+            <td><input type="number" id="cleanup_interval" class="value number"></td>
+        </tr>
+        <tr>
+            <td class="translate">RemoveEvents</td>
+            <td><input type="number" id="event_time" class="value number"></td>
+        </tr>
+        <tr>
+            <td class="translate">RemoveUnknownPerson</td>
+            <td><input type="number" id="unknown_person_time" class="value number"></td>
+        </tr>
+
+    </table>
+
+    <p class="translate">on save adapter restarts with new config immediately</p>
 
 </div>
 

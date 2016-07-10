@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
@@ -12,7 +12,7 @@
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "netatmo.png",
-    "enabled": true,
+    "enabled": false,
     "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
     "keywords": [
       "netatmo"
@@ -22,10 +22,16 @@
     "type": "hardware"
   },
   "native": {
-    "client_id": "574ddd152baa3cf9598b46cd",
-    "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
-    "username": "",
-    "password": ""
+    "netatmoWeather":      false,
+    "netatmoWelcome":      false,
+    "username":             "",
+    "password":             "",
+    "client_id":            "",
+    "client_secret":        "",
+    "check_interval":       5,
+    "cleanup_interval":     60,
+    "event_time":           12,
+    "unknown_person_time":  24
   },
   "objects": [
   ]

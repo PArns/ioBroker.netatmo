@@ -112,6 +112,7 @@ module.exports = function (myapi, myadapter) {
             aHome.events.forEach(function (aEvent) {
                 handleEvent(aEvent, homeName);
             });
+            EventsJSSON(homeName);
         }
 
     }
@@ -687,7 +688,6 @@ module.exports = function (myapi, myadapter) {
                 handleSnapshot(aEvent.snapshot, fullPath);
             }
         }
-
     }
 
     function handleSnapshot(aSnapshot, aParent) {
@@ -815,7 +815,7 @@ module.exports = function (myapi, myadapter) {
             }
         });
 
-
+        EventsJSSON(home);
     }
 
 
@@ -858,8 +858,106 @@ module.exports = function (myapi, myadapter) {
                     });
                 }
             }
-        });
-
-
+        })
     }
+
+
+
+    function EventsJSSON(home) {
+        adapter.getForeignStates(adapter.namespace + "." + home + ".Events.*", function (errEvents, objEvents) {
+            //adapter.getForeignObjects(adapter.namespace + "." + home + ".Events.*", function (errEvents, objEvents) {
+            if (errEvents) {
+                adapter.log.error(errEvents);
+            } else if (objEvents) {
+                var myEventsJSON = {};
+
+                for (var aEventId in objEvents) {
+
+                    var lastDot = aEventId.lastIndexOf(".");
+                    var parent = aEventId.slice(0, lastDot);
+                    var leaf = aEventId.slice(lastDot+1);
+
+                    var aEventJSON = {"snapshot_url": "", "time": "", "type": "", "message": ""};
+                    if (myEventsJSON[parent]) {
+                        aEventJSON = myEventsJSON[parent];
+                    }
+
+                    var myVal = objEvents[aEventId].val ? objEvents[aEventId].val : "";
+
+                    if (leaf == "type") {
+                        aEventJSON[leaf] = myVal;
+                    } else if (leaf == "time") {
+                        var myDate = new Date(myVal);
+                        aEventJSON[leaf] = adapter.formatDate(myDate, "DD.MM.YY hh:mm");
+                    } else if (leaf == "message") {
+                        aEventJSON[leaf] = myVal;
+                    } else if (leaf == "snapshot_url") {
+                        aEventJSON[leaf] = "<a href='/state/" + myVal + "' target='_blank'><img src='/state/" + myVal + "' height='40px'/></a>";
+                    }
+
+                    if (aEventJSON) {
+                        myEventsJSON[parent] = aEventJSON;
+                    }
+
+                }
+
+                var myArr = sortProperties(myEventsJSON, "time", false, true);
+                var myJSON = "[";
+                if (Array.isArray(myArr)) {
+                    myArr.forEach(function (aEvent) {
+                        myJSON += JSON.stringify(aEvent[1]) + ", ";
+                    });
+                }
+                myJSON = myJSON.slice(0, myJSON.lastIndexOf(","))  + "]";
+
+                adapter.setObjectNotExists(adapter.namespace + "." + home + ".Events.events_json", {
+                    type: "state",
+                    common: {
+                        name: "Events JSON",
+                        type: "string",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(adapter.namespace + "." + home + ".Events.events_json", {val: myJSON, ack: true});
+
+            }
+        });
+    }
+
+    /**
+     * Sort object properties (only own properties will be sorted).
+     * @param {object} obj object to sort properties
+     * @param {string|int} sortedBy 1 - sort object properties by specific value.
+     * @param {bool} isNumericSort true - sort object properties as numeric value, false - sort as string value.
+     * @param {bool} reverse false - reverse sorting.
+     * @returns {Array} array of items in [[key,value],[key,value],...] format.
+     */
+    function sortProperties(obj, sortedBy, isNumericSort, reverse) {
+        sortedBy = sortedBy || 1; // by default first key
+        isNumericSort = isNumericSort || false; // by default text sort
+        reverse = reverse || false; // by default no reverse
+
+        var reversed = (reverse) ? -1 : 1;
+
+        var sortable = [];
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                sortable.push([key, obj[key]]);
+            }
+        }
+        if (isNumericSort)
+            sortable.sort(function (a, b) {
+                return reversed * (a[1][sortedBy] - b[1][sortedBy]);
+            });
+        else
+            sortable.sort(function (a, b) {
+                var x = a[1][sortedBy].toLowerCase(),
+                    y = b[1][sortedBy].toLowerCase();
+                return x < y ? reversed * -1 : x > y ? reversed : 0;
+            });
+        return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+    }
+
+
 }

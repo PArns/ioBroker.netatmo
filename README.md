@@ -13,37 +13,41 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.3.1
+* (PArns) Reuse of preconfigured OAuth Client data
+* (PArns) Added backward compatibility with existing installations
+
 ### 0.3.0
-* Initial implementation of netatmo welcome camera
+* (wep4you) Initial implementation of netatmo welcome camera
 
 ### 0.2.2
-* Fixed SumRain24MaxDate & SumRain24Max which won't update in some rare cases
+* (PArns) Fixed SumRain24MaxDate & SumRain24Max which won't update in some rare cases
 
 #### 0.2.1
-* Corrected DateTime values & object types
+* (PArns) Corrected DateTime values & object types
 
 #### 0.2.0
-* Added SumRain1Max/SumRain1MaxDate & SumRain24Max/SumRain24MaxDate to get overall rain max since adapter installation
+* (PArns) Added SumRain1Max/SumRain1MaxDate & SumRain24Max/SumRain24MaxDate to get overall rain max since adapter installation
 
 #### 0.1.1
-* Fixed TemperatureAbsoluteMin/TemperatureAbsoluteMax
+* (PArns) Fixed TemperatureAbsoluteMin/TemperatureAbsoluteMax
 
 #### 0.1.0
-* Fixed CO2 calibrating status
-* Added last update for devices
-* Added TemperatureAbsoluteMin/TemperatureAbsoluteMax to get overall temperature min/max since adapter installation
+* (PArns) Fixed CO2 calibrating status
+* (PArns) Added last update for devices
+* (PArns) Added TemperatureAbsoluteMin/TemperatureAbsoluteMax to get overall temperature min/max since adapter installation
 
 #### 0.0.4
-* Fixed typo/missing parameter in GustStrength
+* (PArns) Fixed typo/missing parameter in GustStrength
 
 #### 0.0.3
-* Added error handling to prevent exceptions for missing parameters
+* (PArns) Added error handling to prevent exceptions for missing parameters
 
 #### 0.0.2
-* Fixed rain sensor
+* (PArns) Fixed rain sensor
 
 #### 0.0.1
-* Initial release
+* (PArns) Initial release
 
 ## License
 MIT

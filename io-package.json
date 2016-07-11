@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
@@ -22,16 +22,14 @@
     "type": "hardware"
   },
   "native": {
-    "netatmoWeather":      false,
-    "netatmoWelcome":      false,
-    "username":             "",
-    "password":             "",
-    "client_id":            "",
-    "client_secret":        "",
-    "check_interval":       5,
-    "cleanup_interval":     60,
-    "event_time":           12,
-    "unknown_person_time":  24
+    "netatmoWeather": true,
+    "netatmoWelcome": false,
+    "username": "",
+    "password": "",
+    "check_interval": 5,
+    "cleanup_interval": 60,
+    "event_time": 12,
+    "unknown_person_time": 24
   },
   "objects": [
   ]

@@ -837,7 +837,7 @@ module.exports = function (myapi, myadapter) {
 
                                 var personDate = Date.parse(objTime[aTimeId].val);
                                 if (cleanupDate > personDate) {
-                                    var parentId = aTimeId.substring(0, aTimeId.length-10);
+                                    var parentId = aTimeId.substring(0, aTimeId.length - 10);
 
                                     adapter.getForeignObjects(parentId + ".*", "state", function (errState, objState) {
                                         if (errState) {

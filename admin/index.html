@@ -27,10 +27,6 @@
         "ClientID": {"de": "Client ID (Netatmo App)", "en": "Client ID (Your Netatmo APP)"},
         "ClientSecret": {"de": "Client Secret (Netatmo App)", "en": "Client Secret (Your Netatmo APP)"},
         "CheckIntervall": {"de": "Daten erneut laden (Minuten)", "en": "Check Intervall (minutes)"},
-        "CleanupIntervall": {"de": "Daten bereinigen (Minuten)", "en": "Cleanup Intervall (minutes)"},
-        "RemoveEvents": {"de": "Ereignisse nach (Stunden) löschen", "en": "Remove events older than (hours)"},
-        "RemoveUnknownPerson": {"de": "Unbekannte Personen nach (Stunden) löschen", "en": "Remove unknown persons last seen older than (hours)"}
-
     };
 
     // the function loadSettings has to exist ...
@@ -107,18 +103,6 @@
         <tr>
             <td class="translate">CheckIntervall</td>
             <td><input type="number" id="check_interval" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">CleanupIntervall</td>
-            <td><input type="number" id="cleanup_interval" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">RemoveEvents</td>
-            <td><input type="number" id="event_time" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">RemoveUnknownPerson</td>
-            <td><input type="number" id="unknown_person_time" class="value number"></td>
         </tr>
 
     </table>

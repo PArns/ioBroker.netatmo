@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "0.3.1",
+    "version": "0.4.0",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
@@ -29,7 +29,8 @@
     "check_interval": 5,
     "cleanup_interval": 60,
     "event_time": 12,
-    "unknown_person_time": 24
+    "unknown_person_time": 24,
+    "location_elevation": 0
   },
   "objects": [
   ]

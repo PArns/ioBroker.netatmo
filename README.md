@@ -13,6 +13,10 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.4.0
+* (PArns) Added absolute humidity
+* (PArns) Added dewpoint
+
 ### 0.3.1
 * (PArns) Reuse of preconfigured OAuth Client data
 * (PArns) Added backward compatibility with existing installations

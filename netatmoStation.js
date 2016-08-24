@@ -3,6 +3,8 @@ module.exports = function (myapi, myadapter) {
     var api = myapi;
     var adapter = myadapter;
 
+    var dewpoint = require('dewpoint');
+
     this.requestUpdateWeatherStation = function () {
         api.getStationsData({}, function (err, data) {
             if (err !== null)
@@ -84,6 +86,38 @@ module.exports = function (myapi, myadapter) {
                     break;
             }
         });
+
+        if (aModule.dashboard_data && (typeof aModule.dashboard_data.Temperature) !== "undefined" && (typeof aModule.dashboard_data.Humidity) !== "undefined") {
+            var dp = new dewpoint(myadapter.config.location_elevation);
+            var point = dp.Calc(+aModule.dashboard_data.Temperature, +aModule.dashboard_data.Humidity);
+
+            adapter.setObjectNotExists(aParent + ".Temperature.DewPoint", {
+                type: "state",
+                common: {
+                    name: "Dew point temperature",
+                    type: "number",
+                    role: "indicator.temperature",
+                    read: true,
+                    write: false,
+                    unit: "°C"
+                }
+            });
+
+            adapter.setObjectNotExists(aParent + ".Humidity.AbsoluteHumidity", {
+                type: "state",
+                common: {
+                    name: "Absolute humidity in gram per kilogram air",
+                    type: "number",
+                    role: "indicator.humidity",
+                    read: true,
+                    write: false,
+                    unit: "g/kg"
+                }
+            });
+
+            adapter.setState(aParent + ".Temperature.DewPoint", {val: point.dp.toFixed(1), ack: true});
+            adapter.setState(aParent + ".Humidity.AbsoluteHumidity", {val: point.x.toFixed(3), ack: true});
+        }
 
         if (aModule.wifi_status) {
             var wifiStatus = "good";

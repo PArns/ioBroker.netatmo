@@ -43,6 +43,9 @@ adapter.on('ready', function () {
         if (!adapter.config.unknown_person_time)
             adapter.config.unknown_person_time = 24;
 
+        if (!adapter.config.location_elevation)
+            adapter.config.location_elevation = 0;
+
         if (adapter.config.netatmoWeather) {
             scope += " read_station";
         }

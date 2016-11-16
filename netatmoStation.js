@@ -81,6 +81,7 @@ module.exports = function (myapi, myadapter) {
                     break;
                 case "Wind":
                     handleWind(aModule, aParent);
+                    break;
                 default:
                     adapter.log.info("UNKNOWN DEVICE TYPE: " + aDeviceType + " " + JSON.stringify(aModule));
                     break;

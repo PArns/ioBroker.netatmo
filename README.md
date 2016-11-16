@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.4.1
+* (PArns) Removed log warnings for Wind sensor
+
 ### 0.4.0
 * (PArns) Added absolute humidity
 * (PArns) Added dewpoint

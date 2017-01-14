@@ -9,6 +9,28 @@ module.exports = function (myapi, myadapter) {
     var EventCleanUpTimer = {};
     var PersonCleanUpTimer = {};
 
+    var webServer = null;
+    var that = null;
+
+    this.init = function () {
+        that = this;
+
+        if (adapter.config.external_host && adapter.config.external_host !== "" && adapter.config.port) {
+            initWebServer();
+            var hookUrl = "http://" + adapter.config.external_host + ":" + adapter.config.port;
+
+            api.addWebHook(hookUrl, function () {
+                adapter.log.info("Registered callback hook " + hookUrl);
+            })
+        }
+    };
+
+    this.finalize = function () {
+        if (webServer) {
+            api.dropWebHook();
+        }
+    };
+
     this.requestUpdateIndoorCamera = function () {
         api.getHomeData({}, function (err, data) {
             if (err !== null)
@@ -38,6 +60,96 @@ module.exports = function (myapi, myadapter) {
                     });
                 }
             }
+        });
+    };
+
+    function initWebServer() {
+        if (adapter.config.ssl) {
+            // subscribe on changes of permissions
+            adapter.subscribeForeignObjects('system.group.*');
+            adapter.subscribeForeignObjects('system.user.*');
+
+            if (!adapter.config.certPublic) {
+                adapter.config.certPublic = 'defaultPublic';
+            }
+            if (!adapter.config.certPrivate) {
+                adapter.config.certPrivate = 'defaultPrivate';
+            }
+
+            // Load certificates
+            adapter.getForeignObject('system.certificates', function (err, obj) {
+                if (err || !obj || !obj.native.certificates || !adapter.config.certPublic || !adapter.config.certPrivate || !obj.native.certificates[adapter.config.certPublic] || !obj.native.certificates[adapter.config.certPrivate]
+                ) {
+                    adapter.log.error('Cannot enable secure web server, because no certificates found: ' + adapter.config.certPublic + ', ' + adapter.config.certPrivate);
+                } else {
+                    adapter.config.certificates = {
+                        key: obj.native.certificates[adapter.config.certPrivate],
+                        cert: obj.native.certificates[adapter.config.certPublic]
+                    };
+
+                }
+                webServer = _initWebServer(adapter.config);
+            });
+        } else {
+            webServer = _initWebServer(adapter.config);
+        }
+    }
+
+    function _initWebServer(settings) {
+
+        var server = {
+            server: null,
+            settings: settings
+        };
+
+        if (settings.port) {
+            if (settings.ssl) {
+                if (!adapter.config.certificates) {
+                    return null;
+                }
+            }
+
+            if (settings.ssl) {
+                server.server = require('https').createServer(adapter.config.certificates, requestProcessor);
+            } else {
+                server.server = require('http').createServer(requestProcessor);
+            }
+
+            server.server.__server = server;
+        } else {
+            adapter.log.error('port missing');
+            process.exit(1);
+        }
+
+        if (server.server) {
+            adapter.getPort(settings.port, function (port) {
+                if (port != settings.port && !adapter.config.findNextPort) {
+                    adapter.log.error('port ' + settings.port + ' already in use');
+                    process.exit(1);
+                }
+                server.server.listen(port);
+                adapter.log.info('http' + (settings.ssl ? 's' : '') + ' server listening on port ' + port);
+            });
+        }
+
+        if (server.server) {
+            return server;
+        } else {
+            return null;
+        }
+    }
+
+    function requestProcessor(req, res) {
+        req.on('end', function () {
+
+            adapter.log.info("Got an realtime event!");
+
+            // TODO: Parse event instead of full update
+            that.requestUpdateIndoorCamera();
+
+            res.writeHead(200);
+            res.write("OK");
+            res.end();
         });
     }
 
@@ -115,7 +227,6 @@ module.exports = function (myapi, myadapter) {
         }
 
     }
-
 
     function getCameraName(aCameraName) {
         return aCameraName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
@@ -320,8 +431,6 @@ module.exports = function (myapi, myadapter) {
         var personDate = aPerson.last_seen ? aPerson.last_seen * 1000 : cleanupDate;
 
         if (bKnown || cleanupDate < personDate) {
-
-
             var fullPath = aParent + ".Persons";
 
             adapter.setObjectNotExists(fullPath, {
@@ -820,10 +929,7 @@ module.exports = function (myapi, myadapter) {
                 }
             }
         });
-
-
     }
-
 
     function cleanUpUnknownPersons(home) {
 

@@ -5,7 +5,7 @@
 var utils = require(__dirname + '/lib/utils');
 var adapter = utils.adapter('netatmo');
 
-var netatmo = require('netatmo-homey');
+var netatmo = require('netatmo');
 var api = null;
 
 var NetatmoStation = require("./netatmoStation");
@@ -14,6 +14,8 @@ var station = null;
 var NetatmoWelcome = require("./netatmoWelcome");
 var welcome = null;
 
+var webServer = null;
+
 var _deviceUpdateTimer;
 var _welcomeUpdateTimer;
 
@@ -21,6 +23,18 @@ String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
+
+adapter.on('unload', function (callback) {
+    try {
+        if (welcome)
+            welcome.finalize();
+
+        adapter.log.info('cleaned everything up...');
+        callback();
+    } catch (e) {
+        callback();
+    }
+});
 
 adapter.on('ready', function () {
     if (adapter.config.username && adapter.config.password) {
@@ -46,6 +60,12 @@ adapter.on('ready', function () {
         if (!adapter.config.location_elevation)
             adapter.config.location_elevation = 0;
 
+        if (typeof adapter.config.ssl === "undefined")
+            adapter.config.ssl = false;
+
+        if (!adapter.config.port)
+            adapter.config.port = 8085;
+
         if (adapter.config.netatmoWeather) {
             scope += " read_station";
         }
@@ -70,7 +90,9 @@ adapter.on('ready', function () {
 
         if (adapter.config.netatmoWeather) {
             station = new NetatmoStation(api, adapter);
+
             station.requestUpdateWeatherStation();
+
             _deviceUpdateTimer = setInterval(function () {
                 station.requestUpdateWeatherStation();
             }, adapter.config.check_interval * 60 * 1000);
@@ -78,6 +100,8 @@ adapter.on('ready', function () {
 
         if (adapter.config.netatmoWelcome) {
             welcome = new NetatmoWelcome(api, adapter);
+
+            welcome.init();
             welcome.requestUpdateIndoorCamera();
 
             _welcomeUpdateTimer = setInterval(function () {
@@ -88,6 +112,3 @@ adapter.on('ready', function () {
     } else
         adapter.log.error("Please add username, password and choose at least one product within the adapter settings!");
 });
-
-
-

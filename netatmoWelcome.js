@@ -19,14 +19,18 @@ module.exports = function (myapi, myadapter) {
             initWebServer();
             var hookUrl = "http://" + adapter.config.external_host + ":" + adapter.config.port;
 
-            api.addWebHook(hookUrl, function () {
-                adapter.log.info("Registered callback hook " + hookUrl);
-            })
+            api.addWebHook(hookUrl, function (err, body) {
+                if (err)
+                    adapter.log.info("Error registering WebHook: " + JSON.stringify(err));
+                else
+                    adapter.log.info("Registered WebHook " + hookUrl);
+            });
         }
     };
 
     this.finalize = function () {
         if (webServer) {
+            adapter.log.info("Unregistering WebHook");
             api.dropWebHook();
         }
     };
@@ -140,8 +144,11 @@ module.exports = function (myapi, myadapter) {
     }
 
     function requestProcessor(req, res) {
-        req.on('end', function () {
+        req.on('data', function (chunk) {
+            // needed dummy event ...
+        });
 
+        req.on('end', function () {
             adapter.log.info("Got an realtime event!");
 
             // TODO: Parse event instead of full update

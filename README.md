@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.5.1
+* (PArns) Optimized realtime updates to avoid updates if only movement was detected
+
 ### 0.5.0
 * (PArns) Added realtime events for Netatmo Welcome
 

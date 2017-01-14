@@ -144,15 +144,26 @@ module.exports = function (myapi, myadapter) {
     }
 
     function requestProcessor(req, res) {
+        var data = "";
         req.on('data', function (chunk) {
-            // needed dummy event ...
+            data += chunk;
         });
 
         req.on('end', function () {
-            adapter.log.info("Got an realtime event!");
+            var json = null;
 
-            // TODO: Parse event instead of full update
-            that.requestUpdateIndoorCamera();
+            try {
+                json = JSON.parse(data);
+            } catch (e) {
+
+            }
+
+            if (json.persons) {
+                adapter.log.info("Got an realtime event!");
+
+                // TODO: Parse event instead of full update
+                that.requestUpdateIndoorCamera();
+            }
 
             res.writeHead(200);
             res.write("OK");

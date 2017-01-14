@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.5.0
+* (PArns) Added realtime events for Netatmo Welcome
+
 ### 0.4.1
 * (PArns) Removed log warnings for Wind sensor
 
@@ -25,7 +28,7 @@ Just enter your Netatmo username & password within the adapter settings
 * (PArns) Added backward compatibility with existing installations
 
 ### 0.3.0
-* (wep4you) Initial implementation of netatmo welcome camera
+* (wep4you) Initial implementation of Netatmo welcome camera
 
 ### 0.2.2
 * (PArns) Fixed SumRain24MaxDate & SumRain24Max which won't update in some rare cases

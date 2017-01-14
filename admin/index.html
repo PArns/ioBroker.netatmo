@@ -30,7 +30,10 @@
         "CheckIntervall": {"de": "Daten erneut laden (Minuten)", "en": "Check Intervall (minutes)"},
         "CleanupIntervall": {"de": "Daten bereinigen (Minuten)", "en": "Cleanup Intervall (minutes)"},
         "RemoveEvents": {"de": "Ereignisse nach (Stunden) löschen", "en": "Remove events older than (hours)"},
-        "RemoveUnknownPerson": {"de": "Unbekannte Personen nach (Stunden) löschen", "en": "Remove unknown persons last seen older than (hours)"}
+        "RemoveUnknownPerson": {
+            "de": "Unbekannte Personen nach (Stunden) löschen",
+            "en": "Remove unknown persons last seen older than (hours)"
+        }
 
     };
 
@@ -79,64 +82,64 @@
 <!-- you have to put your config page in a div with id adapter-container -->
 <div id="adapter-container">
 
-    <table>
-        <tr>
-            <td><img src="netatmo.png"/></td>
-            <td><h3 class="translate">Netatmo Adapter settings</h3></td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td class="translate">Weather</td>
-            <td><input type="checkbox" id="netatmoWeather" value="true" class="value"></td>
+	<table>
+		<tr>
+			<td><img src="netatmo.png"/></td>
+			<td><h3 class="translate">Netatmo Adapter settings</h3></td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td class="translate">Weather</td>
+			<td><input type="checkbox" id="netatmoWeather" value="true" class="value"></td>
 
-        </tr>
-        <tr>
-            <td class="translate">Welcome</td>
-            <td><input type="checkbox" id="netatmoWelcome" value="true" class="value"></td>
-        </tr>
+		</tr>
+		<tr>
+			<td class="translate">Welcome</td>
+			<td><input type="checkbox" id="netatmoWelcome" value="true" class="value"></td>
+		</tr>
 
-        <tr>
-            <td class="translate">E-Mail</td>
-            <td><input class="value" id="username"></td>
-        </tr>
+		<tr>
+			<td class="translate">E-Mail</td>
+			<td><input class="value" id="username"></td>
+		</tr>
 
-        <tr>
-            <td class="translate">Password</td>
-            <td><input class="value" type="password" id="password"></td>
-        </tr>
+		<tr>
+			<td class="translate">Password</td>
+			<td><input class="value" type="password" id="password"></td>
+		</tr>
 
-        <tr>
-            <td class="translate">Elevation (m)</td>
-            <td><input class="value" type="text" id="location_elevation"></td>
-        </tr>
+		<tr>
+			<td class="translate">Elevation (m)</td>
+			<td><input class="value" type="text" id="location_elevation"></td>
+		</tr>
 
-        <tr>
-            <td class="translate">CheckIntervall</td>
-            <td><input type="number" id="check_interval" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">CleanupIntervall</td>
-            <td><input type="number" id="cleanup_interval" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">RemoveEvents</td>
-            <td><input type="number" id="event_time" class="value number"></td>
-        </tr>
-        <tr>
-            <td class="translate">RemoveUnknownPerson</td>
-            <td><input type="number" id="unknown_person_time" class="value number"></td>
-        </tr>
+		<tr>
+			<td class="translate">CheckIntervall</td>
+			<td><input type="number" id="check_interval" class="value number"></td>
+		</tr>
+		<tr>
+			<td class="translate">CleanupIntervall</td>
+			<td><input type="number" id="cleanup_interval" class="value number"></td>
+		</tr>
+		<tr>
+			<td class="translate">RemoveEvents</td>
+			<td><input type="number" id="event_time" class="value number"></td>
+		</tr>
+		<tr>
+			<td class="translate">RemoveUnknownPerson</td>
+			<td><input type="number" id="unknown_person_time" class="value number"></td>
+		</tr>
 
-        <tr>
-            <td class="translate">Realtime updates Port (only needed for Welcome)</td>
-            <td><input type="number" class="value number" id="port" class="value number"></td>
-        </tr>
-	    <tr>
-		    <td class="translate">Realtime updates Hostname/IP (only needed for Welcome)</td>
-		    <td><input class="value" id="external_host"></td>
-	    </tr>
-    </table>
+		<tr>
+			<td class="translate">Realtime updates Port (only needed for Welcome)</td>
+			<td><input type="number" class="value number" id="port" class="value number"></td>
+		</tr>
+		<tr>
+			<td class="translate">Realtime updates Hostname/IP (only needed for Welcome)</td>
+			<td><input class="value" id="external_host"></td>
+		</tr>
+	</table>
 
 	<p class="translate">
 		You can retrieve realtime updates for Welcome (camera) by entering a Port and your IP or Domain
@@ -144,8 +147,7 @@
 		Netatmo will then push events to that IP/Domain & Port,
 		so that you can receive events of new persons or movement without waiting for the update timer to tick.</p>
 
-    <p class="translate">on save adapter restarts with new config immediately</p>
+	<p class="translate">on save adapter restarts with new config immediately</p>
 
 </div>
-
 </html>

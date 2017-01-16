@@ -14,8 +14,6 @@ var station = null;
 var NetatmoWelcome = require("./netatmoWelcome");
 var welcome = null;
 
-var webServer = null;
-
 var _deviceUpdateTimer;
 var _welcomeUpdateTimer;
 
@@ -60,12 +58,6 @@ adapter.on('ready', function () {
         if (!adapter.config.location_elevation)
             adapter.config.location_elevation = 0;
 
-        if (typeof adapter.config.ssl === "undefined")
-            adapter.config.ssl = false;
-
-        if (!adapter.config.port)
-            adapter.config.port = 8085;
-
         if (adapter.config.netatmoWeather) {
             scope += " read_station";
         }
@@ -100,13 +92,12 @@ adapter.on('ready', function () {
 
         if (adapter.config.netatmoWelcome) {
             welcome = new NetatmoWelcome(api, adapter);
-
             welcome.init();
             welcome.requestUpdateIndoorCamera();
 
             _welcomeUpdateTimer = setInterval(function () {
                 welcome.requestUpdateIndoorCamera();
-            }, adapter.config.check_interval * 60 * 1000);
+            }, adapter.config.check_interval * 2 * 60 * 1000);
         }
 
     } else

@@ -9,28 +9,26 @@ module.exports = function (myapi, myadapter) {
     var EventCleanUpTimer = {};
     var PersonCleanUpTimer = {};
 
-    var webServer = null;
+    var socket = null;
     var that = null;
+
+    var socketServerUrl = 'https://netatmo-connect.herokuapp.com/';
 
     this.init = function () {
         that = this;
+        socket = require('socket.io-client')(socketServerUrl);
 
-        if (adapter.config.external_host && adapter.config.external_host !== "" && adapter.config.port) {
-            initWebServer();
-            var hookUrl = "http://" + adapter.config.external_host + ":" + adapter.config.port;
-
-            api.addWebHook(hookUrl, function (err, body) {
-                if (err)
-                    adapter.log.info("Error registering WebHook: " + JSON.stringify(err));
-                else
-                    adapter.log.info("Registered WebHook " + hookUrl);
-            });
+        if (socket) {
+            adapter.log.info("Registering realtime events with " + socketServerUrl);
+            socket.on('alert', onSocketAlert);
+            api.addWebHook(socketServerUrl + "netatmo-webhook/");
         }
     };
 
     this.finalize = function () {
-        if (webServer) {
-            adapter.log.info("Unregistering WebHook");
+        if (socket) {
+            adapter.log.info("Unregistering realtime events");
+            socket.disconnect();
             api.dropWebHook();
         }
     };
@@ -67,108 +65,11 @@ module.exports = function (myapi, myadapter) {
         });
     };
 
-    function initWebServer() {
-        if (adapter.config.ssl) {
-            // subscribe on changes of permissions
-            adapter.subscribeForeignObjects('system.group.*');
-            adapter.subscribeForeignObjects('system.user.*');
-
-            if (!adapter.config.certPublic) {
-                adapter.config.certPublic = 'defaultPublic';
-            }
-            if (!adapter.config.certPrivate) {
-                adapter.config.certPrivate = 'defaultPrivate';
-            }
-
-            // Load certificates
-            adapter.getForeignObject('system.certificates', function (err, obj) {
-                if (err || !obj || !obj.native.certificates || !adapter.config.certPublic || !adapter.config.certPrivate || !obj.native.certificates[adapter.config.certPublic] || !obj.native.certificates[adapter.config.certPrivate]
-                ) {
-                    adapter.log.error('Cannot enable secure web server, because no certificates found: ' + adapter.config.certPublic + ', ' + adapter.config.certPrivate);
-                } else {
-                    adapter.config.certificates = {
-                        key: obj.native.certificates[adapter.config.certPrivate],
-                        cert: obj.native.certificates[adapter.config.certPublic]
-                    };
-
-                }
-                webServer = _initWebServer(adapter.config);
-            });
-        } else {
-            webServer = _initWebServer(adapter.config);
+    function onSocketAlert(data) {
+        if (data && data.persons) {
+            adapter.log.info("Got an realtime event, requesting update!");
+            that.requestUpdateIndoorCamera();
         }
-    }
-
-    function _initWebServer(settings) {
-
-        var server = {
-            server: null,
-            settings: settings
-        };
-
-        if (settings.port) {
-            if (settings.ssl) {
-                if (!adapter.config.certificates) {
-                    return null;
-                }
-            }
-
-            if (settings.ssl) {
-                server.server = require('https').createServer(adapter.config.certificates, requestProcessor);
-            } else {
-                server.server = require('http').createServer(requestProcessor);
-            }
-
-            server.server.__server = server;
-        } else {
-            adapter.log.error('port missing');
-            process.exit(1);
-        }
-
-        if (server.server) {
-            adapter.getPort(settings.port, function (port) {
-                if (port != settings.port && !adapter.config.findNextPort) {
-                    adapter.log.error('port ' + settings.port + ' already in use');
-                    process.exit(1);
-                }
-                server.server.listen(port);
-                adapter.log.info('http' + (settings.ssl ? 's' : '') + ' server listening on port ' + port);
-            });
-        }
-
-        if (server.server) {
-            return server;
-        } else {
-            return null;
-        }
-    }
-
-    function requestProcessor(req, res) {
-        var data = "";
-        req.on('data', function (chunk) {
-            data += chunk;
-        });
-
-        req.on('end', function () {
-            var json = null;
-
-            try {
-                json = JSON.parse(data);
-            } catch (e) {
-
-            }
-
-            if (json.persons) {
-                adapter.log.info("Got an realtime event!");
-
-                // TODO: Parse event instead of full update
-                that.requestUpdateIndoorCamera();
-            }
-
-            res.writeHead(200);
-            res.write("OK");
-            res.end();
-        });
     }
 
     function getHomeName(aHomeName) {
@@ -179,6 +80,10 @@ module.exports = function (myapi, myadapter) {
 
         var homeName = getHomeName(aHome.name);
         var fullPath = homeName;
+
+        // Join HomeID
+        if (socket)
+            socket.emit("registerHome", aHome.id);
 
         adapter.setObjectNotExists(homeName, {
             type: "enum",

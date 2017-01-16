@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.6.0
+* (PArns) Rewritten realtime updates to not need a local server any longer! Realtime updates are now turned on by default if a Welcome or Present cam is available
+
 ### 0.5.1
 * (PArns) Optimized realtime updates to avoid updates if only movement was detected
 

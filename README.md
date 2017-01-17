@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.6.2
+* (PArns) Added name of last seen known face
+
 ### 0.6.1
 * (PArns) Changed realtime server to use new general realtime server
 * (PArns) Changed enums to channels to avoid enum creation

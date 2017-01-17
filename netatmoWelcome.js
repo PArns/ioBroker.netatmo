@@ -9,6 +9,8 @@ module.exports = function (myapi, myadapter) {
     var EventCleanUpTimer = {};
     var PersonCleanUpTimer = {};
 
+    var knownPeople = [];
+
     var socket = null;
     var that = null;
 
@@ -77,12 +79,22 @@ module.exports = function (myapi, myadapter) {
                 data.persons.forEach(function (person) {
                     var dataPath = "";
 
-                    if (person.is_known)
+                    if (person.is_known) {
                         dataPath = "LastKnownPersonSeen";
+                    }
                     else
                         dataPath = "LastUnknownPersonSeen";
 
                     adapter.setState(path + dataPath, {val: now, ack: true});
+
+                    // Set state first ...
+                    if (person.is_known) {
+                        knownPeople.forEach(function (aPerson) {
+                            if (aPerson.face && aPerson.face.id === person.face_id) {
+                                adapter.setState(path + "LastKnownPersonName", {val: aPerson.pseudo, ack: true});
+                            }
+                        })
+                    }
                 });
 
                 that.requestUpdateIndoorCamera();
@@ -145,6 +157,19 @@ module.exports = function (myapi, myadapter) {
             }
         });
 
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastKnownPersonName", {
+            type: "state",
+            common: {
+                name: "LastKnownPersonName",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
         adapter.setObjectNotExists(homeName + ".LastEventData.LastUnknownPersonSeen", {
             type: "state",
             common: {
@@ -193,6 +218,8 @@ module.exports = function (myapi, myadapter) {
         }
 
         if (aHome.persons) {
+            knownPeople = [];
+
             aHome.persons.forEach(function (aPerson) {
                 handlePerson(aPerson, homeName);
             });
@@ -410,6 +437,7 @@ module.exports = function (myapi, myadapter) {
 
             if (bKnown) {
                 fullPath += ".Known";
+                knownPeople.push(aPerson);
             }
             else {
                 fullPath += ".Unknown";

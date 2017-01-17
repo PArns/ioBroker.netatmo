@@ -13,6 +13,11 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 0.6.1
+* (PArns) Changed realtime server to use new general realtime server
+* (PArns) Changed enums to channels to avoid enum creation
+* (PArns) Simplified detection for movement-, known- & unknown- face events
+
 ### 0.6.0
 * (PArns) Rewritten realtime updates to not need a local server any longer! Realtime updates are now turned on by default if a Welcome or Present cam is available
 

@@ -12,7 +12,7 @@ module.exports = function (myapi, myadapter) {
     var socket = null;
     var that = null;
 
-    var socketServerUrl = 'https://netatmo-connect.herokuapp.com/';
+    var socketServerUrl = 'https://iobroker.herokuapp.com/netatmo/';
 
     this.init = function () {
         that = this;
@@ -21,7 +21,7 @@ module.exports = function (myapi, myadapter) {
         if (socket) {
             adapter.log.info("Registering realtime events with " + socketServerUrl);
             socket.on('alert', onSocketAlert);
-            api.addWebHook(socketServerUrl + "netatmo-webhook/");
+            api.addWebHook(socketServerUrl);
         }
     };
 
@@ -66,9 +66,29 @@ module.exports = function (myapi, myadapter) {
     };
 
     function onSocketAlert(data) {
-        if (data && data.persons) {
-            adapter.log.info("Got an realtime event, requesting update!");
-            that.requestUpdateIndoorCamera();
+        adapter.log.info("received a realtime event ...");
+
+        var now = (new Date()).toISOString();
+
+        if (data) {
+            var path = data.home_name + ".LastEventData.";
+
+            if (data.event_type === "person") {
+                data.persons.forEach(function (person) {
+                    var dataPath = "";
+
+                    if (person.is_known)
+                        dataPath = "LastKnownPersonSeen";
+                    else
+                        dataPath = "LastUnknownPersonSeen";
+
+                    adapter.setState(path + dataPath, {val: now, ack: true});
+                });
+
+                that.requestUpdateIndoorCamera();
+            } else if (data.event_type === "movement") {
+                adapter.setState(path + "LastMovementDetected", {val: now, ack: true});
+            }
         }
     }
 
@@ -82,11 +102,12 @@ module.exports = function (myapi, myadapter) {
         var fullPath = homeName;
 
         // Join HomeID
-        if (socket)
+        if (socket) {
             socket.emit("registerHome", aHome.id);
+        }
 
         adapter.setObjectNotExists(homeName, {
-            type: "enum",
+            type: "channel",
             common: {
                 name: homeName,
                 type: "string",
@@ -98,23 +119,57 @@ module.exports = function (myapi, myadapter) {
             }
         });
 
-        if (aHome.id) {
-            adapter.setObjectNotExists(fullPath + ".id", {
-                type: "state",
-                common: {
-                    name: "HomeID",
-                    type: "string",
-                    read: true,
-                    write: false
-                }
-            });
-            adapter.setState(fullPath + ".id", {val: aHome.id, ack: true});
-        }
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastMovementDetected", {
+            type: "state",
+            common: {
+                name: "LastMovementDetected",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastKnownPersonSeen", {
+            type: "state",
+            common: {
+                name: "LastKnownPersonSeen",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastUnknownPersonSeen", {
+            type: "state",
+            common: {
+                name: "LastUnknownPersonSeen",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData", {
+            type: "channel",
+            common: {
+                name: "LastEventData",
+                type: "string",
+                read: true,
+                write: false
+            }
+        });
 
         if (aHome.cameras) {
             aHome.cameras.forEach(function (aCamera) {
-
-
                 if (aCamera.id && aCamera.name) {
                     adapter.setObjectNotExists(fullPath + "." + aCamera.name, {
                         type: "state",
@@ -173,19 +228,6 @@ module.exports = function (myapi, myadapter) {
             native: {
                 id: aCamera.id,
                 type: aCamera.type
-            }
-        });
-
-        adapter.setObjectNotExists(infoPath, {
-            type: "channel",
-            common: {
-                name: aCamera.name,
-                type: "channel",
-                read: true,
-                write: false
-            },
-            native: {
-                id: aCamera.id
             }
         });
 
@@ -357,7 +399,7 @@ module.exports = function (myapi, myadapter) {
             var fullPath = aParent + ".Persons";
 
             adapter.setObjectNotExists(fullPath, {
-                type: "enum",
+                type: "channel",
                 common: {
                     name: "Persons",
                     type: "string",
@@ -376,7 +418,7 @@ module.exports = function (myapi, myadapter) {
 
             if (fullPath) {
                 adapter.setObjectNotExists(fullPath, {
-                    type: "enum",
+                    type: "channel",
                     common: {
                         name: fullPath,
                         type: "string",
@@ -559,7 +601,7 @@ module.exports = function (myapi, myadapter) {
             var fullPath = aParent + ".Events";
 
             adapter.setObjectNotExists(fullPath, {
-                type: "enum",
+                type: "channel",
                 common: {
                     name: "Events",
                     type: "string",

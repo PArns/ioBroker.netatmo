@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
@@ -19,8 +19,7 @@
     ],
     "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
     "loglevel": "info",
-    "type": "hardware",
-    "localLink": "http://%ip%:%port%"
+    "type": "hardware"
   },
   "native": {
     "netatmoWeather": true,

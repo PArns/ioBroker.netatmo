@@ -65,7 +65,7 @@ adapter.on('ready', function () {
         // Backward compatibility end ...
 
         if (adapter.config.netatmoWelcome) {
-            scope += " read_camera";
+            scope += " read_camera access_camera";
         }
 
         scope = scope.trim();

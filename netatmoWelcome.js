@@ -233,15 +233,12 @@ module.exports = function (myapi, myadapter) {
 
     }
 
-    function getCameraName(aCameraName) {
-        return aCameraName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
-    }
-
     function handleCamera(aCamera, aHome) {
 
         var aParent = getHomeName(aHome.name);
         var fullPath = aParent + "." + aCamera.name;
         var infoPath = fullPath + ".info";
+        var livePath = fullPath + ".live";
 
 
         adapter.setObjectNotExists(fullPath, {
@@ -276,7 +273,7 @@ module.exports = function (myapi, myadapter) {
                 type: "state",
                 common: {
                     name: "Monitoring State (on/off)",
-                    type: "state",
+                    type: "string",
                     read: true,
                     write: false
                 },
@@ -293,12 +290,9 @@ module.exports = function (myapi, myadapter) {
                 type: "state",
                 common: {
                     name: "SD card State (on/off)",
-                    type: "state",
+                    type: "string",
                     read: true,
                     write: false
-                },
-                native: {
-                    sd_status: aCamera.sd_status
                 }
             });
 
@@ -310,12 +304,9 @@ module.exports = function (myapi, myadapter) {
                 type: "state",
                 common: {
                     name: "Power Supply State (on/off)",
-                    type: "state",
+                    type: "string",
                     read: true,
                     write: false
-                },
-                native: {
-                    alim_status: aCamera.alim_status
                 }
             });
 
@@ -330,13 +321,38 @@ module.exports = function (myapi, myadapter) {
                     type: "state",
                     read: true,
                     write: false
-                },
-                native: {
-                    name: aCamera.name
                 }
             });
 
             adapter.setState(infoPath + ".name", {val: aCamera.name, ack: true});
+        }
+
+        if (aCamera.vpn_url) {
+            adapter.setObjectNotExists(livePath + ".picture", {
+                type: "state",
+                common: {
+                    name: "Live camera picture URL",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setObjectNotExists(livePath + ".stream", {
+                type: "state",
+                common: {
+                    name: "Live camera picture URL",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(livePath + ".picture", {val: aCamera.vpn_url + "/live/snapshot_720.jpg", ack: true});
+            adapter.setState(livePath + ".stream", {
+                val: aCamera.vpn_url + (aCamera.is_local ? "/live/index_local.m3u8" : "/live/index.m3u8"),
+                ack: true
+            });
         }
 
         // Initialize Camera Place
@@ -403,7 +419,7 @@ module.exports = function (myapi, myadapter) {
     }
 
 
-    function getPersonName(aPersonName, aParent) {
+    function getPersonName(aPersonName) {
         return aPersonName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-").replaceAll("ß", "ss");
     }
 
@@ -488,7 +504,7 @@ module.exports = function (myapi, myadapter) {
                     type: "state",
                     common: {
                         name: "Person out of sight (true/false)",
-                        type: "state",
+                        type: "string",
                         read: true,
                         write: false
                     }
@@ -499,7 +515,7 @@ module.exports = function (myapi, myadapter) {
                     type: "state",
                     common: {
                         name: "Person at home (true/false)",
-                        type: "state",
+                        type: "string",
                         read: true,
                         write: false
                     }
@@ -563,44 +579,21 @@ module.exports = function (myapi, myadapter) {
         }
 
         if (aFace.id && aFace.key) {
+            var imageUrl = "https://api.netatmo.com/api/getcamerapicture?image_id=" + aFace.id + "&key=" + aFace.key;
 
-            api.getCameraPicture({"image_id": aFace.id, "key": aFace.key}, function (err, data) {
-                if (err !== null)
-                    adapter.log.error(err);
-                else {
-
-                    adapter.setObjectNotExists(fullPath + ".face_url", {
-                        type: "state",
-                        common: {
-                            name: "Face Url",
-                            type: "string",
-                            read: true,
-                            write: false
-                        },
-                        native: {
-                            vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
-                        }
-                    });
-                    adapter.setState(fullPath + ".face_url", {
-                        val: adapter.namespace + "." + fullPath + ".jpg",
-                        ack: true
-                    });
-
-
-                    adapter.setObjectNotExists(fullPath + ".jpg", {
-                        type: "state",
-                        common: {
-                            name: "JPEG",
-                            type: "object",
-                            read: true,
-                            write: false
-                        },
-                        native: {
-                            vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
-                        }
-                    });
-                    adapter.setBinaryState(adapter.namespace + "." + fullPath + ".jpg", data);
+            adapter.setObjectNotExists(fullPath + ".face_url", {
+                type: "state",
+                common: {
+                    name: "Face Url",
+                    type: "string",
+                    read: true,
+                    write: false
                 }
+            });
+
+            adapter.setState(fullPath + ".face_url", {
+                val: imageUrl,
+                ack: true
             });
         }
 

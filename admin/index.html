@@ -33,8 +33,15 @@
         "RemoveUnknownPerson": {
             "de": "Unbekannte Personen nach (Stunden) löschen",
             "en": "Remove unknown persons last seen older than (hours)"
-        }
+        },
 
+        "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form": {
+            "en": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
+            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten, musst du einen eigenen API-Schl&uuml;ssel von Netatmo anfordern!<br>Um einen API-Schl&uuml;ssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
+            "ru": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form"
+        },
+        "Client ID": {"en": "Client ID", "de": "Client ID", "ru": "Client ID"},
+        "Client Secret": {"en": "Client Secret", "de": "Client Secret", "ru": "Client Secret"},
     };
 
     // the function loadSettings has to exist ...
@@ -88,17 +95,16 @@
 			<td><h3 class="translate">Netatmo Adapter settings</h3></td>
 		</tr>
 	</table>
+
 	<table>
 		<tr>
 			<td class="translate">Weather</td>
 			<td><input type="checkbox" id="netatmoWeather" value="true" class="value"></td>
-
 		</tr>
 		<tr>
 			<td class="translate">Welcome</td>
 			<td><input type="checkbox" id="netatmoWelcome" value="true" class="value"></td>
 		</tr>
-
 		<tr>
 			<td class="translate">E-Mail</td>
 			<td><input class="value" id="username"></td>
@@ -129,6 +135,23 @@
 		<tr>
 			<td class="translate">RemoveUnknownPerson</td>
 			<td><input type="number" id="unknown_person_time" class="value number"></td>
+		</tr>
+	</table>
+
+	<br/>
+	<b class="translate">In order to receive livestreams from Welcome & Presence, you've to request your own API key from Netatmo!<br/>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>
+	<a href="https://dev.netatmo.com/dev/createanapp" target="_blank">https://dev.netatmo.com/dev/createanapp</a>
+
+	<br/><br/>
+
+	<table>
+		<tr>
+			<td class="translate">Client ID</td>
+			<td><input type="text" id="id" class="value"></td>
+		</tr>
+		<tr>
+			<td class="translate">Client Secret</td>
+			<td><input type="text" id="secret" class="value"></td>
 		</tr>
 	</table>
 

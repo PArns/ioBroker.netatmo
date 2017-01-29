@@ -37,6 +37,8 @@ adapter.on('unload', function (callback) {
 adapter.on('ready', function () {
     if (adapter.config.username && adapter.config.password) {
         var scope = "";
+        var id = "574ddd152baa3cf9598b46cd";
+        var secret = "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW";
 
         // Backward compatibility begin ...
         // --------------------------------------------------------
@@ -65,14 +67,21 @@ adapter.on('ready', function () {
         // Backward compatibility end ...
 
         if (adapter.config.netatmoWelcome) {
-            scope += " read_camera access_camera";
+            scope += " read_camera read_presence";
+
+            if (adapter.config.id && adapter.config.secret) {
+                id = adapter.config.id;
+                secret = adapter.config.secret;
+
+                scope += " access_camera access_presence"
+            }
         }
 
         scope = scope.trim();
 
         var auth = {
-            "client_id": "574ddd152baa3cf9598b46cd",
-            "client_secret": "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW",
+            "client_id": id,
+            "client_secret": secret,
             "scope": scope,
             "username": adapter.config.username,
             "password": adapter.config.password

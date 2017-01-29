@@ -13,6 +13,9 @@ Just enter your Netatmo username & password within the adapter settings
 
 ## Changelog
 
+### 1.0.1
+* (PArns) Fixed scope problems for presence & welcome (requires your own API key!)
+
 ### 1.0.0
 * (PArns) Added live camera picture & stream for presence & welcome
 * (PArns) Fixed known & unknown face image url for presence & welcome

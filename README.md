@@ -11,7 +11,24 @@ Netatmo adapter for ioBroker
 ## Installation
 Just enter your Netatmo username & password within the adapter settings
 
+You can also use the sendTo command to set all persons as away (for example if in use as alarm system)
+```
+sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg', personsId: []});
+```
+
+it's also possible to mark one or more specific persons as away
+
+```
+sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg', personsId: ['123123123123123']});
+```
+
+The parameter homeId is the string listed behind the name of your Camera within the Objects tab,
+the personsId is the face_id within the "Known" persons folder
+
 ## Changelog
+
+### 1.1.0
+* (PArns) Added setAway function (Welcome only) to set all or specific persons as away (requires your own API key!)
 
 ### 1.0.1
 * (PArns) Fixed scope problems for presence & welcome (requires your own API key!)

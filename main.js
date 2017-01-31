@@ -22,6 +22,31 @@ String.prototype.replaceAll = function (search, replacement) {
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
+adapter.on('message', function (obj) {
+
+    adapter.log.info(JSON.stringify(obj));
+
+    if (obj) {
+        switch (obj.command) {
+            case 'setAway':
+                if (welcome && obj.message) {
+                    adapter.log.info("SET AWAY");
+                    welcome.setAway(obj.message);
+                }
+
+                if (obj.callback)
+                    adapter.sendTo(obj.from, obj.command, {}, obj.callback);
+
+                break;
+            default:
+                adapter.log.warn("Unknown command: " + obj.command);
+                break;
+        }
+    }
+
+    return true;
+});
+
 adapter.on('unload', function (callback) {
     try {
         if (welcome)
@@ -73,7 +98,7 @@ adapter.on('ready', function () {
                 id = adapter.config.id;
                 secret = adapter.config.secret;
 
-                scope += " access_camera access_presence"
+                scope += " access_camera access_presence write_camera"
             }
         }
 

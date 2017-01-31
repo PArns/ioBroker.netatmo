@@ -35,6 +35,16 @@ module.exports = function (myapi, myadapter) {
         }
     };
 
+    this.setAway = function (data) {
+        api.setPersonsAway(data.homeId, data.personsId, function (err, data) {
+            if (err !== null)
+                adapter.log.error(err);
+
+            if (data !== null)
+                adapter.log.debug("SET AWAY CALL" + JSON.stringify(data));
+        });
+    };
+
     this.requestUpdateIndoorCamera = function () {
         api.getHomeData({}, function (err, data) {
             if (err !== null)
@@ -130,6 +140,8 @@ module.exports = function (myapi, myadapter) {
                 id: aHome.id
             }
         });
+
+        adapter.setState(homeName, aHome.id, true);
 
         adapter.setObjectNotExists(homeName + ".LastEventData.LastMovementDetected", {
             type: "state",

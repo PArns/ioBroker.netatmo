@@ -13,6 +13,7 @@
     "mode": "daemon",
     "icon": "netatmo.png",
     "enabled": false,
+    "messagebox": true,
     "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
     "keywords": [
       "netatmo"

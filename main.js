@@ -30,7 +30,6 @@ adapter.on('message', function (obj) {
         switch (obj.command) {
             case 'setAway':
                 if (welcome && obj.message) {
-                    adapter.log.info("SET AWAY");
                     welcome.setAway(obj.message);
                 }
 

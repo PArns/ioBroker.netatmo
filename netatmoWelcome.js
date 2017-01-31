@@ -39,9 +39,6 @@ module.exports = function (myapi, myadapter) {
         api.setPersonsAway(data.homeId, data.personsId, function (err, data) {
             if (err !== null)
                 adapter.log.error(err);
-
-            if (data !== null)
-                adapter.log.debug("SET AWAY CALL" + JSON.stringify(data));
         });
     };
 

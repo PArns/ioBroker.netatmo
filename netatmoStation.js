@@ -30,7 +30,7 @@ module.exports = function (myapi, myadapter) {
             var stationName = getDeviceName(aDevice.station_name);
             aParent = aParent ? aParent + "." + stationName : stationName;
             handleDevice(aDevice, aParent);
-        } else {
+        } else if (aDevice.module_name) {
             var deviceName = getDeviceName(aDevice.module_name);
             var fullPath = aParent ? aParent + "." + deviceName : deviceName;
 
@@ -55,6 +55,8 @@ module.exports = function (myapi, myadapter) {
                     });
                 }
             });
+        } else {
+            myadapter.log.warn("UNKNOWN MODULE " + JSON.stringify(aModule));
         }
     }
 

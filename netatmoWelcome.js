@@ -10,6 +10,7 @@ module.exports = function (myapi, myadapter) {
     var PersonCleanUpTimer = {};
 
     var knownPeople = [];
+    var homeIds = [];
 
     var socket = null;
     var that = null;
@@ -36,10 +37,19 @@ module.exports = function (myapi, myadapter) {
     };
 
     this.setAway = function (data) {
-        api.setPersonsAway(data.homeId, data.personsId, function (err, data) {
-            if (err !== null)
-                adapter.log.error(err);
-        });
+        if (data && data.homeId) {
+            api.setPersonsAway(data.homeId, data.personsId, function (err, data) {
+                if (err !== null)
+                    adapter.log.error(err);
+            });
+        } else {
+            homeIds.forEach(function (aHomeId) {
+                api.setPersonsAway(aHomeId, data ? data.personsId : null, function (err, data) {
+                    if (err !== null)
+                        adapter.log.error(err);
+                });
+            });
+        }
     };
 
     this.requestUpdateIndoorCamera = function () {
@@ -48,6 +58,7 @@ module.exports = function (myapi, myadapter) {
                 adapter.log.error(err);
             else {
                 var homes = data.homes;
+                homeIds = [];
 
                 if (Array.isArray(homes)) {
                     homes.forEach(function (aHome) {
@@ -75,8 +86,6 @@ module.exports = function (myapi, myadapter) {
     };
 
     function onSocketAlert(data) {
-        adapter.log.info("received a realtime event ...");
-
         var now = (new Date()).toISOString();
 
         if (data) {
@@ -119,6 +128,8 @@ module.exports = function (myapi, myadapter) {
 
         var homeName = getHomeName(aHome.name);
         var fullPath = homeName;
+
+        homeIds.push(aHome.id);
 
         // Join HomeID
         if (socket) {
@@ -966,4 +977,4 @@ module.exports = function (myapi, myadapter) {
             }
         });
     }
-};
+}

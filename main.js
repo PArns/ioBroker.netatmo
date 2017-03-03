@@ -26,10 +26,15 @@ adapter.on('message', function (obj) {
 
     adapter.log.info(JSON.stringify(obj));
 
+    if (obj.command === "send") {
+        obj.command = obj.message;
+        obj.message = null;
+    }
+
     if (obj) {
         switch (obj.command) {
             case 'setAway':
-                if (welcome && obj.message) {
+                if (welcome) {
                     welcome.setAway(obj.message);
                 }
 

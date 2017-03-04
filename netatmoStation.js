@@ -22,6 +22,9 @@ module.exports = function (myapi, myadapter) {
     };
 
     function getDeviceName(aDeviceName) {
+        if (!aDeviceName)
+            return "Unnamed";
+
         return aDeviceName.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-");
     }
 
@@ -30,7 +33,7 @@ module.exports = function (myapi, myadapter) {
             var stationName = getDeviceName(aDevice.station_name);
             aParent = aParent ? aParent + "." + stationName : stationName;
             handleDevice(aDevice, aParent);
-        } else if (aDevice.module_name) {
+        } else {
             var deviceName = getDeviceName(aDevice.module_name);
             var fullPath = aParent ? aParent + "." + deviceName : deviceName;
 
@@ -55,8 +58,6 @@ module.exports = function (myapi, myadapter) {
                     });
                 }
             });
-        } else {
-            myadapter.log.warn("UNKNOWN MODULE " + JSON.stringify(aModule));
         }
     }
 

@@ -31,6 +31,9 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.1.4
+* (PArns) Added support for unnamed modules
+
 ### 1.1.1
 * (PArns) Simplified setAway
 

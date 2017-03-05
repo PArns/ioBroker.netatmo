@@ -31,6 +31,9 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.1.5
+* (PArns) Removed 502 error output if API has backend problems
+
 ### 1.1.4
 * (PArns) Added support for unnamed modules
 

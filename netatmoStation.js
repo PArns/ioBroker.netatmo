@@ -7,9 +7,7 @@ module.exports = function (myapi, myadapter) {
 
     this.requestUpdateWeatherStation = function () {
         api.getStationsData({}, function (err, data) {
-            if (err !== null)
-                adapter.log.error(err);
-            else {
+            if (err === null) {
                 if (Array.isArray(data)) {
                     data.forEach(function (aDevice) {
                         handleDevice(aDevice);

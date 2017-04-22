@@ -31,6 +31,9 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.1.6
+* (PArns) Removed GIT requirement and included netatmo lib directly
+
 ### 1.1.5
 * (PArns) Removed 502 error output if API has backend problems
 

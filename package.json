@@ -1,6 +1,6 @@
 {
   "name": "iobroker.netatmo",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "ioBroker netatmo Adapter",
   "author": {
     "name": "Patrick Arns",
@@ -32,8 +32,7 @@
   },
   "dependencies": {
     "dewpoint": "^1.0.0",
-    "netatmo-homey": "https://github.com/PArns/netatmo.git",
-    "socket.io-client": "^1.7.2"
+    "socket.io-client": "^1.7.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

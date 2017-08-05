@@ -31,6 +31,13 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.2.0
+* (PArns) Fixed camera picture for events
+* (PArns) Added camera vignette for events
+* (PArns) Added camera video for events
+* (PArns) Added new sub event type (human, vehicle, animal, unknown)
+* (PArns) Added LastEventID within the LastEventData section
+
 ### 1.1.7
 * (PArns) Added missing lib dependencies
 
@@ -119,4 +126,4 @@ the personsId is the id within the "Known" persons folder
 ## License
 MIT
 
-Copyright (c) 2016 Patrick Arns <iobroker@patrick-arns.de>
+Copyright (c) 2016-2017 Patrick Arns <iobroker@patrick-arns.de>

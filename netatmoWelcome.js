@@ -86,6 +86,9 @@ module.exports = function (myapi, myadapter) {
     };
 
     function onSocketAlert(data) {
+
+        adapter.log.info(JSON.stringify(data));
+
         var now = (new Date()).toISOString();
 
         if (data) {
@@ -112,11 +115,19 @@ module.exports = function (myapi, myadapter) {
                         })
                     }
                 });
-
-                that.requestUpdateIndoorCamera();
             } else if (data.event_type === "movement") {
                 adapter.setState(path + "LastMovementDetected", {val: now, ack: true});
+
+                if (data.type) {
+                    adapter.setState(path + "LastMovementType", {val: data.type, ack: true});
+                } else {
+                    adapter.setState(path + "LastMovementType", {val: "unknown", ack: true});
+                }
             }
+
+            adapter.setState(path + "LastEventId", {val: data.id, ack: true});
+
+            that.requestUpdateIndoorCamera();
         }
     }
 
@@ -168,6 +179,32 @@ module.exports = function (myapi, myadapter) {
             type: "state",
             common: {
                 name: "LastKnownPersonSeen",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastMovementType", {
+            type: "state",
+            common: {
+                name: "LastMovementType",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.LastEventId", {
+            type: "state",
+            common: {
+                name: "LastEventId",
                 type: "string",
                 read: true,
                 write: false
@@ -246,11 +283,23 @@ module.exports = function (myapi, myadapter) {
         }
 
         if (aHome.events) {
-            aHome.events.forEach(function (aEvent) {
-                handleEvent(aEvent, homeName);
-            });
-        }
+            var latestEventDate = 0;
+            var latestEvent = null;
 
+            aHome.events.forEach(function (aEvent) {
+                var eventDate = aEvent.time * 1000;
+
+                handleEvent(aEvent, homeName, aHome.cameras);
+                if (eventDate > latestEventDate) {
+                    latestEventDate = eventDate;
+                    latestEvent = aEvent;
+                }
+            });
+
+            if (latestEvent) {
+                adapter.setState(homeName + ".LastEventData.LastEventId", {val: latestEvent.id, ack: true});
+            }
+        }
     }
 
     function handleCamera(aCamera, aHome) {
@@ -631,15 +680,14 @@ module.exports = function (myapi, myadapter) {
         }
     }
 
-    function handleEvent(aEvent, aParent) {
+    function handleEvent(aEvent, aParent, aCameraList) {
 
         var cleanupDate = new Date().getTime() - EventTime * 60 * 60 * 1000;
         var eventDate = aEvent.time ? aEvent.time * 1000 : cleanupDate;
 
         if (cleanupDate < eventDate) {
-
-
             var fullPath = aParent + ".Events";
+            var camera = null;
 
             adapter.setObjectNotExists(fullPath, {
                 type: "channel",
@@ -707,6 +755,19 @@ module.exports = function (myapi, myadapter) {
                 adapter.setState(fullPath + ".type", {val: aEvent.type, ack: true});
             }
 
+            if (aEvent.category) {
+                adapter.setObjectNotExists(fullPath + ".category", {
+                    type: "state",
+                    common: {
+                        name: "Category",
+                        type: "string",
+                        read: true,
+                        write: false
+                    }
+                });
+                adapter.setState(fullPath + ".category", {val: aEvent.category, ack: true});
+            }
+
             if (aEvent.time) {
                 adapter.setObjectNotExists(fullPath + ".time", {
                     type: "state",
@@ -746,7 +807,13 @@ module.exports = function (myapi, myadapter) {
                         write: false
                     }
                 });
+
                 adapter.setState(fullPath + ".camera_id", {val: aEvent.camera_id, ack: true});
+
+                aCameraList.forEach(function (aCamera) {
+                    if (aCamera.id === aEvent.camera_id)
+                        camera = aCamera;
+                });
             }
 
             if (aEvent.sub_type) {
@@ -772,7 +839,26 @@ module.exports = function (myapi, myadapter) {
                         write: false
                     }
                 });
+
                 adapter.setState(fullPath + ".video_id", {val: aEvent.video_id, ack: true});
+
+                if (camera) {
+                    adapter.setObjectNotExists(fullPath + ".video_url", {
+                        type: "state",
+                        common: {
+                            name: "Video URL",
+                            type: "string",
+                            read: true,
+                            write: false
+                        }
+                    });
+
+                    adapter.setState(fullPath + ".video_url", {
+                        val: camera.vpn_url + "/vod/" + aEvent.video_id + (camera.is_local ? "/index_local.m3u8" : "/index.m3u8"),
+                        ack: true
+                    });
+
+                }
             }
 
             if (aEvent.video_status) {
@@ -788,7 +874,7 @@ module.exports = function (myapi, myadapter) {
                 adapter.setState(fullPath + ".video_status", {val: aEvent.video_status, ack: true});
             }
 
-            if (aEvent.is_arrival !== "undefined") {
+            if (aEvent.is_arrival != "undefined" && aEvent.is_arrival != "") {
                 adapter.setObjectNotExists(fullPath + ".is_arrival", {
                     type: "state",
                     common: {
@@ -798,14 +884,82 @@ module.exports = function (myapi, myadapter) {
                         write: false
                     }
                 });
+
                 adapter.setState(fullPath + ".is_arrival", {val: aEvent.is_arrival, ack: true});
             }
 
             if (aEvent.snapshot) {
                 handleSnapshot(aEvent.snapshot, fullPath);
             }
+
+            if (aEvent.vignette) {
+                handleVignette(aEvent.vignette, fullPath);
+            }
         }
 
+    }
+
+    function handleVignette(aVignette, aParent) {
+        var fullPath = aParent;
+
+        if (aVignette.id) {
+            adapter.setObjectNotExists(fullPath + ".vignette_id", {
+                type: "state",
+                common: {
+                    name: "Vignette ID",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+            adapter.setState(fullPath + ".vignette_id", {val: aVignette.id, ack: true});
+        }
+
+
+        if (aVignette.key) {
+            adapter.setObjectNotExists(fullPath + ".vignette_key", {
+                type: "state",
+                common: {
+                    name: "Vignette Key",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+            adapter.setState(fullPath + ".vignette_key", {val: aVignette.key, ack: true});
+        }
+
+        if (aVignette.id && aVignette.key) {
+            var imageUrl = "https://api.netatmo.com/api/getcamerapicture?image_id=" + aVignette.id + "&key=" + aVignette.key;
+
+            adapter.setObjectNotExists(fullPath + ".vignette_url", {
+                type: "state",
+                common: {
+                    name: "Vignette Url",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+
+            adapter.setState(fullPath + ".vignette_url", {
+                val: imageUrl,
+                ack: true
+            });
+        }
+
+        if (aVignette.version) {
+            adapter.setObjectNotExists(fullPath + ".vignette_version", {
+                type: "state",
+                common: {
+                    name: "Version",
+                    type: "string",
+                    read: true,
+                    write: false
+                }
+            });
+            adapter.setState(fullPath + ".vignette_version", {val: aVignette.version, ack: true});
+        }
     }
 
     function handleSnapshot(aSnapshot, aParent) {
@@ -840,44 +994,21 @@ module.exports = function (myapi, myadapter) {
         }
 
         if (aSnapshot.id && aSnapshot.key) {
+            var imageUrl = "https://api.netatmo.com/api/getcamerapicture?image_id=" + aSnapshot.id + "&key=" + aSnapshot.key;
 
-            api.getCameraPicture({"image_id": aSnapshot.id, "key": aSnapshot.key}, function (err, data) {
-                if (err !== null)
-                    adapter.log.error(err);
-                else {
-
-                    adapter.setObjectNotExists(fullPath + ".snapshot_url", {
-                        type: "state",
-                        common: {
-                            name: "Snapshot Url",
-                            type: "string",
-                            read: true,
-                            write: false
-                        },
-                        native: {
-                            vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
-                        }
-                    });
-                    adapter.setState(fullPath + ".snapshot_url", {
-                        val: adapter.namespace + "." + fullPath + ".jpg",
-                        ack: true
-                    });
-
-
-                    adapter.setObjectNotExists(fullPath + ".jpg", {
-                        type: "state",
-                        common: {
-                            name: "JPEG",
-                            type: "object",
-                            read: true,
-                            write: false
-                        },
-                        native: {
-                            vis_url: "http://<vis-url>:<vis-port>/state/" + adapter.namespace + "." + fullPath + ".jpg"
-                        }
-                    });
-                    adapter.setBinaryState(adapter.namespace + "." + fullPath + ".jpg", data);
+            adapter.setObjectNotExists(fullPath + ".snapshot_url", {
+                type: "state",
+                common: {
+                    name: "Snapshot Url",
+                    type: "string",
+                    read: true,
+                    write: false
                 }
+            });
+
+            adapter.setState(fullPath + ".snapshot_url", {
+                val: imageUrl,
+                ack: true
             });
         }
 

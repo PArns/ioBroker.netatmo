@@ -3,7 +3,7 @@ var EventEmitter = require("events").EventEmitter;
 var request = require('request');
 var moment = require('moment');
 
-var BASE_URL = 'https://api.netatmo.net';
+var BASE_URL = 'https://api.netatmo.com';
 
 /**
  * @constructor

@@ -87,7 +87,7 @@ module.exports = function (myapi, myadapter) {
 
     function onSocketAlert(data) {
 
-        adapter.log.info(JSON.stringify(data));
+        //adapter.log.info(JSON.stringify(data));
 
         var now = (new Date()).toISOString();
 

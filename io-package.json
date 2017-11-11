@@ -20,7 +20,7 @@
     ],
     "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
     "loglevel": "info",
-    "type": "hardware"
+    "type": "weather"
   },
   "native": {
     "netatmoWeather": true,

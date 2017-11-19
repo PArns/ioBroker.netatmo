@@ -31,7 +31,7 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
-### 1.2.1
+### 1.2.2
 * (PArns) Updated meta info
 
 ### 1.2.0

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "1.2.0",
+    "version": "1.2.2",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",

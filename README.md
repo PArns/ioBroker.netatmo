@@ -31,6 +31,9 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.2.1
+* (PArns) Updated meta info
+
 ### 1.2.0
 * (PArns) Fixed camera picture for events
 * (PArns) Added camera vignette for events

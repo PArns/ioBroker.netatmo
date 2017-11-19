@@ -23,7 +23,7 @@
     "type": "weather",
     "authors": [
       "Patrick Arns <iobroker@patrick-arns.de>"
-    ],
+    ]
   },
   "native": {
     "netatmoWeather": true,

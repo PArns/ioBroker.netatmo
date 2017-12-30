@@ -15,10 +15,11 @@
 
     // Dictionary (systemDictionary is global variable from adapter-settings.js)
     systemDictionary = {
-        "Netatmo Adapter settings": {"de": "Netatmo Adapter Einstellungen", "en": "Netatmo adapter settings"},
+        "Netatmo Adapter settings": {"de": "my Netatmo Adapter Einstellungen", "en": "Netatmo adapter settings"},
         "E-Mail": {"de": "E-Mail", "en": "mail"},
         "Elevation (m)": {"de": "Wohnhöhe (in m ü nN)", "en": "Elevation (m)"},
         "Password": {"de": "Passwort", "en": "password"},
+        "Coach": {"de": "Health Coach", "en": "Healthy Coach"},
         "Weather": {"de": "Wetter Station", "en": "weather station"},
         "Welcome": {"de": "Welcome Innenkamera", "en": "welcome indoor cam"},
         "on save adapter restarts with new config immediately": {
@@ -97,6 +98,10 @@
 	</table>
 
 	<table>
+		<tr>
+			<td class="translate">Coach</td>
+			<td><input type="checkbox" id="netatmoCoach" value="true" class="value"></td>
+		</tr>
 		<tr>
 			<td class="translate">Weather</td>
 			<td><input type="checkbox" id="netatmoWeather" value="true" class="value"></td>

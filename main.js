@@ -8,6 +8,9 @@ var adapter = utils.adapter('netatmo');
 var netatmo = require('./netatmoLib');
 var api = null;
 
+var NetatmoCoach = require("./netatmoCoach");
+var coach = null;
+
 var NetatmoStation = require("./netatmoStation");
 var station = null;
 
@@ -72,8 +75,8 @@ adapter.on('ready', function () {
         // Backward compatibility begin ...
         // --------------------------------------------------------
         // If nothing is set, activate at least the Weatherstation
-        if (!(adapter.config.netatmoWeather || adapter.config.netatmoWelcome)) {
-            adapter.log.info("No product was choosen, using WeatherStation as default!");
+        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome)) {
+            adapter.log.info("No product was choosen, using Weatherstation as default!");
             adapter.config.netatmoWeather = true;
         }
 
@@ -92,6 +95,11 @@ adapter.on('ready', function () {
         if (adapter.config.netatmoWeather) {
             scope += " read_station";
         }
+
+        if (adapter.config.netatmoCoach) {
+            scope += " read_homecoach";
+        }
+
         // --------------------------------------------------------
         // Backward compatibility end ...
 
@@ -117,6 +125,18 @@ adapter.on('ready', function () {
         };
 
         api = new netatmo(auth);
+
+        api.setAdapter(adapter);
+
+        if (adapter.config.netatmoCoach) {
+            coach = new NetatmoCoach(api, adapter);
+
+            coach.requestUpdateCoachStation();
+
+            _deviceUpdateTimer = setInterval(function () {
+                coach.requestUpdateCoachStation();
+            }, adapter.config.check_interval * 60 * 1000);
+        }
 
         if (adapter.config.netatmoWeather) {
             station = new NetatmoStation(api, adapter);

@@ -2,6 +2,8 @@ var util = require('util');
 var EventEmitter = require("events").EventEmitter;
 var request = require('request');
 var moment = require('moment');
+var glob_lib_adapter = null;
+
 
 var BASE_URL = 'https://api.netatmo.com';
 
@@ -17,6 +19,14 @@ var netatmo = function (args) {
 };
 
 util.inherits(netatmo, EventEmitter);
+
+/**
+ * setAdapter
+ * @param myadapter
+ */
+netatmo.prototype.setAdapter = function (myadapter) {
+    glob_lib_adapter = myadapter;
+};
 
 /**
  * handleRequestError
@@ -43,6 +53,7 @@ netatmo.prototype.handleRequestError = function (err, response, body, message, c
     } else {
         errorMessage = "No response";
     }
+
     var error = new Error(message + ": " + errorMessage);
     if (critical) {
         this.emit("error", error);
@@ -72,7 +83,8 @@ netatmo.prototype.authenticate = function (args, callback) {
         this.client_secret = args.client_secret;
         this.access_token = args.access_token;
         this.refresh_token = args.refresh_token;
-        this.scope = args.scope || 'read_station read_thermostat write_thermostat read_camera';
+        this.scope = args.scope || 'read_homecoach read_station read_thermostat write_thermostat read_camera';
+
         this.emit('access_token', this.access_token);
         this.emit('refresh_token', this.refresh_token);
         this.emit('authenticated');
@@ -134,7 +146,7 @@ netatmo.prototype.authenticate = function (args, callback) {
 
     this.client_id = args.client_id;
     this.client_secret = args.client_secret;
-    this.scope = args.scope || 'read_station read_thermostat write_thermostat read_camera';
+    this.scope = args.scope || 'read_homecoach read_station read_camera';
 
     Object.assign(
         form,
@@ -244,7 +256,10 @@ netatmo.prototype.getUser = function (callback) {
     }
 
     var url;
-    if (this.scope.indexOf('read_station') !== -1) {
+
+    if (this.scope.indexOf('read_homecoach') !== -1) {
+        url = util.format('%s/api/gethomecoachsdata', BASE_URL);
+    } else if (this.scope.indexOf('read_station') !== -1) {
         url = util.format('%s/api/getstationsdata', BASE_URL);
     } else if (this.scope.indexOf('read_thermostat') !== -1) {
         url = util.format('%s/api/getthermostatsdata', BASE_URL);
@@ -383,6 +398,61 @@ netatmo.prototype.getStationsData = function (options, callback) {
         var devices = body.body.devices;
 
         this.emit('get-stationsdata', err, devices);
+
+        if (callback) {
+            return callback(err, devices);
+        }
+
+        return this;
+
+    }.bind(this));
+
+    return this;
+};
+
+/**
+ * https://dev.netatmo.com/doc/methods/gethomecoachsdata
+ * @param options
+ * @param callback
+ * @returns {*}
+ */
+netatmo.prototype.getCoachData = function (options, callback) {
+    // Wait until authenticated.
+    if (!this.access_token) {
+        return this.on('authenticated', function () {
+            this.getCoachData(options, callback);
+        });
+    }
+
+    if (options != null && callback == null) {
+        callback = options;
+        options = null;
+    }
+
+    var url = util.format('%s/api/gethomecoachsdata', BASE_URL);
+
+    var form = {
+        access_token: this.access_token,
+    };
+
+    if (options && options.app_type) {
+        form.app_type = options.app_type;
+    }
+
+    request({
+        url: url,
+        method: "POST",
+        form: form,
+    }, function (err, response, body) {
+        if (err || response.statusCode != 200) {
+            return this.handleRequestError(err, response, body, "gethomecoachsdata error", false, callback, this.getCoachData.bind(this, options, callback));
+        }
+
+        body = JSON.parse(body);
+
+        var devices = body.body.devices;
+
+        this.emit('get-coachdata', err, devices);
 
         if (callback) {
             return callback(err, devices);

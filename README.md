@@ -31,6 +31,9 @@ the personsId is the id within the "Known" persons folder
 
 ## Changelog
 
+### 1.3.0
+* (HMeyer) Added Netatmo Coach
+
 ### 1.2.2
 * (PArns) Updated meta info
 

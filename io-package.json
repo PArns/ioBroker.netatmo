@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "1.2.2",
+    "version": "1.3.0",
     "title": "Netatmo Adapter",
     "desc": {
       "en": "ioBroker netatmo Adapter",
@@ -28,6 +28,7 @@
   "native": {
     "netatmoWeather": true,
     "netatmoWelcome": false,
+    "netatmoCoach": false,
     "username": "",
     "password": "",
     "check_interval": 5,

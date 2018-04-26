@@ -1042,8 +1042,16 @@ module.exports = function (myapi, myadapter) {
                         } else if (objTime) {
                             for (var aTimeId in objTime) {
 
-                                var eventDate = Date.parse(objTime[aTimeId].val);
-                                if (cleanupDate > eventDate) {
+                                var eventDate = null;
+
+                                try {
+                                    eventDate = Date.parse(objTime[aTimeId].val);
+                                }
+                                catch(e) {
+                                    eventDate = null;
+                                }
+
+                                if ((cleanupDate > eventDate) || eventDate == null) {
                                     var parentId = aTimeId.substring(0, aTimeId.length - 5);
 
                                     adapter.getForeignObjects(parentId + ".*", "state", function (errState, objState) {

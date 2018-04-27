@@ -3,7 +3,7 @@
 "use strict";
 
 var utils = require(__dirname + '/lib/utils');
-var adapter = utils.adapter('netatmo');
+var adapter = utils.Adapter('netatmo');
 
 var netatmo = require('./netatmoLib');
 var api = null;

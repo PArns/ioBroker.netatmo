@@ -653,6 +653,9 @@ module.exports = function (myapi, myadapter) {
     function handleWind(aModule, aParent) {
         aParent += ".Wind";
 
+        if (!aModule.dashboard_data)
+            return;
+
         if (typeof aModule.dashboard_data.WindStrength !== "undefined") {
             adapter.setObjectNotExists(aParent + ".WindStrength", {
                 type: "state",

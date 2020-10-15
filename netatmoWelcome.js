@@ -125,6 +125,53 @@ module.exports = function (myapi, myadapter) {
                 }
             }
 
+            //add events for Presence
+            //type: 1 human; 2 animal; 3 vehicle
+            else if (data.event_type === "human") {
+                adapter.setState(path + "Presence.event", { val: true, ack: true });
+                adapter.setState(path + "Presence.time", { val: now, ack: true });
+                adapter.setState(path + "Presence.type", { val: 1, ack: true });
+                adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
+                adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
+                adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
+                adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
+            }
+            else if (data.event_type === "animal") {
+                adapter.setState(path + "Presence.event", { val: true, ack: true });
+                adapter.setState(path + "Presence.time", { val: now, ack: true });
+                adapter.setState(path + "Presence.type", { val: 2, ack: true });
+                adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
+                adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
+                adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
+                adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
+            }
+            else if (data.event_type === "vehicle") {
+                adapter.setState(path + "Presence.event", { val: true, ack: true });
+                adapter.setState(path + "Presence.time", { val: now, ack: true });
+                adapter.setState(path + "Presence.type", { val: 3, ack: true });
+                adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
+                adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
+                adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
+                adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
+            }
+            else if (data.event_type !== "vehicle") {
+                adapter.setState(path + "Presence.event", { val: false, ack: true });
+                adapter.setState(path + "Presence.time", { val: null, ack: true });
+                adapter.setState(path + "Presence.type", { val: null, ack: true });
+                adapter.setState(path + "Presence.typename", { val: null, ack: true });
+                adapter.setState(path + "Presence.message", { val: null, ack: true });
+                adapter.setState(path + "Presence.snapshot_url", { val: null, ack: true });
+                adapter.setState(path + "Presence.vignette_url", { val: null, ack: true });
+                adapter.setState(path + "Presence.event_id", { val: null, ack: true });
+                adapter.setState(path + "Presence.subevent_id", { val: null, ack: true });
+            }
+
             adapter.setState(path + "LastEventId", {val: data.id, ack: true});
 
             that.requestUpdateIndoorCamera();
@@ -231,6 +278,124 @@ module.exports = function (myapi, myadapter) {
             type: "state",
             common: {
                 name: "LastUnknownPersonSeen",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        //create substates for Presence
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.event", {
+            type: "state",
+            common: {
+                name: "event",
+                type: "boolean",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.time", {
+            type: "state",
+            common: {
+                name: "time",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.type", {
+            type: "state",
+            common: {
+                name: "type",
+                type: "number",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.typename", {
+            type: "state",
+            common: {
+                name: "typename",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.message", {
+            type: "state",
+            common: {
+                name: "message",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.snapshot_url", {
+            type: "state",
+            common: {
+                name: "snapshot_url",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.vignette_url", {
+            type: "state",
+            common: {
+                name: "vignette_url",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.event_id", {
+            type: "state",
+            common: {
+                name: "event_id",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.subevent_id", {
+            type: "state",
+            common: {
+                name: "subevent_id",
                 type: "string",
                 read: true,
                 write: false
@@ -416,6 +581,8 @@ module.exports = function (myapi, myadapter) {
                     write: false
                 }
             });
+
+            camera_vpn = aCamera.vpn_url;
 
             adapter.setState(livePath + ".picture", {val: aCamera.vpn_url + "/live/snapshot_720.jpg", ack: true});
             adapter.setState(livePath + ".stream", {
@@ -894,6 +1061,116 @@ module.exports = function (myapi, myadapter) {
 
             if (aEvent.vignette) {
                 handleVignette(aEvent.vignette, fullPath);
+            }
+
+            //add event history for Presence with subevent tree
+            if (aEvent.type === "outdoor") {
+                var counter = 0;
+                adapter.setObjectNotExists(fullPath + ".Presence.eventcount", {
+                    type: "state",
+                    common: {
+                        name: "eventcount",
+                        type: "number",
+                        read: true,
+                        write: false
+                    }
+                });
+                aEvent.event_list.forEach(function (aEventList) {
+                    //                   adapter.log.info(JSON.stringify(aEvent));
+                    EventList = aEventList;
+                    counter = counter + 1;
+                    adapter.setState(fullPath + ".Presence.eventcount", { val: counter, ack: true });
+ 
+ 
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".message", {
+                        type: "state",
+                        common: {
+                            name: "Type",
+                            type: "string",
+                            read: true,
+                            write: false
+                        }
+                    });
+                    adapter.setState(fullPath + ".Presence.event-" + counter + ".message", { val: EventList.message, ack: true });
+
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".type", {
+                        type: "state",
+                        common: {
+                            name: "Type",
+                            type: "number",
+                            read: true,
+                            write: false
+                        }
+                    });
+
+                    if (EventList.type === "human") {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".type", { val: 1, ack: true });
+                    }
+                    else if (EventList.type === "animal") {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".type", { val: 2, ack: true });
+                    }
+                    else if (EventList.type === "vehicle") {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".type", { val: 3, ack: true });
+                    }
+
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".typename", {
+                        type: "state",
+                        common: {
+                            name: "Type",
+                            type: "string",
+                            read: true,
+                            write: false
+                        }
+                    });
+                    adapter.setState(fullPath + ".Presence.event-" + counter + ".typename", { val: EventList.type, ack: true });
+
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".time", {
+                        type: "state",
+                        common: {
+                            name: "Time",
+                            type: "date",
+                            read: true,
+                            write: false
+                        }
+                    });
+                    adapter.setState(fullPath + ".Presence.event-" + counter + ".time", { val: (new Date(aEvent.time * 1000)), ack: true });
+
+                    // val: (new Date(aEvent.time * 1000)),
+
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".snapshoturl", {
+                        type: "state",
+                        common: {
+                            name: "Type",
+                            type: "string",
+                            read: true,
+                            write: false
+                        }
+                    });
+
+                    adapter.setObjectNotExists(fullPath + ".Presence.event-" + counter + ".vignetteurl", {
+                        type: "state",
+                        common: {
+                            name: "Type",
+                            type: "string",
+                            read: true,
+                            write: false
+                        }
+                    });
+
+                    if (EventList.snapshot.url) {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".snapshoturl", { val: EventList.snapshot.url, ack: true });
+                    }
+                    if (EventList.vignette.url) {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".vignetteurl", { val: EventList.vignette.url, ack: true });
+                    } 
+                    if (EventList.snapshot.filename) {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".snapshoturl", { val: camera_vpn + "/" + EventList.snapshot.filename, ack: true });
+                    }
+                    if (EventList.vignette.filename) {
+                        adapter.setState(fullPath + ".Presence.event-" + counter + ".vignetteurl", { val: camera_vpn + "/" + EventList.vignette.filename, ack: true });
+                    }
+
+                })
             }
         }
 

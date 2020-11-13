@@ -81,7 +81,7 @@ adapter.on('ready', function () {
         }
 
         if (!adapter.config.check_interval)
-            adapter.config.check_interval = 5;
+            adapter.config.check_interval = 10;
 
         if (!adapter.config.cleanup_interval)
             adapter.config.cleanup_interval = 60;

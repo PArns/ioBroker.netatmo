@@ -87,7 +87,7 @@ module.exports = function (myapi, myadapter) {
 
     function onSocketAlert(data) {
 
-        //adapter.log.info(JSON.stringify(data));
+        adapter.log.info(JSON.stringify(data));
 
         var now = (new Date()).toISOString();
 
@@ -447,7 +447,10 @@ module.exports = function (myapi, myadapter) {
             });
         }
 
+        // Disabled due to no usage ...
+        /*
         if (aHome.events) {
+
             var latestEventDate = 0;
             var latestEvent = null;
 
@@ -465,6 +468,7 @@ module.exports = function (myapi, myadapter) {
                 adapter.setState(homeName + ".LastEventData.LastEventId", {val: latestEvent.id, ack: true});
             }
         }
+         */
     }
 
     function handleCamera(aCamera, aHome) {
@@ -764,7 +768,7 @@ module.exports = function (myapi, myadapter) {
                     type: "state",
                     common: {
                         name: "Last seen",
-                        type: "date",
+                        type: "string",
                         read: true,
                         write: false
                     }

@@ -130,10 +130,15 @@ module.exports = function (myapi, myadapter) {
             else if (data.event_type === "human") {
                 adapter.setState(path + "Presence.event", { val: true, ack: true });
                 adapter.setState(path + "Presence.time", { val: now, ack: true });
-                adapter.setState(path + "Presence.type", { val: 1, ack: true });
+                adapter.setState(path + "Presence.camera_id", { val: data.camera_id, ack: true });
+                adapter.setState(path + "Presence.type", { val: 1, ack: true });                
                 adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
                 adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_id", { val: data.snapshot_id, ack: true });
+                adapter.setState(path + "Presence.snapshot_key", { val: data.snapshot_key, ack: true });
                 adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_id", { val: data.vignette_id, ack: true });
+                adapter.setState(path + "Presence.vignette_key", { val: data.vignette_key, ack: true });
                 adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
                 adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
                 adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
@@ -141,10 +146,15 @@ module.exports = function (myapi, myadapter) {
             else if (data.event_type === "animal") {
                 adapter.setState(path + "Presence.event", { val: true, ack: true });
                 adapter.setState(path + "Presence.time", { val: now, ack: true });
+                adapter.setState(path + "Presence.camera_id", { val: data.camera_id, ack: true });
                 adapter.setState(path + "Presence.type", { val: 2, ack: true });
                 adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
                 adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_id", { val: data.snapshot_id, ack: true });
+                adapter.setState(path + "Presence.snapshot_key", { val: data.snapshot_key, ack: true });
                 adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_id", { val: data.vignette_id, ack: true });
+                adapter.setState(path + "Presence.vignette_key", { val: data.vignette_key, ack: true });
                 adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
                 adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
                 adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
@@ -152,10 +162,15 @@ module.exports = function (myapi, myadapter) {
             else if (data.event_type === "vehicle") {
                 adapter.setState(path + "Presence.event", { val: true, ack: true });
                 adapter.setState(path + "Presence.time", { val: now, ack: true });
+                adapter.setState(path + "Presence.camera_id", { val: data.camera_id, ack: true });
                 adapter.setState(path + "Presence.type", { val: 3, ack: true });
                 adapter.setState(path + "Presence.typename", { val: data.event_type, ack: true });
                 adapter.setState(path + "Presence.message", { val: data.message, ack: true });
+                adapter.setState(path + "Presence.snapshot_id", { val: data.snapshot_id, ack: true });
+                adapter.setState(path + "Presence.snapshot_key", { val: data.snapshot_key, ack: true });
                 adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_id", { val: data.vignette_id, ack: true });
+                adapter.setState(path + "Presence.vignette_key", { val: data.vignette_key, ack: true });
                 adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
                 adapter.setState(path + "Presence.event_id", { val: data.event_id, ack: true });
                 adapter.setState(path + "Presence.subevent_id", { val: data.subevent_id, ack: true });
@@ -163,16 +178,21 @@ module.exports = function (myapi, myadapter) {
             else if (data.event_type !== "vehicle") {
                 adapter.setState(path + "Presence.event", { val: false, ack: true });
                 adapter.setState(path + "Presence.time", { val: null, ack: true });
+                adapter.setState(path + "Presence.camera_id", { val: null, ack: null });
                 adapter.setState(path + "Presence.type", { val: null, ack: true });
                 adapter.setState(path + "Presence.typename", { val: null, ack: true });
                 adapter.setState(path + "Presence.message", { val: null, ack: true });
-                adapter.setState(path + "Presence.snapshot_url", { val: null, ack: true });
-                adapter.setState(path + "Presence.vignette_url", { val: null, ack: true });
+                adapter.setState(path + "Presence.snapshot_id", { val: data.snapshot_id, ack: true });
+                adapter.setState(path + "Presence.snapshot_key", { val: data.snapshot_key, ack: true });
+                adapter.setState(path + "Presence.snapshot_url", { val: data.snapshot_url, ack: true });
+                adapter.setState(path + "Presence.vignette_id", { val: data.vignette_id, ack: true });
+                adapter.setState(path + "Presence.vignette_key", { val: data.vignette_key, ack: true });
+                adapter.setState(path + "Presence.vignette_url", { val: data.vignette_url, ack: true });
                 adapter.setState(path + "Presence.event_id", { val: null, ack: true });
                 adapter.setState(path + "Presence.subevent_id", { val: null, ack: true });
             }
 
-            adapter.setState(path + "LastEventId", {val: data.id, ack: true});
+            adapter.setState(path + "LastEventId", {val: data.event_id, ack: true});
 
             that.requestUpdateIndoorCamera();
         }
@@ -314,6 +334,20 @@ module.exports = function (myapi, myadapter) {
             }
         });
 
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.camera_id", {
+            type: "state",
+            common: {
+                name: "camera_id",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+
         adapter.setObjectNotExists(homeName + ".LastEventData.Presence.type", {
             type: "state",
             common: {
@@ -353,6 +387,32 @@ module.exports = function (myapi, myadapter) {
             }
         });
 
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.snapshot_id", {
+            type: "state",
+            common: {
+                name: "snapshot_id",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.snapshot_key", {
+            type: "state",
+            common: {
+                name: "snapshot_key",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
         adapter.setObjectNotExists(homeName + ".LastEventData.Presence.snapshot_url", {
             type: "state",
             common: {
@@ -365,6 +425,33 @@ module.exports = function (myapi, myadapter) {
                 id: aHome.id
             }
         });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.vignette_id", {
+            type: "state",
+            common: {
+                name: "vignette_id",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });
+
+        adapter.setObjectNotExists(homeName + ".LastEventData.Presence.vignette_key", {
+            type: "state",
+            common: {
+                name: "vignette_key",
+                type: "string",
+                read: true,
+                write: false
+            },
+            native: {
+                id: aHome.id
+            }
+        });        
+
 
         adapter.setObjectNotExists(homeName + ".LastEventData.Presence.vignette_url", {
             type: "state",

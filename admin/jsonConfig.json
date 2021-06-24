@@ -1,0 +1,223 @@
+{
+    "type": "panel",
+    "i18n": {
+        "E-Mail": {
+            "de": "E-Mail",
+            "en": "E-Mail"
+        },
+        "Elevation": {
+            "de": "Wohnhöhe",
+            "en": "Elevation"
+        },
+        "meters": {
+            "de": "in Meter über nN",
+            "en": "meters"
+        },
+        "Password": {
+            "de": "Passwort",
+            "en": "Password",
+            "ru": "Пароль"
+        },
+        "Health Coach": {
+            "de": "Health Coach",
+            "en": "Health Coach"
+        },
+        "Weather station": {
+            "de": "Wetter Station",
+            "en": "Weather station",
+            "ru": "Погодная станция"
+        },
+        "Welcome indoor cam": {
+            "de": "Welcome Innenkamera",
+            "en": "Welcome indoor cam"
+        },
+        "ClientID": {
+            "de": "Client ID",
+            "en": "Client ID"
+        },
+        "ClientSecret": {
+            "de": "Client Sekret",
+            "en": "Client secret"
+        },
+        "CheckIntervall": {
+            "de": "Daten erneut nach",
+            "en": "Check Intervall"
+        },
+        "CleanupIntervall": {
+            "de": "Daten nach",
+            "en": "Cleanup Intervall"
+        },
+        "load minutes": {
+            "de": "Minuten laden",
+            "en": "minutes"
+        },
+        "clean minutes": {
+            "de": "Minuten bereinigen",
+            "en": "minutes"
+        },
+        "hours": {
+            "de": "Stunden löschen",
+            "en": "hours"
+        },
+        "RemoveEvents": {
+            "de": "Ereignisse nach",
+            "en": "Remove events older than"
+        },
+        "RemoveUnknownPerson": {
+            "de": "Unbekannte Personen nach",
+            "en": "Remove unknown persons last seen older than"
+        },
+        "live_stream1": {
+            "en": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!",
+            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten, musst du einen eigenen API-Schlüssel von Netatmo anfordern!",
+            "ru": "Чтобы получать прямые трансляции от Welcome & amp; Присутствие, вы должны запросить собственный ключ API у Netatmo!"
+        },
+        "live_stream2": {
+            "en": "To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
+            "de": "Um einen API-Schlüssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
+            "ru": "Для этого перейдите по следующему URL-адресу, войдите в свою учетную запись Netatmo и заполните запрошенную форму."
+        },
+        "Client ID": {
+            "en": "Client ID",
+            "de": "Client ID",
+            "ru": "Client ID"
+        },
+        "Client Secret": {
+            "en": "Client Secret",
+            "de": "Client Secret",
+            "ru": "Client Secret"
+        },
+        "Netatmo App": {
+            "en": "From your Netatmo App",
+            "de": "Aus deinem Netatmo App",
+            "ru": "Из твоего Netatmo App"
+        }
+    },
+    "items": {
+        "netatmoCoach": {
+            "type": "checkbox",
+            "label": "Health Coach",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+        "netatmoWeather": {
+            "type": "checkbox",
+            "label": "Weather station",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+        "netatmoWelcome": {
+            "type": "checkbox",
+            "label": "Welcome indoor cam",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+        "username": {
+            "newLine": true,
+            "type": "text",
+            "label": "E-Mail",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+        "password": {
+            "type": "password",
+            "repeat": true,
+            "label": "Password",
+            "sm": 12,
+            "md": 6,
+            "lg": 6
+        },
+        "location_elevation": {
+            "hidden": "!data.netatmoWeather && !data.netatmoCoach",
+            "newLine": true,
+            "type": "number",
+            "label": "Elevation",
+            "help": "meters",
+            "sm": 6,
+            "lg": 3
+        },
+        "check_interval": {
+            "newLine": true,
+            "type": "number",
+            "label": "CheckIntervall",
+            "help": "load minutes",
+            "sm": 6,
+            "lg": 3
+        },
+        "_header": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "header",
+            "size": 4,
+            "style": {
+                "marginTop": 20
+            },
+            "sm": 12,
+            "text": "Welcome & presence camera"
+        },
+        "cleanup_interval": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "number",
+            "label": "CleanupIntervall",
+            "help": "clean minutes",
+            "sm": 6,
+            "lg": 3
+        },
+        "event_time": {
+            "hidden": "!data.netatmoWelcome",
+            "newLine": true,
+            "type": "number",
+            "label": "RemoveEvents",
+            "help": "clean minutes",
+            "sm": 6,
+            "lg": 3
+        },
+        "unknown_person_time": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "number",
+            "label": "RemoveUnknownPerson",
+            "help": "hours",
+            "sm": 6,
+            "lg": 3
+        },
+        "_text1": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "staticText",
+            "newLine":  true,
+            "text": "live_stream1"
+        },
+        "_text2": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "staticText",
+            "newLine":  true,
+            "text": "live_stream2"
+        },
+        "_link": {
+            "hidden": "!data.netatmoWelcome",
+            "newLine":  true,
+            "type": "staticLink",
+            "text": "https://dev.netatmo.com/apps/createanapp",
+            "href": "https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp"
+        },
+        "id": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "text",
+            "newLine": true,
+            "label": "Client ID",
+            "help": "Netatmo App",
+            "sm": 6,
+            "lg": 3
+        },
+        "secret": {
+            "hidden": "!data.netatmoWelcome",
+            "type": "password",
+            "help": "Netatmo App",
+            "label": "Client Secret",
+            "sm": 6,
+            "lg": 3
+        }
+    }
+}

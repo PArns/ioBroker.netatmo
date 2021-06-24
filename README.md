@@ -29,7 +29,14 @@ sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg', personsId: ['123123
 The parameter homeId is the string listed behind the name of your Camera within the Objects tab (optional, if multiple cameras are installed),
 the personsId is the id within the "Known" persons folder
 
+<!--
+	Placeholder for the next version (at the beginning of the line):
+	### __WORK IN PROGRESS__
+-->
 ## Changelog
+### __WORK IN PROGRESS__
+* (bluefox) Added the support of admin5 
+* (bluefox) Removed warnings about the type of states  
 
 ### 1.3.3
 * (PArns) removed person history

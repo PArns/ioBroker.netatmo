@@ -1,127 +1,129 @@
-/* jshint -W097 */// jshint strict:false
-/*jslint node: true */
-"use strict";
+/* jshint -W097 */
+/* jshint strict: false */
+/* jslint node: true */
+'use strict';
 
-var utils = require('@iobroker/adapter-core');
-var adapter = utils.Adapter('netatmo');
+const adapterName = require('./package.json').name.split('.').pop();
+const utils = require('@iobroker/adapter-core');
 
-var netatmo = require('./netatmoLib');
-var api = null;
+const netatmo = require('./lib/netatmoLib');
+let api = null;
 
-var NetatmoCoach = require("./netatmoCoach");
-var coach = null;
+const NetatmoCoach = require('./lib/netatmoCoach');
+let coach = null;
 
-var NetatmoStation = require("./netatmoStation");
-var station = null;
+const NetatmoStation = require('./lib/netatmoStation');
+let station = null;
 
-var NetatmoWelcome = require("./netatmoWelcome");
-var welcome = null;
+const NetatmoWelcome = require('./lib/netatmoWelcome');
+let welcome = null;
 
-var _deviceUpdateTimer;
-var _welcomeUpdateTimer;
+let _deviceUpdateTimer;
+let _welcomeUpdateTimer;
 
 String.prototype.replaceAll = function (search, replacement) {
-    var target = this;
+    const target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
-adapter.on('message', function (obj) {
+let adapter;
 
-    adapter.log.info(JSON.stringify(obj));
+function startAdapter(options) {
+    options = options || {};
+    Object.assign(options, {
+        name: adapterName, // adapter name
+    });
 
-    if (obj.command === "send") {
-        obj.command = obj.message;
-        obj.message = null;
-    }
-
-    if (obj) {
-        switch (obj.command) {
-            case 'setAway':
-                if (welcome) {
-                    welcome.setAway(obj.message);
-                }
-
-                if (obj.callback)
-                    adapter.sendTo(obj.from, obj.command, {}, obj.callback);
-
-                break;
-            default:
-                adapter.log.warn("Unknown command: " + obj.command);
-                break;
+    adapter = new utils.Adapter(options);
+    adapter.on('message', obj => {
+        if (obj.command === 'send') {
+            obj.command = obj.message;
+            obj.message = null;
         }
-    }
 
-    return true;
-});
+        if (obj) {
+            switch (obj.command) {
+                case 'setAway':
+                    welcome && welcome.setAway(obj.message);
 
-adapter.on('unload', function (callback) {
-    try {
-        if (welcome)
-            welcome.finalize();
+                    obj.callback && adapter.sendTo(obj.from, obj.command, {}, obj.callback);
 
-        adapter.log.info('cleaned everything up...');
-        callback();
-    } catch (e) {
-        callback();
-    }
-});
+                    break;
+                default:
+                    adapter.log.warn('Unknown command: ' + obj.command);
+                    break;
+            }
+        }
 
-adapter.on('ready', function () {
+        return true;
+    });
+
+    adapter.on('unload', function (callback) {
+        try {
+            welcome && welcome.finalize();
+
+            adapter.log.info('cleaned everything up...');
+            callback();
+        } catch (e) {
+            callback();
+        }
+    });
+
+    adapter.on('ready', main);
+}
+
+function main() {
     if (adapter.config.username && adapter.config.password) {
-        var scope = "";
-        var id = "574ddd152baa3cf9598b46cd";
-        var secret = "6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW";
+        let scope = '';
+        let id = '574ddd152baa3cf9598b46cd';
+        let secret = '6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW';
 
         // Backward compatibility begin ...
         // --------------------------------------------------------
         // If nothing is set, activate at least the Weatherstation
         if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome)) {
-            adapter.log.info("No product was choosen, using Weatherstation as default!");
+            adapter.log.info('No product was chosen, using Weatherstation as default!');
             adapter.config.netatmoWeather = true;
         }
 
-        if (!adapter.config.check_interval)
-            adapter.config.check_interval = 10;
+        adapter.config.check_interval = adapter.config.check_interval || 10;
 
-        if (!adapter.config.cleanup_interval)
-            adapter.config.cleanup_interval = 60;
+        adapter.config.cleanup_interval = adapter.config.cleanup_interval || 60;
 
-        if (!adapter.config.unknown_person_time)
-            adapter.config.unknown_person_time = 24;
+        adapter.config.unknown_person_time = adapter.config.unknown_person_time || 24;
 
-        if (!adapter.config.location_elevation)
-            adapter.config.location_elevation = 0;
+        adapter.config.location_elevation = adapter.config.location_elevation || 0;
 
         if (adapter.config.netatmoWeather) {
-            scope += " read_station";
+            scope += ' read_station';
         }
 
         if (adapter.config.netatmoCoach) {
-            scope += " read_homecoach";
+            scope += ' read_homecoach';
         }
 
         // --------------------------------------------------------
         // Backward compatibility end ...
 
         if (adapter.config.netatmoWelcome) {
-            scope += " read_camera read_presence";
+            scope += ' read_camera read_presence';
 
             if (adapter.config.id && adapter.config.secret) {
                 id = adapter.config.id;
                 secret = adapter.config.secret;
 
-                scope += " access_camera access_presence write_camera"
+                scope += ' access_camera access_presence write_camera'
             }
         }
 
         scope = scope.trim();
 
-        var auth = {
-            "client_id": id,
-            "client_secret": secret,
-            "scope": scope,
-            "username": adapter.config.username,
-            "password": adapter.config.password
+        const auth = {
+            'client_id': id,
+            'client_secret': secret,
+            'scope': scope,
+            'username': adapter.config.username,
+            'password': adapter.config.password
         };
 
         api = new netatmo(auth);
@@ -133,9 +135,8 @@ adapter.on('ready', function () {
 
             coach.requestUpdateCoachStation();
 
-            _deviceUpdateTimer = setInterval(function () {
-                coach.requestUpdateCoachStation();
-            }, adapter.config.check_interval * 60 * 1000);
+            _deviceUpdateTimer = setInterval(() =>
+                coach.requestUpdateCoachStation(), adapter.config.check_interval * 60 * 1000);
         }
 
         if (adapter.config.netatmoWeather) {
@@ -143,9 +144,8 @@ adapter.on('ready', function () {
 
             station.requestUpdateWeatherStation();
 
-            _deviceUpdateTimer = setInterval(function () {
-                station.requestUpdateWeatherStation();
-            }, adapter.config.check_interval * 60 * 1000);
+            _deviceUpdateTimer = setInterval(() =>
+                station.requestUpdateWeatherStation(), adapter.config.check_interval * 60 * 1000);
         }
 
         if (adapter.config.netatmoWelcome) {
@@ -153,11 +153,19 @@ adapter.on('ready', function () {
             welcome.init();
             welcome.requestUpdateIndoorCamera();
 
-            _welcomeUpdateTimer = setInterval(function () {
-                welcome.requestUpdateIndoorCamera();
-            }, adapter.config.check_interval * 2 * 60 * 1000);
+            _welcomeUpdateTimer = setInterval(() =>
+                welcome.requestUpdateIndoorCamera(), adapter.config.check_interval * 2 * 60 * 1000);
         }
+    } else {
+        adapter.log.error('Please add username, password and choose at least one product within the adapter settings!');
+    }
+}
 
-    } else
-        adapter.log.error("Please add username, password and choose at least one product within the adapter settings!");
-});
+// If started as allInOne mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
+}
+

@@ -1,44 +1,59 @@
 {
-  "common": {
-    "name": "netatmo",
-    "version": "1.3.3",
-    "title": "Netatmo Adapter",
-    "desc": {
-      "en": "ioBroker netatmo Adapter",
-      "de": "ioBroker Netatmo Adapter",
-      "ru": "ioBroker Netatmo драйвер как образец"
+    "common": {
+        "name": "netatmo",
+        "version": "1.3.3",
+        "title": "Netatmo",
+        "titleLang": {
+            "en": "Netatmo"
+        },
+        "news": {
+            "1.3.3": {
+                "en": "removed person history"
+            }
+        },
+        "desc": {
+            "en": "netatmo",
+            "de": "Netatmo",
+            "ru": "Netatmo"
+        },
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "netatmo.png",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "push",
+        "enabled": false,
+        "messagebox": true,
+        "adminUI": {
+            "config": "json"
+        },
+        "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+        "keywords": [
+            "netatmo"
+        ],
+        "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+        "loglevel": "info",
+        "type": "weather",
+        "authors": [
+            "Patrick Arns <iobroker@patrick-arns.de>"
+        ]
     },
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "mode": "daemon",
-    "icon": "netatmo.png",
-    "enabled": false,
-    "messagebox": true,
-    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
-    "keywords": [
-      "netatmo"
-    ],
-    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
-    "loglevel": "info",
-    "type": "weather",
-    "authors": [
-      "Patrick Arns <iobroker@patrick-arns.de>"
+    "protectedNative": ["secret", "id", "username", "password"],
+    "native": {
+        "netatmoWeather": true,
+        "netatmoWelcome": false,
+        "netatmoCoach": false,
+        "username": "",
+        "password": "",
+        "check_interval": 5,
+        "cleanup_interval": 60,
+        "event_time": 12,
+        "unknown_person_time": 24,
+        "location_elevation": 0,
+        "id": "",
+        "secret": ""
+    },
+    "objects": [
     ]
-  },
-  "native": {
-    "netatmoWeather": true,
-    "netatmoWelcome": false,
-    "netatmoCoach": false,
-    "username": "",
-    "password": "",
-    "check_interval": 5,
-    "cleanup_interval": 60,
-    "event_time": 12,
-    "unknown_person_time": 24,
-    "location_elevation": 0,
-    "id": "",
-    "secret": ""
-  },
-  "objects": [
-  ]
 }

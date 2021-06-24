@@ -1,7 +1,7 @@
 # This is a composition of lint and test scripts
 # Make sure to update this file along with the others
 
-name: Test and Release
+name: Release
 
 # Run this job on all pushes and pull requests
 # as well as tags with a semantic version
@@ -18,40 +18,9 @@ on:
 
 jobs:
   # Runs adapter tests on all supported node versions and OSes
-  adapter-tests:
-    if: contains(github.event.head_commit.message, '[skip ci]') == false
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [ 14.x, 16.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run local tests
-        run: npm test
-#      - name: Run unit tests
-#        run: npm run test:unit
-#      - name: Run integration tests # (linux/osx)
-#        if: startsWith(runner.OS, 'windows') == false
-#        run: DEBUG=testing:* npm run test:integration
-#      - name: Run integration tests # (windows)
-#        if: startsWith(runner.OS, 'windows')
-#        run: set DEBUG=testing:* & npm run test:integration
 
   # Deploys the final package to NPM
   deploy:
-    needs: [adapter-tests]
-
     # Trigger this step only when a commit on master is tagged with a version number
     if: |
       contains(github.event.head_commit.message, '[skip ci]') == false &&

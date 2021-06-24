@@ -34,7 +34,7 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-### __WORK IN PROGRESS__
+### 1.4.0 (2021-06-24)
 * (bluefox) Added the support of admin5 
 * (bluefox) Removed warnings about the type of states  
 

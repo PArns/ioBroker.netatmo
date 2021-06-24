@@ -29,7 +29,7 @@ module.exports = function (myapi, myadapter) {
     }
 
     function handleDevice(aDevice, aParent) {
-        var deviceName = getDeviceName(aDevice.name);
+        var deviceName = getDeviceName(aDevice.station_name || aDevice.name);
         aParent = aParent ? aParent + "." + deviceName : deviceName;
         adapter.setObject(aParent, {
             type: "device",

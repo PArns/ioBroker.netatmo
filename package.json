@@ -2,10 +2,7 @@
   "name": "iobroker.netatmo",
   "version": "1.4.0",
   "description": "ioBroker netatmo Adapter",
-  "authors": {
-    "name": "Patrick Arns",
-    "email": "iobroker@patrick-arns.de"
-  },
+  "author": "Patrick Arns <iobroker@patrick-arns.de>"
   "contributors": [
     {
       "name": "Patrick Arns",
@@ -37,6 +34,7 @@
     "request": "^2.88.2",
     "socket.io-client": "^2.3.0"
   },
+  "main": "main.js",
   "devDependencies": {
     "@alcalzone/release-script": "^2.0.0",
     "mocha": "^9.0.1",

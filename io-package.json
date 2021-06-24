@@ -46,7 +46,7 @@
         "icon": "netatmo.png",
         "compact": true,
         "connectionType": "cloud",
-        "dataSource": "push",
+        "dataSource": "poll",
         "enabled": false,
         "messagebox": true,
         "adminUI": {

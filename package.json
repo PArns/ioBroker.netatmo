@@ -2,7 +2,7 @@
   "name": "iobroker.netatmo",
   "version": "1.4.0",
   "description": "ioBroker netatmo Adapter",
-  "author": "Patrick Arns <iobroker@patrick-arns.de>"
+  "author": "Patrick Arns <iobroker@patrick-arns.de>",
   "contributors": [
     {
       "name": "Patrick Arns",

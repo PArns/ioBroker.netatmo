@@ -47,6 +47,7 @@
         "compact": true,
         "connectionType": "cloud",
         "dataSource": "poll",
+        "tier": 2,
         "enabled": false,
         "messagebox": true,
         "adminUI": {

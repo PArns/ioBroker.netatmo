@@ -34,6 +34,10 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Fix typo to fix crash
+
 ### 1.4.2 (2021-06-27)
 * (bluefox) Removed warnings about the type of states
 

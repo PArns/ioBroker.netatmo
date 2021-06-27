@@ -35,7 +35,7 @@ the personsId is the id within the "Known" persons folder
 -->
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 1.4.3 (2021-06-27)
 * (Apollon77) Fix typo to fix crash
 
 ### 1.4.2 (2021-06-27)

@@ -34,7 +34,7 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-### 1.4.1 (2021-06-27)
+### __WORK IN PROGRESS__
 * (bluefox) Removed warnings about the type of states
 
 ### 1.4.0 (2021-06-24)

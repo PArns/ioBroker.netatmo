@@ -18,8 +18,9 @@ let station = null;
 const NetatmoWelcome = require('./lib/netatmoWelcome');
 let welcome = null;
 
-let _deviceUpdateTimer;
-let _welcomeUpdateTimer;
+let _coachUpdateInterval;
+let _weatherUpdateInterval;
+let _welcomeUpdateInterval;
 
 String.prototype.replaceAll = function (search, replacement) {
     const target = this;
@@ -58,8 +59,12 @@ function startAdapter(options) {
         return true;
     });
 
-    adapter.on('unload', function (callback) {
+    adapter.on('unload', callback => {
         try {
+            _coachUpdateInterval && clearInterval(_coachUpdateInterval);
+            _weatherUpdateInterval && clearInterval(_weatherUpdateInterval);
+            _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
+
             welcome && welcome.finalize();
 
             adapter.log.info('cleaned everything up...');
@@ -135,7 +140,7 @@ function main() {
 
             coach.requestUpdateCoachStation();
 
-            _deviceUpdateTimer = setInterval(() =>
+            _coachUpdateInterval = setInterval(() =>
                 coach.requestUpdateCoachStation(), adapter.config.check_interval * 60 * 1000);
         }
 
@@ -144,7 +149,7 @@ function main() {
 
             station.requestUpdateWeatherStation();
 
-            _deviceUpdateTimer = setInterval(() =>
+            _weatherUpdateInterval = setInterval(() =>
                 station.requestUpdateWeatherStation(), adapter.config.check_interval * 60 * 1000);
         }
 
@@ -153,7 +158,7 @@ function main() {
             welcome.init();
             welcome.requestUpdateIndoorCamera();
 
-            _welcomeUpdateTimer = setInterval(() =>
+            _welcomeUpdateInterval = setInterval(() =>
                 welcome.requestUpdateIndoorCamera(), adapter.config.check_interval * 2 * 60 * 1000);
         }
     } else {

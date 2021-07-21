@@ -1,12 +1,24 @@
 {
     "common": {
         "name": "netatmo",
-        "version": "1.4.3",
+        "version": "1.4.4",
         "title": "Netatmo",
         "titleLang": {
             "en": "Netatmo"
         },
         "news": {
+            "1.4.4": {
+                "en": "Fix typo that lead to a crash",
+                "de": "Tippfehler behoben, der zu einem Absturz führte",
+                "ru": "Исправить опечатку, приводившую к сбою",
+                "pt": "Corrigir erros de digitação que levam a uma falha",
+                "nl": "Typefout herstellen die tot een crash leidde",
+                "fr": "Correction d'une faute de frappe entraînant un plantage",
+                "it": "Risolto un errore di battitura che causava un arresto anomalo",
+                "es": "Corregir error tipográfico que provocó un bloqueo",
+                "pl": "Napraw literówkę, która doprowadziła do awarii",
+                "zh-cn": "修复导致崩溃的错字"
+            },
             "1.4.3": {
                 "en": "Fix typo to fix crash",
                 "de": "Tippfehler beheben, um Absturz zu beheben",

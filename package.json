@@ -28,7 +28,7 @@
     "url": "https://github.com/PArns/ioBroker.netatmo"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.5.0",
+    "@iobroker/adapter-core": "^2.5.1",
     "dewpoint": "^1.0.0",
     "moment": "^2.29.1",
     "request": "^2.88.2",

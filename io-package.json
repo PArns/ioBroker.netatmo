@@ -1,12 +1,16 @@
 {
     "common": {
         "name": "netatmo",
-        "version": "1.4.4",
+        "version": "1.4.5",
         "title": "Netatmo",
         "titleLang": {
             "en": "Netatmo"
         },
         "news": {
+            "1.4.5": {
+                "en": "added support for netatmo smokedetector",
+                "de": "Unterstützung für Netatmo Rauchmelder hinzugefügt.",
+            },
             "1.4.4": {
                 "en": "Fix typo that lead to a crash",
                 "de": "Tippfehler behoben, der zu einem Absturz führte",
@@ -122,6 +126,7 @@
         "netatmoWeather": true,
         "netatmoWelcome": false,
         "netatmoCoach": false,
+        "netatmoSmokedetector": false,
         "username": "",
         "password": "",
         "check_interval": 5,

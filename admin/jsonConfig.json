@@ -31,6 +31,10 @@
             "de": "Welcome Innenkamera",
             "en": "Welcome indoor cam"
         },
+        "Smokedetector": {
+            "de": "Rauchmelder",
+            "en": "smoke detector"
+        },
         "ClientID": {
             "de": "Client ID",
             "en": "Client ID"
@@ -111,6 +115,13 @@
         "netatmoWelcome": {
             "type": "checkbox",
             "label": "Welcome indoor cam",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+         "netatmoSmokedetector": {
+            "type": "checkbox",
+            "label": "Smokedetector",
             "sm": 12,
             "md": 6,
             "lg": 3
@@ -203,7 +214,7 @@
             "href": "https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp"
         },
         "id": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome || !data.netatmoSmokedetector",
             "type": "text",
             "newLine": true,
             "label": "Client ID",
@@ -212,7 +223,7 @@
             "lg": 3
         },
         "secret": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome || !data.netatmoSmokedetector",
             "type": "password",
             "help": "Netatmo App",
             "label": "Client Secret",

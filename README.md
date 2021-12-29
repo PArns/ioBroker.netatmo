@@ -35,6 +35,9 @@ the personsId is the id within the "Known" persons folder
 -->
 ## Changelog
 
+### 1.4.5 (2021-12-29)
+* (kyuka-dom) Added support for netatmo smoke alarm.
+
 ### 1.4.4 (2021-07-21)
 * (Apollon77) Fix typo that lead to a crash
 

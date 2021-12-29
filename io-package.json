@@ -9,7 +9,7 @@
         "news": {
             "1.4.5": {
                 "en": "added support for netatmo smokedetector",
-                "de": "Unterstützung für Netatmo Rauchmelder hinzugefügt.",
+                "de": "Unterstützung für Netatmo Rauchmelder hinzugefügt."
             },
             "1.4.4": {
                 "en": "Fix typo that lead to a crash",

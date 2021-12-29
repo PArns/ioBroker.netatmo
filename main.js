@@ -18,9 +18,13 @@ let station = null;
 const NetatmoWelcome = require('./lib/netatmoWelcome');
 let welcome = null;
 
+const NetatmoSmokedetector = require('./lib/netatmoSmokedetector');
+let smokedetector = null;
+
 let _coachUpdateInterval;
 let _weatherUpdateInterval;
 let _welcomeUpdateInterval;
+let _smokedetectorUpdateInterval;
 
 String.prototype.replaceAll = function (search, replacement) {
     const target = this;
@@ -64,8 +68,10 @@ function startAdapter(options) {
             _coachUpdateInterval && clearInterval(_coachUpdateInterval);
             _weatherUpdateInterval && clearInterval(_weatherUpdateInterval);
             _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
+            _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
 
             welcome && welcome.finalize();
+            smokedetector && smokedetector.finalize();
 
             adapter.log.info('cleaned everything up...');
             callback();
@@ -86,7 +92,7 @@ function main() {
         // Backward compatibility begin ...
         // --------------------------------------------------------
         // If nothing is set, activate at least the Weatherstation
-        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome)) {
+        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector)) {
             adapter.log.info('No product was chosen, using Weatherstation as default!');
             adapter.config.netatmoWeather = true;
         }
@@ -118,6 +124,15 @@ function main() {
                 secret = adapter.config.secret;
 
                 scope += ' access_camera access_presence write_camera'
+            }
+        }
+
+        if (adapter.config.netatmoSmokedetector) {
+            scope += ' read_smokedetector';
+
+            if (adapter.config.id && adapter.config.secret) {
+                id = adapter.config.id;
+                secret = adapter.config.secret;
             }
         }
 
@@ -160,6 +175,15 @@ function main() {
 
             _welcomeUpdateInterval = setInterval(() =>
                 welcome.requestUpdateIndoorCamera(), adapter.config.check_interval * 2 * 60 * 1000);
+        }
+
+        if (adapter.config.netatmoSmokedetector) {
+            smokedetector = new NetatmoSmokedetector(api, adapter);
+            smokedetector.init();
+            smokedetector.requestUpdateSmokedetector();
+
+            _smokedetectorUpdateInterval = setInterval(() =>
+                smokedetector.requestUpdateSmokedetector(), adapter.config.check_interval * 2 * 60 * 1000);
         }
     } else {
         adapter.log.error('Please add username, password and choose at least one product within the adapter settings!');

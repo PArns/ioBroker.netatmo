@@ -35,6 +35,9 @@ the personsId is the id within the "Known" persons folder
 -->
 ## Changelog
 
+### 1.4.6 (2022-01-07)
+* (kyuka-dom) Added support for netatmo carbon monoxide sensor.
+
 ### 1.4.5 (2021-12-29)
 * (kyuka-dom) Added support for netatmo smoke alarm.
 

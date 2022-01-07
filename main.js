@@ -21,10 +21,14 @@ let welcome = null;
 const NetatmoSmokedetector = require('./lib/netatmoSmokedetector');
 let smokedetector = null;
 
+const NetatmoCOSensor = require('./lib/netatmoCOSensor');
+let cosensor = null;
+
 let _coachUpdateInterval;
 let _weatherUpdateInterval;
 let _welcomeUpdateInterval;
 let _smokedetectorUpdateInterval;
+let _cosensorUpdateInterval;
 
 String.prototype.replaceAll = function (search, replacement) {
     const target = this;
@@ -69,9 +73,11 @@ function startAdapter(options) {
             _weatherUpdateInterval && clearInterval(_weatherUpdateInterval);
             _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
             _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
+            _cosensorUpdateInterval && clearInterval(_cosensorUpdateInterval);
 
             welcome && welcome.finalize();
             smokedetector && smokedetector.finalize();
+            cosensor && cosensor.finalize();
 
             adapter.log.info('cleaned everything up...');
             callback();
@@ -92,7 +98,7 @@ function main() {
         // Backward compatibility begin ...
         // --------------------------------------------------------
         // If nothing is set, activate at least the Weatherstation
-        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector)) {
+        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector || adapter.config.netatmoCOSensor)) {
             adapter.log.info('No product was chosen, using Weatherstation as default!');
             adapter.config.netatmoWeather = true;
         }
@@ -129,6 +135,15 @@ function main() {
 
         if (adapter.config.netatmoSmokedetector) {
             scope += ' read_smokedetector';
+
+            if (adapter.config.id && adapter.config.secret) {
+                id = adapter.config.id;
+                secret = adapter.config.secret;
+            }
+        }
+
+        if (adapter.config.netatmoCOSensor) {
+            scope += ' read_carbonmonoxidedetector';
 
             if (adapter.config.id && adapter.config.secret) {
                 id = adapter.config.id;
@@ -184,6 +199,15 @@ function main() {
 
             _smokedetectorUpdateInterval = setInterval(() =>
                 smokedetector.requestUpdateSmokedetector(), adapter.config.check_interval * 2 * 60 * 1000);
+        }
+
+        if (adapter.config.netatmoCOSensor) {
+            cosensor = new NetatmoCOSensor(api, adapter);
+            cosensor.init();
+            cosensor.requestUpdateCOSensor();
+
+            _cosensorUpdateInterval = setInterval(() =>
+                cosensor.requestUpdateCOSensor(), adapter.config.check_interval * 2 * 60 * 1000);
         }
     } else {
         adapter.log.error('Please add username, password and choose at least one product within the adapter settings!');

@@ -91,9 +91,16 @@ function main() {
             adapter.config.netatmoWeather = true;
         }
 
-        adapter.config.check_interval = adapter.config.check_interval || 10;
+        // we do not allow intervals below 5 minutes
+        if (typeof adapter.config.check_interval !== 'number' || adapter.config.check_interval < 5) {
+            adapter.config.check_interval = 5;
+            adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 5 minutes`);
+        }
 
-        adapter.config.cleanup_interval = adapter.config.cleanup_interval || 60;
+        if (typeof adapter.config.cleanup_interval !== 'number' || adapter.config.cleanup_interval < 5) {
+            adapter.config.cleanup_interval = 60;
+            adapter.log.warn(`Invalid cleanup interval "${adapter.config.cleanup_interval}", fallback to 60 minutes`);
+        }
 
         adapter.config.unknown_person_time = adapter.config.unknown_person_time || 24;
 
@@ -167,10 +174,10 @@ function main() {
 }
 
 // If started as allInOne mode => return function to create instance
-if (module && module.parent) {
-    module.exports = startAdapter;
-} else {
-    // or start the instance directly
+if (require.main === module) {
     startAdapter();
+} else {
+    // compact mode
+    module.exports = startAdapter;
 }
 

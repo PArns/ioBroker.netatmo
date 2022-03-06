@@ -62,9 +62,28 @@
                 });
             }
         }
+
+		registerValidators();
+
         // Signal to admin, that no changes yet
         onChange(false);
     }
+
+	function registerValidators() {
+		$('#check_interval').focusout(function () {
+			if (parseFloat($(this).val()) < 5) {
+				showToast(null, _('Minimal check interval is 5 minutes'));
+				$(this).val(5);
+			}
+		});
+
+		$('#cleanup_interval').focusout(function () {
+			if (parseFloat($(this).val()) < 5) {
+				showToast(null, _('Minimal cleanup interval is 5 minutes'));
+				$(this).val(5);
+			}
+		});
+	}
 
     // ... and the function save has to exist.
     // you have to make sure the callback is called with the settings object as first param!
@@ -84,7 +103,6 @@
 
         callback(obj);
     }
-
 </script>
 
 <!-- you have to put your config page in a div with id adapter-container -->

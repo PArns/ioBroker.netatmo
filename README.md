@@ -35,11 +35,11 @@ the personsId is the id within the "Known" persons folder
 -->
 ## Changelog
 
-### 1.4.6 (2022-01-07)
+### __WORK IN PROGRESS__
 * (kyuka-dom) Added support for netatmo carbon monoxide sensor.
-
-### 1.4.5 (2021-12-29)
 * (kyuka-dom) Added support for netatmo smoke alarm.
+* (foxriver76) prevent crashes if application limit reached
+* (foxriver76) ensure that minimum polling interval of 5 minutes is followed
 
 ### 1.4.4 (2021-07-21)
 * (Apollon77) Fix typo that lead to a crash

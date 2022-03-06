@@ -168,7 +168,8 @@
             "label": "CheckIntervall",
             "help": "load minutes",
             "sm": 6,
-            "lg": 3
+            "lg": 3,
+            "min": 5
         },
         "_header": {
             "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
@@ -186,7 +187,8 @@
             "label": "CleanupIntervall",
             "help": "clean minutes",
             "sm": 6,
-            "lg": 3
+            "lg": 3,
+            "min": 5
         },
         "event_time": {
             "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",

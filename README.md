@@ -165,4 +165,4 @@ the personsId is the id within the "Known" persons folder
 ## License
 MIT
 
-Copyright (c) 2016-2021 Patrick Arns <iobroker@patrick-arns.de>
+Copyright (c) 2016-2022 Patrick Arns <iobroker@patrick-arns.de>

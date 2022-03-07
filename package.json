@@ -11,6 +11,10 @@
     {
       "name": "Peter Weiss",
       "email": "peter.weiss@wep4you.com"
+    },
+    {
+      "name": "Dom",
+      "email": "dom@bugger.ch"
     }
   ],
   "homepage": "https://github.com/PArns/ioBroker.netatmo/",

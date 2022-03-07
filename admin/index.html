@@ -22,6 +22,8 @@
         "Coach": {"de": "Health Coach", "en": "Healthy Coach"},
         "Weather": {"de": "Wetter Station", "en": "weather station"},
         "Welcome": {"de": "Welcome Innenkamera", "en": "welcome indoor cam"},
+        "CO": {"de": "CO Sensor", "en": "carbon monoxide Sensor"},
+		"Smokedetector": {"de": "Rauchmelder", "en": "smoke detector"},
         "on save adapter restarts with new config immediately": {
             "de": "Beim Speichern von Einstellungen wird der Adapter sofort neu gestartet.",
             "ru": "Сразу после сохранения настроек драйвер перезапуститься с новыми значениями"
@@ -37,9 +39,9 @@
         },
 
         "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form": {
-            "en": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
-            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten, musst du einen eigenen API-Schl&uuml;ssel von Netatmo anfordern!<br>Um einen API-Schl&uuml;ssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
-            "ru": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form"
+            "en": "In order to receive livestreams from Welcome &amp; Presence, the smoke alarm or the carbon monoxide sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
+            "de": "Um Livestreams von Welcome &amp; Presence, dem Rauchmelder oder dem CO Sensor zu erhalten, musst du einen eigenen API-Schl&uuml;ssel von Netatmo anfordern!<br>Um einen API-Schl&uuml;ssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
+            "ru": "In order to receive livestreams from Welcome &amp; Presence, the smoke alarm or the carbon monoxide sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form"
         },
         "Client ID": {"en": "Client ID", "de": "Client ID", "ru": "Client ID"},
         "Client Secret": {"en": "Client Secret", "de": "Client Secret", "ru": "Client Secret"},
@@ -128,6 +130,14 @@
 			<td class="translate">Welcome</td>
 			<td><input type="checkbox" id="netatmoWelcome" value="true" class="value"></td>
 		</tr>
+        <tr>
+			<td class="translate">Smokedetector</td>
+			<td><input type="checkbox" id="netatmoSmokedetector" value="true" class="value"></td>
+		</tr>
+		<tr>
+			<td class="translate">CO</td>
+			<td><input type="checkbox" id="netatmoCOSensor" value="true" class="value"></td>
+		</tr>
 		<tr>
 			<td class="translate">E-Mail</td>
 			<td><input class="value" id="username"></td>
@@ -162,7 +172,7 @@
 	</table>
 
 	<br/>
-	<b class="translate">In order to receive livestreams from Welcome & Presence, you've to request your own API key from Netatmo!<br/>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>
+	<b class="translate">In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>
 	<a href="https://dev.netatmo.com/dev/createanapp" target="_blank">https://dev.netatmo.com/dev/createanapp</a>
 
 	<br/><br/>

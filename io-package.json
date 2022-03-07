@@ -122,6 +122,8 @@
         "netatmoWeather": true,
         "netatmoWelcome": false,
         "netatmoCoach": false,
+        "netatmoSmokedetector": false,
+        "netatmoCOSensor": false,
         "username": "",
         "password": "",
         "check_interval": 5,

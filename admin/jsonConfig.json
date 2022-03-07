@@ -31,6 +31,14 @@
             "de": "Welcome Innenkamera",
             "en": "Welcome indoor cam"
         },
+        "Smokedetector": {
+            "de": "Rauchmelder",
+            "en": "smoke detector"
+        },
+        "CO": {
+            "de": "CO Sensor",
+            "en": "CO sensor"
+        },
         "ClientID": {
             "de": "Client ID",
             "en": "Client ID"
@@ -68,8 +76,8 @@
             "en": "Remove unknown persons last seen older than"
         },
         "live_stream1": {
-            "en": "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!",
-            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten, musst du einen eigenen API-Schlüssel von Netatmo anfordern!",
+            "en": "In order to receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!",
+            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten oder Rauchmeldungen / CO Meldungen in Echtzeit, musst du einen eigenen API-Schlüssel von Netatmo anfordern!",
             "ru": "Чтобы получать прямые трансляции от Welcome & amp; Присутствие, вы должны запросить собственный ключ API у Netatmo!"
         },
         "live_stream2": {
@@ -115,6 +123,20 @@
             "md": 6,
             "lg": 3
         },
+         "netatmoSmokedetector": {
+            "type": "checkbox",
+            "label": "Smokedetector",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
+        "netatmoCOSensor": {
+            "type": "checkbox",
+            "label": "netatmoCOSensor",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
         "username": {
             "newLine": true,
             "type": "text",
@@ -150,17 +172,17 @@
             "min": 5
         },
         "_header": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "header",
             "size": 4,
             "style": {
                 "marginTop": 20
             },
             "sm": 12,
-            "text": "Welcome & presence camera"
+            "text": "Welcome & presence camera & smoke detector"
         },
         "cleanup_interval": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "number",
             "label": "CleanupIntervall",
             "help": "clean minutes",
@@ -169,7 +191,7 @@
             "min": 5
         },
         "event_time": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "newLine": true,
             "type": "number",
             "label": "RemoveEvents",
@@ -186,26 +208,26 @@
             "lg": 3
         },
         "_text1": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "staticText",
             "newLine":  true,
             "text": "live_stream1"
         },
         "_text2": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "staticText",
             "newLine":  true,
             "text": "live_stream2"
         },
         "_link": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "newLine":  true,
             "type": "staticLink",
             "text": "https://dev.netatmo.com/apps/createanapp",
             "href": "https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp"
         },
         "id": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "text",
             "newLine": true,
             "label": "Client ID",
@@ -214,7 +236,7 @@
             "lg": 3
         },
         "secret": {
-            "hidden": "!data.netatmoWelcome",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "password",
             "help": "Netatmo App",
             "label": "Client Secret",

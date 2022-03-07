@@ -36,6 +36,8 @@ the personsId is the id within the "Known" persons folder
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (kyuka-dom) Added support for netatmo carbon monoxide sensor.
+* (kyuka-dom) Added support for netatmo smoke alarm.
 * (foxriver76) prevent crashes if application limit reached
 * (foxriver76) ensure that minimum polling interval of 5 minutes is followed
 

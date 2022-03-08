@@ -1,155 +1,164 @@
 {
-    "common": {
-        "name": "netatmo",
-        "version": "1.4.4",
-        "title": "Netatmo",
-        "titleLang": {
-            "en": "Netatmo"
-        },
-        "news": {
-            "1.4.4": {
-                "en": "Fix typo that lead to a crash",
-                "de": "Tippfehler behoben, der zu einem Absturz führte",
-                "ru": "Исправить опечатку, приводившую к сбою",
-                "pt": "Corrigir erros de digitação que levam a uma falha",
-                "nl": "Typefout herstellen die tot een crash leidde",
-                "fr": "Correction d'une faute de frappe entraînant un plantage",
-                "it": "Risolto un errore di battitura che causava un arresto anomalo",
-                "es": "Corregir error tipográfico que provocó un bloqueo",
-                "pl": "Napraw literówkę, która doprowadziła do awarii",
-                "zh-cn": "修复导致崩溃的错字"
-            },
-            "1.4.3": {
-                "en": "Fix typo to fix crash",
-                "de": "Tippfehler beheben, um Absturz zu beheben",
-                "ru": "Исправьте опечатку, чтобы исправить сбой",
-                "pt": "Corrigir erro de digitação para corrigir falha",
-                "nl": "Typefout herstellen om crash te verhelpen",
-                "fr": "Correction d'une faute de frappe pour corriger le crash",
-                "it": "Correggi l'errore di battitura per correggere il crash",
-                "es": "Corregir error tipográfico para corregir el bloqueo",
-                "pl": "Napraw literówkę, aby naprawić awarię",
-                "zh-cn": "修复拼写错误以修复崩溃"
-            },
-            "1.4.2": {
-                "en": "Removed warnings about the type of states",
-                "de": "Warnungen über die Art der Zustände entfernt",
-                "ru": "Убраны предупреждения о типе состояний",
-                "pt": "Remoção de avisos sobre o tipo de estado",
-                "nl": "Waarschuwingen over het type toestanden verwijderd",
-                "fr": "Suppression des avertissements sur le type d'états",
-                "it": "Rimossi gli avvisi sul tipo di stati",
-                "es": "Se eliminaron las advertencias sobre el tipo de estados.",
-                "pl": "Usunięto ostrzeżenia o rodzaju stanów",
-                "zh-cn": "删除了关于状态类型的警告"
-            },
-            "1.4.1": {
-                "en": "Removed warnings about the type of states",
-                "de": "Warnungen über die Art der Zustände entfernt",
-                "ru": "Убраны предупреждения о типе состояний",
-                "pt": "Remoção de avisos sobre o tipo de estado",
-                "nl": "Waarschuwingen over het type toestanden verwijderd",
-                "fr": "Suppression des avertissements sur le type d'états",
-                "it": "Rimossi gli avvisi sul tipo di stati",
-                "es": "Se eliminaron las advertencias sobre el tipo de estados.",
-                "pl": "Usunięto ostrzeżenia o rodzaju stanów",
-                "zh-cn": "删除了关于状态类型的警告"
-            },
-            "1.4.0": {
-                "en": "Added the support of admin5 \nRemoved warnings about the type of states",
-                "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
-                "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
-                "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
-                "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
-                "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
-                "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
-                "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
-                "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
-                "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
-            },
-            "1.3.4": {
-                "en": "Added the support of admin5 \nRemoved warnings about the type of states",
-                "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
-                "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
-                "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
-                "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
-                "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
-                "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
-                "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
-                "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
-                "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
-            },
-            "1.3.3": {
-                "en": "removed person history"
-            }
-        },
-        "desc": {
-            "en": "Netatmo",
-            "de": "Netatmo",
-            "ru": "Нетатмо",
-            "pt": "Netatmo",
-            "nl": "Netatmo",
-            "fr": "Netatmo",
-            "it": "Nettmo",
-            "es": "Netatmo",
-            "pl": "Netatmo",
-            "zh-cn": "内塔莫"
-        },
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "netatmo.png",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "tier": 2,
-        "enabled": false,
-        "messagebox": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
-        "keywords": [
-            "netatmo"
-        ],
-        "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
-        "loglevel": "info",
-        "type": "weather",
-        "authors": [
-            "Patrick Arns <iobroker@patrick-arns.de>"
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ],
-        "plugins": {
-            "sentry": {
-                "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
-            }
-        }
+  "common": {
+    "name": "netatmo",
+    "version": "1.5.0",
+    "title": "Netatmo",
+    "titleLang": {
+      "en": "Netatmo"
     },
-    "protectedNative": [
-        "secret",
-        "id",
-        "username",
-        "password"
+    "news": {
+      "1.5.0": {
+        "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
+        "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
+        "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
+        "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
+        "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
+        "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
+        "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
+        "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
+        "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
+        "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
+      },
+      "1.4.4": {
+        "en": "Fix typo that lead to a crash",
+        "de": "Tippfehler behoben, der zu einem Absturz führte",
+        "ru": "Исправить опечатку, приводившую к сбою",
+        "pt": "Corrigir erros de digitação que levam a uma falha",
+        "nl": "Typefout herstellen die tot een crash leidde",
+        "fr": "Correction d'une faute de frappe entraînant un plantage",
+        "it": "Risolto un errore di battitura che causava un arresto anomalo",
+        "es": "Corregir error tipográfico que provocó un bloqueo",
+        "pl": "Napraw literówkę, która doprowadziła do awarii",
+        "zh-cn": "修复导致崩溃的错字"
+      },
+      "1.4.3": {
+        "en": "Fix typo to fix crash",
+        "de": "Tippfehler beheben, um Absturz zu beheben",
+        "ru": "Исправьте опечатку, чтобы исправить сбой",
+        "pt": "Corrigir erro de digitação para corrigir falha",
+        "nl": "Typefout herstellen om crash te verhelpen",
+        "fr": "Correction d'une faute de frappe pour corriger le crash",
+        "it": "Correggi l'errore di battitura per correggere il crash",
+        "es": "Corregir error tipográfico para corregir el bloqueo",
+        "pl": "Napraw literówkę, aby naprawić awarię",
+        "zh-cn": "修复拼写错误以修复崩溃"
+      },
+      "1.4.2": {
+        "en": "Removed warnings about the type of states",
+        "de": "Warnungen über die Art der Zustände entfernt",
+        "ru": "Убраны предупреждения о типе состояний",
+        "pt": "Remoção de avisos sobre o tipo de estado",
+        "nl": "Waarschuwingen over het type toestanden verwijderd",
+        "fr": "Suppression des avertissements sur le type d'états",
+        "it": "Rimossi gli avvisi sul tipo di stati",
+        "es": "Se eliminaron las advertencias sobre el tipo de estados.",
+        "pl": "Usunięto ostrzeżenia o rodzaju stanów",
+        "zh-cn": "删除了关于状态类型的警告"
+      },
+      "1.4.1": {
+        "en": "Removed warnings about the type of states",
+        "de": "Warnungen über die Art der Zustände entfernt",
+        "ru": "Убраны предупреждения о типе состояний",
+        "pt": "Remoção de avisos sobre o tipo de estado",
+        "nl": "Waarschuwingen over het type toestanden verwijderd",
+        "fr": "Suppression des avertissements sur le type d'états",
+        "it": "Rimossi gli avvisi sul tipo di stati",
+        "es": "Se eliminaron las advertencias sobre el tipo de estados.",
+        "pl": "Usunięto ostrzeżenia o rodzaju stanów",
+        "zh-cn": "删除了关于状态类型的警告"
+      },
+      "1.4.0": {
+        "en": "Added the support of admin5 \nRemoved warnings about the type of states",
+        "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
+        "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
+        "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
+        "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
+        "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
+        "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
+        "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
+        "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
+        "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
+      },
+      "1.3.4": {
+        "en": "Added the support of admin5 \nRemoved warnings about the type of states",
+        "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
+        "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
+        "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
+        "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
+        "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
+        "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
+        "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
+        "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
+        "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
+      }
+    },
+    "desc": {
+      "en": "Netatmo",
+      "de": "Netatmo",
+      "ru": "Нетатмо",
+      "pt": "Netatmo",
+      "nl": "Netatmo",
+      "fr": "Netatmo",
+      "it": "Nettmo",
+      "es": "Netatmo",
+      "pl": "Netatmo",
+      "zh-cn": "内塔莫"
+    },
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "netatmo.png",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "tier": 2,
+    "enabled": false,
+    "messagebox": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+    "keywords": [
+      "netatmo"
     ],
-    "native": {
-        "netatmoWeather": true,
-        "netatmoWelcome": false,
-        "netatmoCoach": false,
-        "netatmoSmokedetector": false,
-        "netatmoCOSensor": false,
-        "username": "",
-        "password": "",
-        "check_interval": 5,
-        "cleanup_interval": 60,
-        "event_time": 12,
-        "unknown_person_time": 24,
-        "location_elevation": 0,
-        "id": "",
-        "secret": ""
-    },
-    "objects": []
+    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+    "loglevel": "info",
+    "type": "weather",
+    "authors": [
+      "Patrick Arns <iobroker@patrick-arns.de>"
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ],
+    "plugins": {
+      "sentry": {
+        "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
+      }
+    }
+  },
+  "protectedNative": [
+    "secret",
+    "id",
+    "username",
+    "password"
+  ],
+  "native": {
+    "netatmoWeather": true,
+    "netatmoWelcome": false,
+    "netatmoCoach": false,
+    "netatmoSmokedetector": false,
+    "netatmoCOSensor": false,
+    "username": "",
+    "password": "",
+    "check_interval": 5,
+    "cleanup_interval": 60,
+    "event_time": 12,
+    "unknown_person_time": 24,
+    "location_elevation": 0,
+    "id": "",
+    "secret": ""
+  },
+  "objects": []
 }

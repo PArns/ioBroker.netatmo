@@ -45,8 +45,7 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 1.5.0 (2022-03-08)
 * (kyuka-dom) Added support for netatmo carbon monoxide sensor.
 * (kyuka-dom) Added support for netatmo smoke alarm.
 * (foxriver76) prevent crashes if application limit reached
@@ -66,7 +65,7 @@ the personsId is the id within the "Known" persons folder
 
 ### 1.4.0 (2021-06-24)
 * (bluefox) Added the support of admin5 
-* (bluefox) Removed warnings about the type of states  
+* (bluefox) Removed warnings about the type of states
 
 ### 1.3.3
 * (PArns) removed person history

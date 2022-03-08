@@ -115,12 +115,12 @@ function main() {
         adapter.config.cleanup_interval = parseInt(adapter.config.cleanup_interval, 10);
 
         // we do not allow intervals below 5 minutes
-        if (!individualCredentials && isNaN(adapter.config.check_interval) || adapter.config.check_interval < 10) {
+        if (!individualCredentials && (isNaN(adapter.config.check_interval) || adapter.config.check_interval < 10)) {
             adapter.config.check_interval = 10;
             adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 10 minutes`);
         }
 
-        if (!individualCredentials && isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < 20) {
+        if (!individualCredentials && (isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < 20)) {
             adapter.config.cleanup_interval = 60;
             adapter.log.warn(`Invalid cleanup interval "${adapter.config.cleanup_interval}", fallback to 60 minutes`);
         }

@@ -6,6 +6,8 @@
 
 [![NPM](https://nodei.co/npm/iobroker.netatmo.png?downloads=true)](https://nodei.co/npm/iobroker.netatmo/)
 
+**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
+
 Netatmo adapter for ioBroker
 
 ## Installation and Configuration
@@ -51,6 +53,7 @@ the personsId is the id within the "Known" persons folder
 * (Apollon77) Allow to specify own id/secret in all cases
 * (Apollon77/foxriver76) ensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided
 * (Apollon77) Several pother fixes and optimizations
+* (Apollon77) Add Sentry for crash reporting
 
 ### 1.4.4 (2021-07-21)
 * (Apollon77) Fix typo that lead to a crash

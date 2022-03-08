@@ -122,7 +122,12 @@
             {
                 "js-controller": ">=2.0.0"
             }
-        ]
+        ],
+        "plugins": {
+            "sentry": {
+                "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
+            }
+        }
     },
     "protectedNative": [
         "secret",

@@ -103,14 +103,6 @@ function main() {
             adapter.log.info(`Use individual ID/Secret`);
         }
 
-        // Backward compatibility begin ...
-        // --------------------------------------------------------
-        // If nothing is set, activate at least the Weatherstation
-        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector || adapter.config.netatmoCOSensor)) {
-            adapter.log.info('No product was chosen, using Weatherstation as default!');
-            adapter.config.netatmoWeather = true;
-        }
-
         adapter.config.check_interval = parseInt(adapter.config.check_interval, 10);
         adapter.config.cleanup_interval = parseInt(adapter.config.cleanup_interval, 10);
 
@@ -129,31 +121,46 @@ function main() {
 
         adapter.config.location_elevation = adapter.config.location_elevation || 0;
 
-        if (adapter.config.netatmoWeather) {
-            scope += ' read_station';
-        }
-
         if (adapter.config.netatmoCoach) {
             scope += ' read_homecoach';
         }
-
-        // --------------------------------------------------------
-        // Backward compatibility end ...
 
         if (adapter.config.netatmoWelcome) {
             scope += ' read_camera read_presence';
 
             if (individualCredentials) {
                 scope += ' access_camera access_presence write_camera'
+            } else {
+                adapter.log.info(`Welcome & Presence support limited because no individual ID/Secret provided.`);
             }
         }
 
         if (adapter.config.netatmoSmokedetector) {
-            scope += ' read_smokedetector';
+            if (individualCredentials) {
+                scope += ' read_smokedetector';
+            } else {
+                adapter.log.warn(`Smoke detector only supported with individual ID/Secret. Disabling!`);
+                adapter.config.netatmoSmokedetector = false;
+            }
         }
 
         if (adapter.config.netatmoCOSensor) {
-            scope += ' read_carbonmonoxidedetector';
+            if (individualCredentials) {
+                scope += ' read_carbonmonoxidedetector';
+            } else {
+                adapter.log.warn(`CO sensor only supported with individual ID/Secret. Disabling!`);
+                adapter.config.netatmoCOSensor = false;
+            }
+        }
+
+        // If nothing is set, activate at least the Weatherstation
+        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector || adapter.config.netatmoCOSensor)) {
+            adapter.log.info('No product was chosen, using Weather station as default!');
+            adapter.config.netatmoWeather = true;
+        }
+
+        if (adapter.config.netatmoWeather) {
+            scope += ' read_station';
         }
 
         scope = scope.trim();

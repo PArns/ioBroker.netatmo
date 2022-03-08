@@ -8,8 +8,15 @@
 
 Netatmo adapter for ioBroker
 
-## Installation
-Just enter your Netatmo username & password within the adapter settings
+## Installation and Configuration
+Just enter your Netatmo username & password within the adapter settings.
+
+By default a general API key is used to do the requests which limits the update interval to 10 Minutes! 
+
+To increase the interval or to get live updates from Welcome & Presence, CO- und Smoke-Detectors are only you need to enter an own ID/Secret from your NetAtmo App.
+To do so, go to the following URL, login with your Netatmo account and fill out the requested form on https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp !
+
+## sendTo support
 
 You can also use the sendTo command to set all persons as away (for example if in use as alarm system)
 ```
@@ -39,7 +46,9 @@ the personsId is the id within the "Known" persons folder
 * (kyuka-dom) Added support for netatmo carbon monoxide sensor.
 * (kyuka-dom) Added support for netatmo smoke alarm.
 * (foxriver76) prevent crashes if application limit reached
-* (foxriver76) ensure that minimum polling interval of 5 minutes is followed
+* (Apollon77) Allow to specify own id/secret in all cases
+* (Apollon77/foxriver76) ensure that minimum polling interval of 5 minutes is respected if no individual ID/Secret is provided
+* (Apollon77) Several pother fixes and optimizations
 
 ### 1.4.4 (2021-07-21)
 * (Apollon77) Fix typo that lead to a crash
@@ -165,4 +174,4 @@ the personsId is the id within the "Known" persons folder
 ## License
 MIT
 
-Copyright (c) 2016-2021 Patrick Arns <iobroker@patrick-arns.de>
+Copyright (c) 2016-2022 Patrick Arns <iobroker@patrick-arns.de>

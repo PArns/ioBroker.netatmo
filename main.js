@@ -94,6 +94,14 @@ function main() {
         let scope = '';
         let id = '574ddd152baa3cf9598b46cd';
         let secret = '6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW';
+        let individualCredentials = false;
+
+        if (adapter.config.id && adapter.config.secret) {
+            id = adapter.config.id;
+            secret = adapter.config.secret;
+            individualCredentials = true;
+            adapter.log.info(`Use individual ID/Secret`);
+        }
 
         // Backward compatibility begin ...
         // --------------------------------------------------------
@@ -103,13 +111,16 @@ function main() {
             adapter.config.netatmoWeather = true;
         }
 
+        adapter.config.check_interval = parseInt(adapter.config.check_interval, 10);
+        adapter.config.cleanup_interval = parseInt(adapter.config.cleanup_interval, 10);
+
         // we do not allow intervals below 5 minutes
-        if (typeof adapter.config.check_interval !== 'number' || adapter.config.check_interval < 5) {
-            adapter.config.check_interval = 5;
-            adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 5 minutes`);
+        if (!individualCredentials && isNaN(adapter.config.check_interval) || adapter.config.check_interval < 10) {
+            adapter.config.check_interval = 10;
+            adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 10 minutes`);
         }
 
-        if (typeof adapter.config.cleanup_interval !== 'number' || adapter.config.cleanup_interval < 5) {
+        if (!individualCredentials && isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < 20) {
             adapter.config.cleanup_interval = 60;
             adapter.log.warn(`Invalid cleanup interval "${adapter.config.cleanup_interval}", fallback to 60 minutes`);
         }
@@ -132,30 +143,17 @@ function main() {
         if (adapter.config.netatmoWelcome) {
             scope += ' read_camera read_presence';
 
-            if (adapter.config.id && adapter.config.secret) {
-                id = adapter.config.id;
-                secret = adapter.config.secret;
-
+            if (individualCredentials) {
                 scope += ' access_camera access_presence write_camera'
             }
         }
 
         if (adapter.config.netatmoSmokedetector) {
             scope += ' read_smokedetector';
-
-            if (adapter.config.id && adapter.config.secret) {
-                id = adapter.config.id;
-                secret = adapter.config.secret;
-            }
         }
 
         if (adapter.config.netatmoCOSensor) {
             scope += ' read_carbonmonoxidedetector';
-
-            if (adapter.config.id && adapter.config.secret) {
-                id = adapter.config.id;
-                secret = adapter.config.secret;
-            }
         }
 
         scope = scope.trim();
@@ -169,6 +167,13 @@ function main() {
         };
 
         api = new netatmo(auth);
+
+        api.on('error', err => {
+            adapter.log.warn(`API Error: ${err.message}`);
+        });
+        api.on('warning', err => {
+            adapter.log.info(`API Warning: ${err.message}`);
+        });
 
         api.setAdapter(adapter);
 

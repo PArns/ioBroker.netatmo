@@ -84,9 +84,16 @@
             }
         },
         "desc": {
-            "en": "netatmo",
+            "en": "Netatmo",
             "de": "Netatmo",
-            "ru": "Netatmo"
+            "ru": "Нетатмо",
+            "pt": "Netatmo",
+            "nl": "Netatmo",
+            "fr": "Netatmo",
+            "it": "Nettmo",
+            "es": "Netatmo",
+            "pl": "Netatmo",
+            "zh-cn": "内塔莫"
         },
         "license": "MIT",
         "platform": "Javascript/Node.js",
@@ -110,6 +117,11 @@
         "type": "weather",
         "authors": [
             "Patrick Arns <iobroker@patrick-arns.de>"
+        ],
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
         ]
     },
     "protectedNative": [

@@ -38,13 +38,13 @@
             "en": "Remove unknown persons last seen older than (hours)"
         },
 
-        "In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form": {
-            "en": "In order to receive livestreams from Welcome &amp; Presence, the smoke alarm or the carbon monoxide sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
-            "de": "Um Livestreams von Welcome &amp; Presence, dem Rauchmelder oder dem CO Sensor zu erhalten, musst du einen eigenen API-Schl&uuml;ssel von Netatmo anfordern!<br>Um einen API-Schl&uuml;ssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
-            "ru": "In order to receive livestreams from Welcome &amp; Presence, the smoke alarm or the carbon monoxide sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form"
+        "In order to increase update interval or receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form": {
+            "en": "In order to increase update interval or receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
+            "de": "Um das Aktualisierungsinterval zu erhöhen oder Livestreams von Welcome &amp; Presence zu erhalten oder Rauchmeldungen / CO Meldungen in Echtzeit, musst ein eigener API-Schlüssel von Netatmo anfordert werden!<br>Um einen API-Schl&uuml;ssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
+            "ru": "Чтобы увеличить интервал обновления или получать прямые трансляции от Welcome & Присутствие или для получения оповещений о дыме в реальном времени или датчика CO, вы должны запросить свой собственный ключ API от Netatmo!<br>Для этого перейдите по следующему URL-адресу, войдите в свою учетную запись Netatmo и заполните запрошенную форму."
         },
-        "Client ID": {"en": "Client ID", "de": "Client ID", "ru": "Client ID"},
-        "Client Secret": {"en": "Client Secret", "de": "Client Secret", "ru": "Client Secret"},
+        "Individual Client ID": {"en": "Individual Client ID", "de": "Individuelle Client ID", "ru": "Индивидуальный идентификатор клиента"},
+        "Individual Client Secret": {"en": "Individual Client Secret", "de": "Individuelles Client Secret", "ru": "Секрет клиента"},
     };
 
     // the function loadSettings has to exist ...
@@ -73,16 +73,14 @@
 
 	function registerValidators() {
 		$('#check_interval').focusout(function () {
-			if (parseFloat($(this).val()) < 5) {
-				showToast(null, _('Minimal check interval is 5 minutes'));
-				$(this).val(5);
+			if (parseFloat($(this).val()) < 10) {
+				showToast(null, _('When not using individual id/secret the minimum interval is 10 minutes!'));
 			}
 		});
 
 		$('#cleanup_interval').focusout(function () {
-			if (parseFloat($(this).val()) < 5) {
-				showToast(null, _('Minimal cleanup interval is 5 minutes'));
-				$(this).val(5);
+			if (parseFloat($(this).val()) < 20) {
+				showToast(null, _('When not using individual id/secret the minimum interval is 20 minutes!'));
 			}
 		});
 	}
@@ -172,18 +170,18 @@
 	</table>
 
 	<br/>
-	<b class="translate">In order to receive livestreams from Welcome &amp; Presence, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>
+	<b class="translate">In order to increase update interval or receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>
 	<a href="https://dev.netatmo.com/dev/createanapp" target="_blank">https://dev.netatmo.com/dev/createanapp</a>
 
 	<br/><br/>
 
 	<table>
 		<tr>
-			<td class="translate">Client ID</td>
+			<td class="translate">Individual Client ID</td>
 			<td><input type="text" id="id" class="value"></td>
 		</tr>
 		<tr>
-			<td class="translate">Client Secret</td>
+			<td class="translate">Individual Client Secret</td>
 			<td><input type="text" id="secret" class="value"></td>
 		</tr>
 	</table>

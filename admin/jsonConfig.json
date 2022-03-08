@@ -40,12 +40,12 @@
             "en": "CO sensor"
         },
         "ClientID": {
-            "de": "Client ID",
-            "en": "Client ID"
+            "de": "Individuelle Client ID",
+            "en": "Individual Client ID"
         },
         "ClientSecret": {
-            "de": "Client Sekret",
-            "en": "Client secret"
+            "de": "Individuelles Client Sekret",
+            "en": "Individual Client secret"
         },
         "CheckIntervall": {
             "de": "Daten erneut nach",
@@ -76,24 +76,14 @@
             "en": "Remove unknown persons last seen older than"
         },
         "live_stream1": {
-            "en": "In order to receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!",
-            "de": "Um Livestreams von Welcome &amp; Presence zu erhalten oder Rauchmeldungen / CO Meldungen in Echtzeit, musst du einen eigenen API-Schlüssel von Netatmo anfordern!",
-            "ru": "Чтобы получать прямые трансляции от Welcome & amp; Присутствие, вы должны запросить собственный ключ API у Netatmo!"
+            "en": "In order to increase update interval or receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!",
+            "de": "Um das Aktualisierungsinterval zu erhöhen oder Livestreams von Welcome &amp; Presence zu erhalten oder Rauchmeldungen / CO Meldungen in Echtzeit, musst ein eigener API-Schlüssel von Netatmo anfordert werden!",
+            "ru": "Чтобы увеличить интервал обновления или получать прямые трансляции от Welcome & Присутствие или для получения оповещений о дыме в реальном времени или датчика CO, вы должны запросить свой собственный ключ API от Netatmo!"
         },
         "live_stream2": {
             "en": "To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
             "de": "Um einen API-Schlüssel zu erhalten, klicke bitte auf den folgenden Link und fülle das Formular aus",
             "ru": "Для этого перейдите по следующему URL-адресу, войдите в свою учетную запись Netatmo и заполните запрошенную форму."
-        },
-        "Client ID": {
-            "en": "Client ID",
-            "de": "Client ID",
-            "ru": "Client ID"
-        },
-        "Client Secret": {
-            "en": "Client Secret",
-            "de": "Client Secret",
-            "ru": "Client Secret"
         },
         "Netatmo App": {
             "en": "From your Netatmo App",
@@ -169,7 +159,7 @@
             "help": "load minutes",
             "sm": 6,
             "lg": 3,
-            "min": 5
+            "min": 1
         },
         "_header": {
             "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
@@ -188,7 +178,7 @@
             "help": "clean minutes",
             "sm": 6,
             "lg": 3,
-            "min": 5
+            "min": 1
         },
         "event_time": {
             "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
@@ -208,38 +198,33 @@
             "lg": 3
         },
         "_text1": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "staticText",
             "newLine":  true,
             "text": "live_stream1"
         },
         "_text2": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "staticText",
             "newLine":  true,
             "text": "live_stream2"
         },
         "_link": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "newLine":  true,
             "type": "staticLink",
             "text": "https://dev.netatmo.com/apps/createanapp",
             "href": "https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp"
         },
         "id": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "text",
             "newLine": true,
-            "label": "Client ID",
+            "label": "ClientID",
             "help": "Netatmo App",
             "sm": 6,
             "lg": 3
         },
         "secret": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
             "type": "password",
             "help": "Netatmo App",
-            "label": "Client Secret",
+            "label": "ClientSecret",
             "sm": 6,
             "lg": 3
         }

@@ -16,6 +16,8 @@ By default a general API key is used to do the requests which limits the update 
 To increase the interval or to get live updates from Welcome & Presence, CO- und Smoke-Detectors are only you need to enter an own ID/Secret from your NetAtmo App.
 To do so, go to the following URL, login with your Netatmo account and fill out the requested form on https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp !
 
+Please make sure to configurer your limits that they respect https://dev.netatmo.com/guideline#rate-limits (and have in mind that these linits also exist for ALL USERS if you do not use an own ID/Secret)
+
 ## sendTo support
 
 You can also use the sendTo command to set all persons as away (for example if in use as alarm system)

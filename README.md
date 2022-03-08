@@ -47,7 +47,7 @@ the personsId is the id within the "Known" persons folder
 * (kyuka-dom) Added support for netatmo smoke alarm.
 * (foxriver76) prevent crashes if application limit reached
 * (Apollon77) Allow to specify own id/secret in all cases
-* (Apollon77/foxriver76) ensure that minimum polling interval of 5 minutes is respected if no individual ID/Secret is provided
+* (Apollon77/foxriver76) ensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided
 * (Apollon77) Several pother fixes and optimizations
 
 ### 1.4.4 (2021-07-21)

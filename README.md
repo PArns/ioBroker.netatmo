@@ -45,8 +45,7 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 1.5.1 (2022-03-09)
 * (Apollon77) Fix jsonconfig for Client secret
 
 ### 1.5.0 (2022-03-08)

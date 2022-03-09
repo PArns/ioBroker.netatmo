@@ -1,12 +1,24 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo"
     },
     "news": {
+      "1.5.1": {
+        "en": "Fix jsonconfig for Client secret",
+        "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
+        "ru": "Исправить jsonconfig для секрета клиента",
+        "pt": "Corrigir jsonconfig para segredo do cliente",
+        "nl": "jsonconfig voor clientgeheim repareren",
+        "fr": "Correction de jsonconfig pour le secret client",
+        "it": "Correggi jsonconfig per il segreto del client",
+        "es": "Arreglar jsonconfig para el secreto del cliente",
+        "pl": "Napraw jsonconfig dla tajnego klienta",
+        "zh-cn": "修复客户端密码的 jsonconfig"
+      },
       "1.5.0": {
         "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
         "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
@@ -68,18 +80,6 @@
         "zh-cn": "删除了关于状态类型的警告"
       },
       "1.4.0": {
-        "en": "Added the support of admin5 \nRemoved warnings about the type of states",
-        "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
-        "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
-        "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
-        "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
-        "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
-        "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
-        "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
-        "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
-        "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
-      },
-      "1.3.4": {
         "en": "Added the support of admin5 \nRemoved warnings about the type of states",
         "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
         "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",

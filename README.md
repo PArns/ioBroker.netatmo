@@ -45,6 +45,12 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+
+### __WORK IN PROGRESS__
+* (Apollon77) Fix jsonconfig for Client secret
+
 ### 1.5.0 (2022-03-08)
 * (kyuka-dom) Added support for netatmo carbon monoxide sensor.
 * (kyuka-dom) Added support for netatmo smoke alarm.

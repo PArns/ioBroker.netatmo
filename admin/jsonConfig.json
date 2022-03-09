@@ -44,7 +44,7 @@
             "en": "Individual Client ID"
         },
         "ClientSecret": {
-            "de": "Individuelles Client Sekret",
+            "de": "Individuelles Client Secret",
             "en": "Individual Client secret"
         },
         "CheckIntervall": {
@@ -223,6 +223,7 @@
         },
         "secret": {
             "type": "password",
+            "repeat": false,
             "help": "Netatmo App",
             "label": "ClientSecret",
             "sm": 6,

@@ -1,12 +1,24 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "1.5.1",
+    "version": "1.6.0",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo"
     },
     "news": {
+      "1.6.0": {
+        "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
+        "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
+        "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
+        "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
+        "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
+        "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
+        "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
+        "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
+        "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
+        "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
+      },
       "1.5.1": {
         "en": "Fix jsonconfig for Client secret",
         "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
@@ -78,18 +90,6 @@
         "es": "Se eliminaron las advertencias sobre el tipo de estados.",
         "pl": "Usunięto ostrzeżenia o rodzaju stanów",
         "zh-cn": "删除了关于状态类型的警告"
-      },
-      "1.4.0": {
-        "en": "Added the support of admin5 \nRemoved warnings about the type of states",
-        "de": "Unterstützung von admin5 . hinzugefügt\nWarnungen über die Art der Zustände entfernt",
-        "ru": "Добавлена поддержка admin5\nУбраны предупреждения о типе состояний",
-        "pt": "Adicionado o suporte de admin5\nRemoção de avisos sobre o tipo de estado",
-        "nl": "Ondersteuning toegevoegd van admin5\nWaarschuwingen over het type toestanden verwijderd",
-        "fr": "Ajout du support d'admin5\nSuppression des avertissements sur le type d'états",
-        "it": "Aggiunto il supporto di admin5\nRimossi gli avvisi sul tipo di stati",
-        "es": "Se agregó el soporte de admin5.\nSe eliminaron las advertencias sobre el tipo de estados.",
-        "pl": "Dodano wsparcie admin5\nUsunięto ostrzeżenia o rodzaju stanów",
-        "zh-cn": "增加了admin5的支持\n删除了关于状态类型的警告"
       }
     },
     "desc": {

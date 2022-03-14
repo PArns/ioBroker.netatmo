@@ -45,6 +45,10 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Adjust some roles and written data to prevent warnings in logs
+
 ### 1.6.0 (2022-03-13)
 * (Apollon77) Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!
 * (Apollon77) Fix another potential crash case reported by sentry

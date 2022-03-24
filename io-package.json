@@ -1,12 +1,24 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo"
     },
     "news": {
+      "1.7.0": {
+        "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
+        "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
+        "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
+        "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
+        "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
+        "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
+        "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
+        "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
+        "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
+        "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
+      },
       "1.6.0": {
         "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
         "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
@@ -68,18 +80,6 @@
         "zh-cn": "修复拼写错误以修复崩溃"
       },
       "1.4.2": {
-        "en": "Removed warnings about the type of states",
-        "de": "Warnungen über die Art der Zustände entfernt",
-        "ru": "Убраны предупреждения о типе состояний",
-        "pt": "Remoção de avisos sobre o tipo de estado",
-        "nl": "Waarschuwingen over het type toestanden verwijderd",
-        "fr": "Suppression des avertissements sur le type d'états",
-        "it": "Rimossi gli avvisi sul tipo di stati",
-        "es": "Se eliminaron las advertencias sobre el tipo de estados.",
-        "pl": "Usunięto ostrzeżenia o rodzaju stanów",
-        "zh-cn": "删除了关于状态类型的警告"
-      },
-      "1.4.1": {
         "en": "Removed warnings about the type of states",
         "de": "Warnungen über die Art der Zustände entfernt",
         "ru": "Убраны предупреждения о типе состояний",

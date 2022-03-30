@@ -45,6 +45,10 @@ the personsId is the id within the "Known" persons folder
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Integrate Doorbell (WIP!)
+
 ### 1.7.1 (2022-03-30)
 * (Apollon77) Fix Event cleanup
 

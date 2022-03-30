@@ -24,11 +24,15 @@ let smokedetector = null;
 const NetatmoCOSensor = require('./lib/netatmoCOSensor');
 let cosensor = null;
 
+const NetatmoDoorBell = require('./lib/netatmoDoorBell');
+let doorbell = null;
+
 let _coachUpdateInterval;
 let _weatherUpdateInterval;
 let _welcomeUpdateInterval;
 let _smokedetectorUpdateInterval;
 let _cosensorUpdateInterval;
+let _doorbellUpdateInterval;
 
 String.prototype.replaceAll = function (search, replacement) {
     const target = this;
@@ -74,10 +78,12 @@ function startAdapter(options) {
             _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
             _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
             _cosensorUpdateInterval && clearInterval(_cosensorUpdateInterval);
+            _doorbellUpdateInterval && clearInterval(_doorbellUpdateInterval);
 
             welcome && welcome.finalize();
             smokedetector && smokedetector.finalize();
             cosensor && cosensor.finalize();
+            doorbell && doorbell.finalize();
 
             adapter.log.info('cleaned everything up...');
             callback();
@@ -153,8 +159,17 @@ function main() {
             }
         }
 
+        if (adapter.config.netatmoDoorBell) {
+            if (individualCredentials) {
+                scope += ' read_doorbell';
+            } else {
+                adapter.log.warn(`Doorbell only supported with individual ID/Secret. Disabling!`);
+                adapter.config.netatmoDoorBell = false;
+            }
+        }
+
         // If nothing is set, activate at least the Weatherstation
-        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector || adapter.config.netatmoCOSensor)) {
+        if (!(adapter.config.netatmoCoach || adapter.config.netatmoWeather || adapter.config.netatmoWelcome || adapter.config.netatmoSmokedetector || adapter.config.netatmoCOSensor || adapter.config.netatmoDoorBell)) {
             adapter.log.info('No product was chosen, using Weather station as default!');
             adapter.config.netatmoWeather = true;
         }
@@ -227,6 +242,15 @@ function main() {
 
             _cosensorUpdateInterval = setInterval(() =>
                 cosensor.requestUpdateCOSensor(), adapter.config.check_interval * 2 * 60 * 1000);
+        }
+
+        if (adapter.config.netatmoDoorBell) {
+            doorbell = new NetatmoDoorBell(api, adapter);
+            doorbell.init();
+            doorbell.requestUpdateDoorBell();
+
+            _doorbellUpdateInterval = setInterval(() =>
+                doorbell.requestUpdateDoorBell(), adapter.config.check_interval * 2 * 60 * 1000);
         }
     } else {
         adapter.log.error('Please add username, password and choose at least one product within the adapter settings!');

@@ -150,6 +150,7 @@
     "netatmoCoach": false,
     "netatmoSmokedetector": false,
     "netatmoCOSensor": false,
+    "netatmoDoorBell": false,
     "username": "",
     "password": "",
     "check_interval": 5,

@@ -332,17 +332,17 @@
             "min": 1
         },
         "_header": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
             "type": "header",
             "size": 4,
             "style": {
                 "marginTop": 20
             },
             "sm": 12,
-            "text": "Welcome & presence camera & smoke detector"
+            "text": "Welcome & presence camera & smoke detector & CO sensor & Doorbell"
         },
         "cleanup_interval": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
             "type": "number",
             "label": "CleanupIntervall",
             "help": "clean minutes",
@@ -351,7 +351,7 @@
             "min": 1
         },
         "event_time": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor",
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
             "newLine": true,
             "type": "number",
             "label": "RemoveEvents",

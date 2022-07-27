@@ -90,6 +90,30 @@
 				showToast(null, _('When not using individual id/secret the minimum interval is 20 minutes!'));
 			}
 		});
+
+		$('#startOAuth').click(function () {
+			console.log('Send Message startOAuth');
+			sendTo(null, 'getOAuthStartLink', {
+				client_id: $('#id').val(),
+				client_secret: $('#secret').val(),
+				redirect_uri: window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/oauth2_callbacks/' + adapter + '.' + instance + '/',
+				scopes: {
+					netatmoCoach: $('#netatmoCoach').prop('checked'),
+					netatmoWeather: $('#netatmoWeather').prop('checked'),
+					netatmoWelcome: $('#netatmoWelcome').prop('checked'),
+					netatmoSmokedetector: $('#netatmoSmokedetector').prop('checked'),
+					netatmoCOSensor: $('#netatmoCOSensor').prop('checked'),
+					netatmoDoorBell: $('#netatmoDoorBell').prop('checked'),
+				}
+			}, function (response) {
+				console.log('startOAuth response: ' + JSON.stringify(response));
+				if (response) {
+					window.open(response, '_blank');
+				} else {
+					showToast(null, response.message);
+				}
+			});
+		});
 	}
 
     // ... and the function save has to exist.
@@ -179,6 +203,10 @@
 			<td><input type="number" id="unknown_person_time" class="value number"></td>
 		</tr>
 	</table>
+
+
+	<b>Start OAuth</b>
+	<i id="startOAuth" class="material-icons prefix">play_circle_filled</i>
 
 	<br/>
 	<b class="translate">In order to increase update interval or receive livestreams from Welcome &amp; Presence or to get realtime smoke alerts or the CO sensor, you've to request your own API key from Netatmo!<br>To do so, go to the following URL, login with your Netatmo account and fill out the requested form</b>

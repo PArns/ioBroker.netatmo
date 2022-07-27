@@ -263,7 +263,7 @@ function main() {
             } else {
                 access_token = tokens.access_token;
                 refresh_token = tokens.refresh_token;
-                adapter.log.info(`Using stored tokens to initialize ...`);
+                adapter.log.info(`Using stored tokens to initialize ... ${JSON.stringify(tokens)}`);
             }
             if (tokens.scope !== scope) {
                 adapter.log.info(`Stored tokens have different scope ${tokens.scope} and not the configured scope ${scope} ... If you miss data please authenticate again!`);

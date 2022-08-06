@@ -41,7 +41,7 @@
   "main": "main.js",
   "devDependencies": {
     "@alcalzone/release-script": "^3.5.6",
-    "@alcalzone/release-script-plugin-iobroker": "^3.5.6",
+    "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
     "@alcalzone/release-script-plugin-license": "^3.5.3",
     "@iobroker/adapter-dev": "^1.0.0",
     "@iobroker/testing": "^2.5.6",

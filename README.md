@@ -1,24 +1,35 @@
 ![Logo](admin/netatmo.png)
 # ioBroker.netatmo
 
-![Number of Installations](http://iobroker.live/badges/netatmo-installed.svg) ![Number of Installations](http://iobroker.live/badges/netatmo-stable.svg) [![NPM version](http://img.shields.io/npm/v/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
+![Number of Installations](http://iobroker.live/badges/netatmo-installed.svg) 
+![Number of Installations](http://iobroker.live/badges/netatmo-stable.svg) 
+[![NPM version](http://img.shields.io/npm/v/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
 
-[![NPM](https://nodei.co/npm/iobroker.netatmo.png?downloads=true)](https://nodei.co/npm/iobroker.netatmo/)
+![Test and Release](https://github.com/PArns/iobroker.netatmo/workflows/Test%20and%20Release/badge.svg)
+[![Translation status](https://weblate.iobroker.net/widgets/adapters/-/netatmo/svg-badge.svg)](https://weblate.iobroker.net/engage/adapters/?utm_source=widget)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.netatmo.svg)](https://www.npmjs.com/package/iobroker.netatmo)
 
 **This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
 
 Netatmo adapter for ioBroker
 
 ## Installation and Configuration
-Just enter your Netatmo username & password within the adapter settings.
+You need to authenticate with your NetAtmo account using the Adapter Admin UI. 
 
-By default a general API key is used to do the requests which limits the update interval to 10 Minutes! 
+First select all relevant device types you want to sync data for. When you change them you need to do the Authentication again later.
+
+If you want to use a dedicated client-id/secret (see below) you can also enter them before the Authentication.
+
+Use the "Authenticate with Netatmo" Button to start the authentication flow. A new Windows/Tab will be opened with the Netatmo Login page. After logging in and acknowledging the data access you are redirected back to your admin page.
+
+In case of success just close the window and reload the adapter configuration. In case of an error check the error message and try again
+
+By default, a general API key is used to do the requests which limits the update interval to 10 Minutes! 
 
 To increase the interval or to get live updates from Welcome & Presence, CO- und Smoke-Detectors are only you need to enter an own ID/Secret from your NetAtmo App.
 To do so, go to the following URL, login with your Netatmo account and fill out the requested form on https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp !
 
-Please make sure to configurer your limits that they respect https://dev.netatmo.com/guideline#rate-limits (and have in mind that these linits also exist for ALL USERS if you do not use an own ID/Secret)
+Please make sure to configure your limits that they respect https://dev.netatmo.com/guideline#rate-limits (and have in mind that these linits also exist for ALL USERS if you do not use an own ID/Secret)
 
 ## sendTo support
 
@@ -47,7 +58,9 @@ the personsId is the id within the "Known" persons folder
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Apollon77) Integrate Doorbell (WIP!)
+IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
+* (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
+* (Apollon77) Start working on Doorbell integration (WIP!)
 * (Apollon77) Fix crash cases reported by Sentry
 
 ### 1.7.1 (2022-03-30)

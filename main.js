@@ -40,6 +40,7 @@ let usedClientSecret;
 let usedScopes;
 let storedOAuthData = {};
 let dataDir;
+let stopped = false;
 
 const DEFAULT_CLIENT_ID = '574ddd152baa3cf9598b46cd';
 const DEFAULT_CLIENT_SECRET = '6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW';
@@ -74,38 +75,39 @@ function startAdapter(options) {
                     break;
                 case 'getOAuthStartLink': {
                     const args = obj.message;
+                    adapter.log.debug(`Received OAuth start message: ${JSON.stringify(args)}`);
                     args.scope = getScopeList(args.scopes, !!(args.client_id && args.client_secret));
-                    if (args.client_id && args.client_secret) {
-                        args.client_id = args.client_id;
-                        args.client_secret = args.client_secret;
-                    } else {
+                    if (!args.client_id || !args.client_secret) {
                         if (args.client_id || args.client_secret) {
                             adapter.log.warn(`Only one of client_id or client_secret was set, using default values!`);
                         }
                         args.client_id = DEFAULT_CLIENT_ID;
                         args.client_secret = DEFAULT_CLIENT_SECRET;
                     }
-
+                    if (!args.redirect_uri_base.endsWith('/')) args.redirect_uri_base += '/';
+                    args.redirect_uri = `${args.redirect_uri_base}oauth2_callbacks/${adapter.namespace}/`;
+                    delete args.redirect_uri_base;
                     adapter.log.debug(`Get OAuth start link data: ${JSON.stringify(args)}`);
                     const redirectData = api.getOAuth2AuthenticateStartLink(args);
                     storedOAuthData[redirectData.state] = args;
 
                     adapter.log.debug(`Get OAuth start link: ${redirectData.url}`);
-                    obj.callback && adapter.sendTo(obj.from, obj.command, redirectData.url, obj.callback);
+                    obj.callback && adapter.sendTo(obj.from, obj.command, {openUrl: redirectData.url}, obj.callback);
                     break;
                 }
-                case 'OAuthRedirectReceived': {
-                    const url = new URL(obj.message);
-                    if (!url.searchParams) {
-                        adapter.log.error('OAuthRedirectReceived: No search params');
-                        obj.callback && adapter.sendTo(obj.from, obj.command, 'OAuthRedirectReceived: No search params', obj.callback);
-                        break;
+                case 'oauth2Callback': {
+                    const args = obj.message;
+                    adapter.log.debug(`OAuthRedirectReceived: ${JSON.stringify(args)}`);
+
+                    if (!args.state || !args.code) {
+                        adapter.log.warn(`Error on OAuth callback: ${JSON.stringify(args)}`);
+                        if (args.error) {
+                            obj.callback && adapter.sendTo(obj.from, obj.command, {error: `Netatmo error: ${args.error}. Please try again.`}, obj.callback);
+                        } else {
+                            obj.callback && adapter.sendTo(obj.from, obj.command, {error: `Netatmo invalid response: ${JSON.stringify(args)}. Please try again.`}, obj.callback);
+                        }
+                        return;
                     }
-                    const args = {
-                        code: url.searchParams.get('code'),
-                        state: url.searchParams.get('state'),
-                    };
-                    adapter.log.debug('OAuthRedirectReceived: ' + JSON.stringify(args));
 
                     api.authenticate(args, async err => {
                         if (!err && storedOAuthData[args.state]) {
@@ -115,6 +117,8 @@ function startAdapter(options) {
                                 native.id = api.client_id;
                                 native.secret = api.client_secret;
                             }
+                            native.username = null;
+                            native.password = null;
 
                             const tokenData = {
                                 access_token: api.access_token,
@@ -124,25 +128,27 @@ function startAdapter(options) {
                             }
                             try {
                                 adapter.log.info(`Save OAuth data: ${JSON.stringify(tokenData)}`);
-                                fs.writeFileSync(dataDir + '/tokens.json', JSON.stringify(tokenData), 'utf8');
+                                fs.writeFileSync(`${dataDir}/tokens.json`, JSON.stringify(tokenData), 'utf8');
                             } catch (err) {
-                                adapter.log.error('Cannot write token file: ' + err);
+                                adapter.log.error(`Cannot write token file: ${err}`);
                             }
+
+                            obj.callback && adapter.sendTo(obj.from, obj.command, {result: 'Tokens updated successfully. Please reload configuration.'}, obj.callback);
 
                             adapter.log.info('Update data in adapter configuration ... restarting ...');
                             adapter.extendForeignObject(`system.adapter.${adapter.namespace}`, {
                                 native
                             });
                         } else {
-                            adapter.log.error('OAuthRedirectReceived: ' + err);
+                            adapter.log.error(`OAuthRedirectReceived: ${err}`);
+                            obj.callback && adapter.sendTo(obj.from, obj.command, {error: `Error getting new tokens from Netatmo: ${err}. Please try again.`}, obj.callback);
                         }
-                        obj.callback && adapter.sendTo(obj.from, obj.command, err, obj.callback);
                     });
 
                     break;
                 }
                 default:
-                    adapter.log.warn('Unknown command: ' + obj.command);
+                    adapter.log.warn(`Unknown command: ${obj.command}`);
                     break;
             }
         }
@@ -152,18 +158,8 @@ function startAdapter(options) {
 
     adapter.on('unload', callback => {
         try {
-            _coachUpdateInterval && clearInterval(_coachUpdateInterval);
-            _weatherUpdateInterval && clearInterval(_weatherUpdateInterval);
-            _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
-            _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
-            _cosensorUpdateInterval && clearInterval(_cosensorUpdateInterval);
-            _doorbellUpdateInterval && clearInterval(_doorbellUpdateInterval);
-
-            welcome && welcome.finalize();
-            smokedetector && smokedetector.finalize();
-            cosensor && cosensor.finalize();
-            doorbell && doorbell.finalize();
-
+            stopped = true;
+            cleanupResources();
             adapter.log.info('cleaned everything up...');
             callback();
         } catch (e) {
@@ -172,6 +168,24 @@ function startAdapter(options) {
     });
 
     adapter.on('ready', () => main());
+}
+
+function cleanupResources() {
+    try {
+        _coachUpdateInterval && clearInterval(_coachUpdateInterval);
+        _weatherUpdateInterval && clearInterval(_weatherUpdateInterval);
+        _welcomeUpdateInterval && clearInterval(_welcomeUpdateInterval);
+        _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
+        _cosensorUpdateInterval && clearInterval(_cosensorUpdateInterval);
+        _doorbellUpdateInterval && clearInterval(_doorbellUpdateInterval);
+
+        welcome && welcome.finalize();
+        smokedetector && smokedetector.finalize();
+        cosensor && cosensor.finalize();
+        doorbell && doorbell.finalize();
+    } catch (err) {
+        // ignore
+    }
 }
 
 function getScopeList(scopes, individualCredentials) {
@@ -245,7 +259,7 @@ function main() {
         id = adapter.config.id;
         secret = adapter.config.secret;
         individualCredentials = true;
-        adapter.log.info(`Use individual ID/Secret`);
+        adapter.log.debug(`Use individual ID/Secret`);
     }
 
     scope = getScopeList(adapter.config, individualCredentials);
@@ -255,11 +269,11 @@ function main() {
         if (!fs.existsSync(dataDir)) {
             fs.mkdirSync(dataDir);
         }
-        if (fs.existsSync(dataDir + '/tokens.json')) {
-            const tokens = JSON.parse(fs.readFileSync(dataDir + '/tokens.json', 'utf8'));
+        if (fs.existsSync(`${dataDir}/tokens.json`)) {
+            const tokens = JSON.parse(fs.readFileSync(`${dataDir}/tokens.json`, 'utf8'));
             if (tokens.client_id !== id) {
                 adapter.log.info(`Stored tokens belong to the different client ID ${tokens.client_id} and not to the configured ID ... deleting`);
-                fs.unlinkSync(dataDir + '/tokens.json');
+                fs.unlinkSync(`${dataDir}/tokens.json`);
             } else {
                 access_token = tokens.access_token;
                 refresh_token = tokens.refresh_token;
@@ -328,73 +342,80 @@ function main() {
             client_id: api.client_id
         }
         try {
-            fs.writeFileSync(dataDir + '/tokens.json', JSON.stringify(tokenData), 'utf8');
+            fs.writeFileSync(`${dataDir}/tokens.json`, JSON.stringify(tokenData), 'utf8');
         } catch (err) {
-            adapter.log.error('Cannot write token file: ' + err);
+            adapter.log.error(`Cannot write token file: ${err}`);
         }
     });
     api.on('authenticated', () => {
-        adapter.log.debug(`Authenticated!!`);
+        if (stopped) return;
+        adapter.log.info(`Successfully authenticated with Netatmo ${api.client_id === DEFAULT_CLIENT_ID ? 'with general ioBroker client' : `with individual client-ID ${api.client_id}`}`);
 
-        if (adapter.config.netatmoCoach) {
-            coach = new NetatmoCoach(api, adapter);
-
-            coach.requestUpdateCoachStation();
-
-            _coachUpdateInterval = setInterval(() =>
-                coach.requestUpdateCoachStation(), adapter.config.check_interval * 60 * 1000);
-        }
-
-        if (adapter.config.netatmoWeather) {
-            station = new NetatmoStation(api, adapter);
-
-            station.requestUpdateWeatherStation();
-
-            _weatherUpdateInterval = setInterval(() =>
-                station.requestUpdateWeatherStation(), adapter.config.check_interval * 60 * 1000);
-        }
-
-        if (adapter.config.netatmoWelcome) {
-            welcome = new NetatmoWelcome(api, adapter);
-            welcome.init();
-            welcome.requestUpdateIndoorCamera();
-
-            _welcomeUpdateInterval = setInterval(() =>
-                welcome.requestUpdateIndoorCamera(), adapter.config.check_interval * 2 * 60 * 1000);
-        }
-
-        if (adapter.config.netatmoSmokedetector) {
-            smokedetector = new NetatmoSmokedetector(api, adapter);
-            smokedetector.init();
-            smokedetector.requestUpdateSmokedetector();
-
-            _smokedetectorUpdateInterval = setInterval(() =>
-                smokedetector.requestUpdateSmokedetector(), adapter.config.check_interval * 2 * 60 * 1000);
-        }
-
-        if (adapter.config.netatmoCOSensor) {
-            cosensor = new NetatmoCOSensor(api, adapter);
-            cosensor.init();
-            cosensor.requestUpdateCOSensor();
-
-            _cosensorUpdateInterval = setInterval(() =>
-                cosensor.requestUpdateCOSensor(), adapter.config.check_interval * 2 * 60 * 1000);
-        }
-
-        if (adapter.config.netatmoDoorBell) {
-            doorbell = new NetatmoDoorBell(api, adapter);
-            doorbell.init();
-            doorbell.requestUpdateDoorBell();
-
-            _doorbellUpdateInterval = setInterval(() =>
-                doorbell.requestUpdateDoorBell(), adapter.config.check_interval * 2 * 60 * 1000);
-        }
+        cleanupResources();
+        initialize();
     });
 
+    adapter.log.info(`Authenticating with Netatmo ${auth.client_id === DEFAULT_CLIENT_ID ? 'using general ioBroker client' : `using individual client-ID ${auth.client_id}`}`);
     try {
         api.authenticate(auth);
     } catch (err) {
         adapter.log.error(`Error while authenticating: ${err.message}`);
+    }
+}
+
+function initialize() {
+    if (adapter.config.netatmoCoach) {
+        coach = new NetatmoCoach(api, adapter);
+
+        coach.requestUpdateCoachStation();
+
+        _coachUpdateInterval = setInterval(() =>
+            coach.requestUpdateCoachStation(), adapter.config.check_interval * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoWeather) {
+        station = new NetatmoStation(api, adapter);
+
+        station.requestUpdateWeatherStation();
+
+        _weatherUpdateInterval = setInterval(() =>
+            station.requestUpdateWeatherStation(), adapter.config.check_interval * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoWelcome) {
+        welcome = new NetatmoWelcome(api, adapter);
+        welcome.init();
+        welcome.requestUpdateIndoorCamera();
+
+        _welcomeUpdateInterval = setInterval(() =>
+            welcome.requestUpdateIndoorCamera(), adapter.config.check_interval * 2 * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoSmokedetector) {
+        smokedetector = new NetatmoSmokedetector(api, adapter);
+        smokedetector.init();
+        smokedetector.requestUpdateSmokedetector();
+
+        _smokedetectorUpdateInterval = setInterval(() =>
+            smokedetector.requestUpdateSmokedetector(), adapter.config.check_interval * 2 * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoCOSensor) {
+        cosensor = new NetatmoCOSensor(api, adapter);
+        cosensor.init();
+        cosensor.requestUpdateCOSensor();
+
+        _cosensorUpdateInterval = setInterval(() =>
+            cosensor.requestUpdateCOSensor(), adapter.config.check_interval * 2 * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoDoorBell) {
+        doorbell = new NetatmoDoorBell(api, adapter);
+        doorbell.init();
+        doorbell.requestUpdateDoorBell();
+
+        _doorbellUpdateInterval = setInterval(() =>
+            doorbell.requestUpdateDoorBell(), adapter.config.check_interval * 2 * 60 * 1000);
     }
 }
 

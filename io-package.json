@@ -1,165 +1,177 @@
 {
-  "common": {
-    "name": "netatmo",
-    "version": "1.7.1",
-    "title": "Netatmo",
-    "titleLang": {
-      "en": "Netatmo"
+    "common": {
+        "name": "netatmo",
+        "version": "1.7.1",
+        "title": "Netatmo",
+        "titleLang": {
+            "en": "Netatmo",
+            "de": "Netatmo",
+            "ru": "Нетатмо",
+            "pt": "Netatmo",
+            "nl": "Netatmo",
+            "fr": "Netatmo",
+            "it": "Nettmo",
+            "es": "Netatmo",
+            "pl": "Netatmo",
+            "zh-cn": "内塔莫"
+        },
+        "news": {
+            "1.7.1": {
+                "en": "Fix Event cleanup",
+                "de": "Ereignisbereinigung behoben",
+                "ru": "Исправить очистку событий",
+                "pt": "Corrigir a limpeza do evento",
+                "nl": "Fix Evenement opschonen",
+                "fr": "Réparer Nettoyage des événements",
+                "it": "Risolto il problema con la pulizia dell'evento",
+                "es": "Arreglar la limpieza de eventos",
+                "pl": "Napraw czyszczenie wydarzenia",
+                "zh-cn": "修复事件清理"
+            },
+            "1.7.0": {
+                "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
+                "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
+                "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
+                "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
+                "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
+                "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
+                "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
+                "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
+                "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
+                "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
+            },
+            "1.6.0": {
+                "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
+                "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
+                "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
+                "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
+                "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
+                "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
+                "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
+                "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
+                "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
+                "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
+            },
+            "1.5.1": {
+                "en": "Fix jsonconfig for Client secret",
+                "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
+                "ru": "Исправить jsonconfig для секрета клиента",
+                "pt": "Corrigir jsonconfig para segredo do cliente",
+                "nl": "jsonconfig voor clientgeheim repareren",
+                "fr": "Correction de jsonconfig pour le secret client",
+                "it": "Correggi jsonconfig per il segreto del client",
+                "es": "Arreglar jsonconfig para el secreto del cliente",
+                "pl": "Napraw jsonconfig dla tajnego klienta",
+                "zh-cn": "修复客户端密码的 jsonconfig"
+            },
+            "1.5.0": {
+                "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
+                "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
+                "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
+                "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
+                "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
+                "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
+                "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
+                "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
+                "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
+                "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
+            },
+            "1.4.4": {
+                "en": "Fix typo that lead to a crash",
+                "de": "Tippfehler behoben, der zu einem Absturz führte",
+                "ru": "Исправить опечатку, приводившую к сбою",
+                "pt": "Corrigir erros de digitação que levam a uma falha",
+                "nl": "Typefout herstellen die tot een crash leidde",
+                "fr": "Correction d'une faute de frappe entraînant un plantage",
+                "it": "Risolto un errore di battitura che causava un arresto anomalo",
+                "es": "Corregir error tipográfico que provocó un bloqueo",
+                "pl": "Napraw literówkę, która doprowadziła do awarii",
+                "zh-cn": "修复导致崩溃的错字"
+            },
+            "1.4.3": {
+                "en": "Fix typo to fix crash",
+                "de": "Tippfehler beheben, um Absturz zu beheben",
+                "ru": "Исправьте опечатку, чтобы исправить сбой",
+                "pt": "Corrigir erro de digitação para corrigir falha",
+                "nl": "Typefout herstellen om crash te verhelpen",
+                "fr": "Correction d'une faute de frappe pour corriger le crash",
+                "it": "Correggi l'errore di battitura per correggere il crash",
+                "es": "Corregir error tipográfico para corregir el bloqueo",
+                "pl": "Napraw literówkę, aby naprawić awarię",
+                "zh-cn": "修复拼写错误以修复崩溃"
+            }
+        },
+        "desc": {
+            "en": "Netatmo",
+            "de": "Netatmo",
+            "ru": "Нетатмо",
+            "pt": "Netatmo",
+            "nl": "Netatmo",
+            "fr": "Netatmo",
+            "it": "Nettmo",
+            "es": "Netatmo",
+            "pl": "Netatmo",
+            "zh-cn": "内塔莫"
+        },
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "netatmo.png",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "tier": 2,
+        "enabled": false,
+        "messagebox": true,
+        "adminUI": {
+            "config": "json"
+        },
+        "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+        "keywords": [
+            "netatmo"
+        ],
+        "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+        "loglevel": "info",
+        "type": "weather",
+        "authors": [
+            "Patrick Arns <iobroker@patrick-arns.de>"
+        ],
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.19"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=6.2.13"
+            }
+        ],
+        "plugins": {
+            "sentry": {
+                "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
+            }
+        }
     },
-    "news": {
-      "1.7.1": {
-        "en": "Fix Event cleanup",
-        "de": "Ereignisbereinigung behoben",
-        "ru": "Исправить очистку событий",
-        "pt": "Corrigir a limpeza do evento",
-        "nl": "Fix Evenement opschonen",
-        "fr": "Réparer Nettoyage des événements",
-        "it": "Risolto il problema con la pulizia dell'evento",
-        "es": "Arreglar la limpieza de eventos",
-        "pl": "Napraw czyszczenie wydarzenia",
-        "zh-cn": "修复事件清理"
-      },
-      "1.7.0": {
-        "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
-        "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
-        "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
-        "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
-        "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
-        "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
-        "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
-        "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
-        "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
-        "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
-      },
-      "1.6.0": {
-        "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
-        "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
-        "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
-        "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
-        "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
-        "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
-        "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
-        "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
-        "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
-        "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
-      },
-      "1.5.1": {
-        "en": "Fix jsonconfig for Client secret",
-        "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
-        "ru": "Исправить jsonconfig для секрета клиента",
-        "pt": "Corrigir jsonconfig para segredo do cliente",
-        "nl": "jsonconfig voor clientgeheim repareren",
-        "fr": "Correction de jsonconfig pour le secret client",
-        "it": "Correggi jsonconfig per il segreto del client",
-        "es": "Arreglar jsonconfig para el secreto del cliente",
-        "pl": "Napraw jsonconfig dla tajnego klienta",
-        "zh-cn": "修复客户端密码的 jsonconfig"
-      },
-      "1.5.0": {
-        "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
-        "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
-        "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
-        "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
-        "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
-        "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
-        "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
-        "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
-        "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
-        "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
-      },
-      "1.4.4": {
-        "en": "Fix typo that lead to a crash",
-        "de": "Tippfehler behoben, der zu einem Absturz führte",
-        "ru": "Исправить опечатку, приводившую к сбою",
-        "pt": "Corrigir erros de digitação que levam a uma falha",
-        "nl": "Typefout herstellen die tot een crash leidde",
-        "fr": "Correction d'une faute de frappe entraînant un plantage",
-        "it": "Risolto un errore di battitura che causava un arresto anomalo",
-        "es": "Corregir error tipográfico que provocó un bloqueo",
-        "pl": "Napraw literówkę, która doprowadziła do awarii",
-        "zh-cn": "修复导致崩溃的错字"
-      },
-      "1.4.3": {
-        "en": "Fix typo to fix crash",
-        "de": "Tippfehler beheben, um Absturz zu beheben",
-        "ru": "Исправьте опечатку, чтобы исправить сбой",
-        "pt": "Corrigir erro de digitação para corrigir falha",
-        "nl": "Typefout herstellen om crash te verhelpen",
-        "fr": "Correction d'une faute de frappe pour corriger le crash",
-        "it": "Correggi l'errore di battitura per correggere il crash",
-        "es": "Corregir error tipográfico para corregir el bloqueo",
-        "pl": "Napraw literówkę, aby naprawić awarię",
-        "zh-cn": "修复拼写错误以修复崩溃"
-      }
-    },
-    "desc": {
-      "en": "Netatmo",
-      "de": "Netatmo",
-      "ru": "Нетатмо",
-      "pt": "Netatmo",
-      "nl": "Netatmo",
-      "fr": "Netatmo",
-      "it": "Nettmo",
-      "es": "Netatmo",
-      "pl": "Netatmo",
-      "zh-cn": "内塔莫"
-    },
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "mode": "daemon",
-    "icon": "netatmo.png",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "tier": 2,
-    "enabled": false,
-    "messagebox": true,
-    "adminUI": {
-      "config": "json"
-    },
-    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
-    "keywords": [
-      "netatmo"
+    "protectedNative": [
+        "secret",
+        "id",
+        "username",
+        "password"
     ],
-    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
-    "loglevel": "info",
-    "type": "weather",
-    "authors": [
-      "Patrick Arns <iobroker@patrick-arns.de>"
-    ],
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.19"
-      }
-    ],
-    "plugins": {
-      "sentry": {
-        "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
-      }
-    }
-  },
-  "protectedNative": [
-    "secret",
-    "id",
-    "username",
-    "password"
-  ],
-  "native": {
-    "netatmoWeather": true,
-    "netatmoWelcome": false,
-    "netatmoCoach": false,
-    "netatmoSmokedetector": false,
-    "netatmoCOSensor": false,
-    "netatmoDoorBell": false,
-    "username": "",
-    "password": "",
-    "check_interval": 5,
-    "cleanup_interval": 60,
-    "event_time": 12,
-    "unknown_person_time": 24,
-    "location_elevation": 0,
-    "id": "",
-    "secret": ""
-  },
-  "objects": []
+    "native": {
+        "netatmoWeather": true,
+        "netatmoWelcome": false,
+        "netatmoCoach": false,
+        "netatmoSmokedetector": false,
+        "netatmoCOSensor": false,
+        "netatmoDoorBell": false,
+        "check_interval": 5,
+        "cleanup_interval": 60,
+        "event_time": 12,
+        "unknown_person_time": 24,
+        "location_elevation": 0,
+        "id": "",
+        "secret": ""
+    },
+    "objects": []
 }

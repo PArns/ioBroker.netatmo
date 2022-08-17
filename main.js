@@ -173,6 +173,7 @@ function startAdapter(options) {
 
     adapter.extendOrSetObjectNotExistsAsync = (id, obj, options) => {
         if (extendedObjects[id]) {
+            adapter.log.debug(`Initially Check/Extend object ${id} ...`);
             return adapter.setObjectNotExistsAsync(id, obj, options);
         } else {
             extendedObjects[id] = true;

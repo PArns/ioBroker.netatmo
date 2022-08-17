@@ -42,6 +42,8 @@ let storedOAuthData = {};
 let dataDir;
 let stopped = false;
 
+const extendedObjects = {};
+
 const DEFAULT_CLIENT_ID = '574ddd152baa3cf9598b46cd';
 const DEFAULT_CLIENT_SECRET = '6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW';
 
@@ -168,6 +170,15 @@ function startAdapter(options) {
     });
 
     adapter.on('ready', () => main());
+
+    adapter.extendOrSetObjectNotExistsAsync = (id, obj, options) => {
+        if (extendedObjects[id]) {
+            return adapter.setObjectNotExistsAsync(id, obj, options);
+        } else {
+            extendedObjects[id] = true;
+            return adapter.extendObjectAsync(id, obj, options);
+        }
+    }
 }
 
 function cleanupResources() {

@@ -169,17 +169,13 @@ function startAdapter(options) {
         }
     });
 
-    adapter.on('ready', () => main());
-
-    adapter.extendOrSetObjectNotExistsAsync = (id, obj, options) => {
-        if (extendedObjects[id]) {
-            adapter.log.debug(`Initially Check/Extend object ${id} ...`);
-            return adapter.setObjectNotExistsAsync(id, obj, options);
-        } else {
-            extendedObjects[id] = true;
-            return adapter.extendObjectAsync(id, obj, options);
+    adapter.on('stateChange', (id, state) => {
+        adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
+        if (state && !state.ack) {
         }
-    }
+    });
+
+    adapter.on('ready', () => main());
 }
 
 function cleanupResources() {
@@ -266,6 +262,16 @@ function main() {
     let individualCredentials = false;
     let access_token;
     let refresh_token;
+
+    adapter.extendOrSetObjectNotExistsAsync = (id, obj, options) => {
+        if (!extendedObjects[id]) {
+            adapter.log.debug(`Initially Check/Extend object ${id} ...`);
+            return adapter.setObjectNotExistsAsync(id, obj, options);
+        } else {
+            extendedObjects[id] = true;
+            return adapter.extendObjectAsync(id, obj, options);
+        }
+    }
 
     if (adapter.config.id && adapter.config.secret) {
         id = adapter.config.id;

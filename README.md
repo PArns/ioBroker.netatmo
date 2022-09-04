@@ -61,6 +61,7 @@ the personsId is the id within the "Known" persons folder
 IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
 * (Apollon77) Start working on Doorbell integration (WIP!)
+* (Apollon77) Converted to new APIs
 * (Apollon77) Fix crash cases reported by Sentry
 
 ### 1.7.1 (2022-03-30)

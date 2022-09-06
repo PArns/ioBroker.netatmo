@@ -121,7 +121,7 @@
         "connectionType": "cloud",
         "dataSource": "poll",
         "tier": 2,
-        "enabled": false,
+        "enabled": true,
         "messagebox": true,
         "adminUI": {
             "config": "json"

@@ -375,6 +375,7 @@ function main() {
 
         cleanupResources();
         initialize();
+        adapter.subscribeStates('*');
     });
 
     adapter.log.info(`Authenticating with Netatmo ${auth.client_id === DEFAULT_CLIENT_ID ? 'using general ioBroker client' : `using individual client-ID ${auth.client_id}`}`);

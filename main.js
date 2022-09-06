@@ -327,7 +327,7 @@ function main() {
             return adapter.setObjectNotExistsAsync(id, obj, options);
         } else {
             if (!isEquivalent(extendedObjects[id], obj)) {
-                adapter.log.debug(`Update object ${id} ...`);
+                adapter.log.debug(`Update object ${id} ...${JSON.stringify(extendedObjects[id])} => ${JSON.stringify(obj)}`);
                 extendedObjects[id] = obj;
                 return adapter.extendObjectAsync(id, obj, options);
             }

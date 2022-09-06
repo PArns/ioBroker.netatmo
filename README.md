@@ -66,11 +66,12 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * BREAKING: It can be that some object names got changed while streamlining character replacements
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
 * (Apollon77) Doorbell integration
-* (Apollon77) Converted to new APIs
+* (Apollon77) Converted to new APIs, values of several objects might be different
 * (Apollon77) Fix crash cases reported by Sentry
 * (Apollon77) Adjust setAway to the current API
 * (Apollon77) Added setHome function (Welcome only) to mark all or specific persons as home (requires your own API key!)
 * (Apollon77) setAway and setHome now also return the result of the call as callback tzo the message
+* (Apollon77) Allow to edit floodlight and monitoring-state
 
 ### 1.7.1 (2022-03-30)
 * (Apollon77) Fix Event cleanup

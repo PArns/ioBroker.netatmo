@@ -287,6 +287,7 @@ function main() {
     scope = getScopeList(adapter.config, individualCredentials);
 
     dataDir = utils.getAbsoluteInstanceDataDir(adapter);
+
     try {
         if (!fs.existsSync(dataDir)) {
             fs.mkdirSync(dataDir);
@@ -370,7 +371,9 @@ function main() {
         }
     });
     api.on('authenticated', () => {
-        if (stopped) return;
+        if (stopped) {
+            return;
+        }
         adapter.log.info(`Successfully authenticated with Netatmo ${api.client_id === DEFAULT_CLIENT_ID ? 'with general ioBroker client' : `with individual client-ID ${api.client_id}`}`);
 
         cleanupResources();

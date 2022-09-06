@@ -33,9 +33,10 @@ Please make sure to configure your limits that they respect https://dev.netatmo.
 
 ## sendTo support
 
+### setAway
 You can also use the sendTo command to set all persons as away (for example if in use as alarm system)
 ```
-sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg', personsId: []});
+sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg'});
 ```
 or
 ```
@@ -51,6 +52,9 @@ sendTo('netatmo.0', "setAway", {homeId: '1234567890abcdefg', personsId: ['123123
 The parameter homeId is the string listed behind the name of your Camera within the Objects tab (optional, if multiple cameras are installed),
 the personsId is the id within the "Known" persons folder
 
+### setHome
+Basically the same functionality as described for "setAway" above also is existing for "setHome" to set persons or full homes as "occupied".
+
 <!--
 	Placeholder for the next version (at the beginning of the line):
 	### __WORK IN PROGRESS__
@@ -63,6 +67,9 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * (Apollon77) Start working on Doorbell integration (WIP!)
 * (Apollon77) Converted to new APIs
 * (Apollon77) Fix crash cases reported by Sentry
+* (Apollon77) Adjust setAway to the current API
+* (Apollon77) Added setHome function (Welcome only) to mark all or specific persons as home (requires your own API key!)
+* (Apollon77) setAway and setHome now also return the result of the call as callback tzo the message
 
 ### 1.7.1 (2022-03-30)
 * (Apollon77) Fix Event cleanup

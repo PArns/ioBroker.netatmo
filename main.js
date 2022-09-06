@@ -70,10 +70,14 @@ function startAdapter(options) {
         if (obj) {
             switch (obj.command) {
                 case 'setAway':
-                    welcome && welcome.setAway(obj.message);
-
-                    obj.callback && adapter.sendTo(obj.from, obj.command, {}, obj.callback);
-
+                    welcome && welcome.setAway(obj.message, (err, res) => {
+                        obj.callback && adapter.sendTo(obj.from, obj.command, {err, res}, obj.callback);
+                    });
+                    break;
+                case 'setHome':
+                    welcome && welcome.setHome(obj.message, (err, res) => {
+                        obj.callback && adapter.sendTo(obj.from, obj.command, {err, res}, obj.callback);
+                    });
                     break;
                 case 'getOAuthStartLink': {
                     const args = obj.message;
@@ -233,7 +237,7 @@ function getScopeList(scopes, individualCredentials) {
 
     if (scopes.netatmoDoorBell) {
         if (individualCredentials) {
-            scope += ' read_doorbell';
+            scope += ' read_doorbell access_doorbell';
         } else {
             adapter.log.warn(`Doorbell only supported with individual ID/Secret. Disabling!`);
             scopes.netatmoDoorBell = false;

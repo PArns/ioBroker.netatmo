@@ -63,8 +63,9 @@ Basically the same functionality as described for "setAway" above also is existi
 
 ### __WORK IN PROGRESS__
 IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
+* BREAKING: It can be that some object names got changed while streamlining character replacements
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
-* (Apollon77) Start working on Doorbell integration (WIP!)
+* (Apollon77) Doorbell integration
 * (Apollon77) Converted to new APIs
 * (Apollon77) Fix crash cases reported by Sentry
 * (Apollon77) Adjust setAway to the current API

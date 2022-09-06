@@ -176,6 +176,15 @@ function startAdapter(options) {
     adapter.on('stateChange', (id, state) => {
         adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
         if (state && !state.ack) {
+            if (id.startsWith(adapter.namespace)) {
+                id = id.substring(adapter.namespace.length + 2);
+            }
+            if (extendedObjects[id] && extendedObjects[id].native && extendedObjects[id].native.homeId) {
+                const obj = extendedObjects[id];
+                api.setState(obj.native.homeId, obj.native.moduleId, obj.native.field, state.val, (err,res) => {
+                    err && adapter.log.error(`Cannot set state ${id}: ${err}`);
+                });
+            }
         }
     });
 
@@ -211,7 +220,7 @@ function getScopeList(scopes, individualCredentials) {
         scope += ' read_camera read_presence';
 
         if (individualCredentials) {
-            scope += ' access_camera access_presence write_camera'
+            scope += ' access_camera access_presence write_camera write_presence'
         } else {
             adapter.log.info(`Welcome & Presence support limited because no individual ID/Secret provided.`);
         }
@@ -259,6 +268,50 @@ function getScopeList(scopes, individualCredentials) {
     return scope;
 }
 
+function isEquivalent(a, b) {
+    //adapter.log.debug('Compare ' + JSON.stringify(a) + ' with ' +  JSON.stringify(b));
+    // Create arrays of property names
+    if (a === null || a === undefined || b === null || b === undefined) {
+        return (a === b);
+    }
+    const aProps = Object.getOwnPropertyNames(a);
+    const bProps = Object.getOwnPropertyNames(b);
+
+    // If number of properties is different,
+    // objects are not equivalent
+    if (aProps.length !== bProps.length) {
+        //console.log('num props different: ' + JSON.stringify(aProps) + ' / ' + JSON.stringify(bProps));
+        return false;
+    }
+
+    for (let i = 0; i < aProps.length; i++) {
+        const propName = aProps[i];
+
+        if (typeof a[propName] !== typeof b[propName]) {
+            //console.log('type props ' + propName + ' different');
+            return false;
+        }
+        if (typeof a[propName] === 'object') {
+            if (!isEquivalent(a[propName], b[propName])) {
+                return false;
+            }
+        }
+        else {
+            // If values of same property are not equal,
+            // objects are not equivalent
+            if (a[propName] !== b[propName]) {
+                //console.log('props ' + propName + ' different');
+                return false;
+            }
+        }
+    }
+
+    // If we made it this far, objects
+    // are considered equivalent
+    return true;
+}
+
+
 function main() {
     let scope = '';
     let id = DEFAULT_CLIENT_ID;
@@ -267,13 +320,17 @@ function main() {
     let access_token;
     let refresh_token;
 
-    adapter.extendOrSetObjectNotExistsAsync = (id, obj, options) => {
+    adapter.extendOrSetObjectNotExistsAsync = async (id, obj, options) => {
         if (!extendedObjects[id]) {
             adapter.log.debug(`Initially Check/Extend object ${id} ...`);
+            extendedObjects[id] = obj;
             return adapter.setObjectNotExistsAsync(id, obj, options);
         } else {
-            extendedObjects[id] = true;
-            return adapter.extendObjectAsync(id, obj, options);
+            if (!isEquivalent(extendedObjects[id], obj)) {
+                adapter.log.debug(`Update object ${id} ...`);
+                extendedObjects[id] = obj;
+                return adapter.extendObjectAsync(id, obj, options);
+            }
         }
     }
 

@@ -47,11 +47,6 @@ const extendedObjects = {};
 const DEFAULT_CLIENT_ID = '574ddd152baa3cf9598b46cd';
 const DEFAULT_CLIENT_SECRET = '6e3UcBKp005k9N0tpwp69fGYECqOpuhtEE9sWJW';
 
-String.prototype.replaceAll = function (search, replacement) {
-    const target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
-
 let adapter;
 
 function startAdapter(options) {
@@ -324,7 +319,7 @@ function main() {
         if (!extendedObjects[id]) {
             adapter.log.debug(`Initially Check/Extend object ${id} ...`);
             extendedObjects[id] = obj;
-            return adapter.setObjectNotExistsAsync(id, obj, options);
+            return adapter.extendObjectAsync(id, obj, options);
         } else {
             if (!isEquivalent(extendedObjects[id], obj)) {
                 adapter.log.debug(`Update object ${id} ...${JSON.stringify(extendedObjects[id])} => ${JSON.stringify(obj)}`);

@@ -13,6 +13,15 @@
 
 Netatmo adapter for ioBroker
 
+## __Important Note for Authentication changes October 2022__
+According to Netatmo the "old" way to authenticate with username and password directly by entering them into the adapter will be disabled by October 2022.
+
+Version 2.0 of the adapter addresses this change and adjust the authentication. All upgrades before October 2022 should allow a seamless upgrade to 2.0.0 on the first start automatically - else requires a new authentication.
+
+## __Important Note for v2.0.0!__
+With v 2.0 of the adapter the object structure will change completely! Instead of names we decided to better use the unique IDs to make sure that duplicate or changing names do not produce issues.
+
+
 ## Installation and Configuration
 You need to authenticate with your NetAtmo account using the Adapter Admin UI. 
 
@@ -63,7 +72,7 @@ Basically the same functionality as described for "setAway" above also is existi
 
 ### __WORK IN PROGRESS__
 IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
-* BREAKING: It can be that some object names got changed while streamlining character replacements
+* BREAKING: Object structure changes completely and now uses unique IDs instead of names!
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
 * (Apollon77) Doorbell integration
 * (Apollon77) Converted to new APIs, values of several objects might be different

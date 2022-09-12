@@ -1,217 +1,217 @@
 {
-    "common": {
-        "name": "netatmo",
-        "version": "2.0.1",
-        "title": "Netatmo",
-        "titleLang": {
-            "en": "Netatmo",
-            "de": "Netatmo",
-            "ru": "Нетатмо",
-            "pt": "Netatmo",
-            "nl": "Netatmo",
-            "fr": "Netatmo",
-            "it": "Nettmo",
-            "es": "Netatmo",
-            "pl": "Netatmo",
-            "zh-cn": "内塔莫"
-        },
-        "news": {
-            "1.7.1": {
-                "en": "Fix Event cleanup",
-                "de": "Ereignisbereinigung behoben",
-                "ru": "Исправить очистку событий",
-                "pt": "Corrigir a limpeza do evento",
-                "nl": "Fix Evenement opschonen",
-                "fr": "Réparer Nettoyage des événements",
-                "it": "Risolto il problema con la pulizia dell'evento",
-                "es": "Arreglar la limpieza de eventos",
-                "pl": "Napraw czyszczenie wydarzenia",
-                "zh-cn": "修复事件清理"
-            },
-            "1.7.0": {
-                "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
-                "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
-                "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
-                "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
-                "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
-                "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
-                "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
-                "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
-                "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
-                "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
-            },
-            "1.6.0": {
-                "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
-                "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
-                "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
-                "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
-                "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
-                "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
-                "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
-                "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
-                "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
-                "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
-            },
-            "1.5.1": {
-                "en": "Fix jsonconfig for Client secret",
-                "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
-                "ru": "Исправить jsonconfig для секрета клиента",
-                "pt": "Corrigir jsonconfig para segredo do cliente",
-                "nl": "jsonconfig voor clientgeheim repareren",
-                "fr": "Correction de jsonconfig pour le secret client",
-                "it": "Correggi jsonconfig per il segreto del client",
-                "es": "Arreglar jsonconfig para el secreto del cliente",
-                "pl": "Napraw jsonconfig dla tajnego klienta",
-                "zh-cn": "修复客户端密码的 jsonconfig"
-            },
-            "1.5.0": {
-                "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
-                "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
-                "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
-                "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
-                "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
-                "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
-                "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
-                "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
-                "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
-                "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
-            },
-            "1.4.4": {
-                "en": "Fix typo that lead to a crash",
-                "de": "Tippfehler behoben, der zu einem Absturz führte",
-                "ru": "Исправить опечатку, приводившую к сбою",
-                "pt": "Corrigir erros de digitação que levam a uma falha",
-                "nl": "Typefout herstellen die tot een crash leidde",
-                "fr": "Correction d'une faute de frappe entraînant un plantage",
-                "it": "Risolto un errore di battitura che causava un arresto anomalo",
-                "es": "Corregir error tipográfico que provocó un bloqueo",
-                "pl": "Napraw literówkę, która doprowadziła do awarii",
-                "zh-cn": "修复导致崩溃的错字"
-            },
-            "1.4.3": {
-                "en": "Fix typo to fix crash",
-                "de": "Tippfehler beheben, um Absturz zu beheben",
-                "ru": "Исправьте опечатку, чтобы исправить сбой",
-                "pt": "Corrigir erro de digitação para corrigir falha",
-                "nl": "Typefout herstellen om crash te verhelpen",
-                "fr": "Correction d'une faute de frappe pour corriger le crash",
-                "it": "Correggi l'errore di battitura per correggere il crash",
-                "es": "Corregir error tipográfico para corregir el bloqueo",
-                "pl": "Napraw literówkę, aby naprawić awarię",
-                "zh-cn": "修复拼写错误以修复崩溃"
-            }
-        },
-        "desc": {
-            "en": "Netatmo",
-            "de": "Netatmo",
-            "ru": "Нетатмо",
-            "pt": "Netatmo",
-            "nl": "Netatmo",
-            "fr": "Netatmo",
-            "it": "Nettmo",
-            "es": "Netatmo",
-            "pl": "Netatmo",
-            "zh-cn": "内塔莫"
-        },
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "netatmo.png",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "tier": 2,
-        "enabled": true,
-        "messagebox": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
-        "keywords": [
-            "netatmo"
-        ],
-        "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
-        "loglevel": "info",
-        "type": "weather",
-        "authors": [
-            "Patrick Arns <iobroker@patrick-arns.de>"
-        ],
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.19"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=6.2.13"
-            }
-        ],
-        "plugins": {
-            "sentry": {
-                "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
-            }
-        },
-        "messages": [
-            {
-                "condition": {
-                    "operand": "and",
-                    "rules": [
-                        "oldVersion<2.0.0",
-                        "newVersion>=2.0.0"
-                    ]
-                },
-                "title": {
-                    "en": "Object structure changes!",
-                    "de": "Objektstruktur ändert sich!",
-                    "ru": "Изменения структуры объекта!",
-                    "pt": "Mudanças de estrutura de objetos!",
-                    "nl": "Object structuur verandert!",
-                    "fr": "La structure des objets change !",
-                    "it": "La struttura degli oggetti cambia!",
-                    "es": "¡La estructura de objetos cambia!",
-                    "pl": "Zmiany obiektów!",
-                    "zh-cn": "目标结构变化!"
-                },
-                "text": {
-                    "en": "Because of needed API changes and also because of the availability of more and more Netatmo devices we decided to change the object structure. Starting with version 2.0 the unique IDs are used instead of the device names. Because of this the object structure will change completely. Please delete the current objects ideally before the upgrade. Additionally the authentication with Netatmo was changed because the former used way will be disabled in October 2022. Older versions of the adapter might not work any longer.",
-                    "de": "Aufgrund von erforderlichen API-Änderungen und auch aufgrund der Verfügbarkeit von mehr und mehr Netatmo-Geräten haben wir uns entschlossen, die Objektstruktur zu ändern. Ab Version 2.0 werden die eindeutigen IDs anstelle der Gerätenamen verwendet. Dadurch ändert sich die Objektstruktur vollständig. Die aktuellen Objekte sollten idealerweise vor dem Upgrade gelöscht werden. Zusätzlich wurde die Authentifizierung mit Netatmo geändert, da der frühere Gebrauchsweg im Oktober 2022 deaktiviert wird. Ältere Versionen des Adapters funktionieren möglicherweise nicht mehr.",
-                    "ru": "Из-за необходимых изменений API, а также из-за наличия более и более устройств Netatmo мы решили изменить структуру объекта. Начиная с версии 2.0 уникальные идентификаторы используются вместо названия устройств. Из-за этой структуры объекта полностью изменится. Пожалуйста, удалите текущие объекты в идеале перед обновлением. Дополнительно была изменена аутентификация с Netatmo, потому что бывший использованный способ будет отключен в октябре 2022 года. Более старые версии адаптера могут больше не работать.",
-                    "pt": "Por causa das mudanças de API necessárias e também por causa da disponibilidade de mais e mais dispositivos Netatmo decidimos mudar a estrutura do objeto. Começando com a versão 2.0 os IDs exclusivos são usados em vez dos nomes dos dispositivos. Por causa disso, a estrutura do objeto mudará completamente. Por favor, exclua os objetos atuais idealmente antes da atualização. Além disso, a autenticação com Netatmo foi alterada porque a antiga maneira usada será desativada em outubro de 2022. Versões mais antigas do adaptador podem não funcionar mais.",
-                    "nl": "Omdat API veranderingen nodig had en ook vanwege de vermogen van meer en meer Netatmo apparaten die we besloten hebben om de objectstructuur te veranderen. Begin met versie 2.0 de unieke ID's worden gebruikt in plaats van de apparaatnamen. Hierdoor zal de objectstructuur volledig veranderen. Verwijder de huidige objecten ideaal voor de upgrade. De authenticatie met Netatmo is veranderd omdat de vroegere manier gehandicapt zal worden in oktober 2022. Oudere versies van de adapter werken misschien niet meer.",
-                    "fr": "En raison des changements d'API nécessaires et aussi en raison de la disponibilité de plus en plus de Netatmo appareils nous avons décidé de changer la structure de l'objet. À partir de la version 2.0, les identifiants uniques sont utilisés au lieu des noms de périphériques. En raison de cela la structure de l'objet va changer complètement. Veuillez supprimer les objets courants idéalement avant la mise à niveau. En outre, l'authentification avec Netatmo a été changée parce que l'ancienne méthode utilisée sera désactivée en octobre 2022. Les versions plus anciennes de l'adaptateur pourraient ne plus fonctionner.",
-                    "it": "A causa dei necessari cambiamenti API e anche a causa della disponibilità di sempre più dispositivi Netatmo abbiamo deciso di cambiare la struttura dell'oggetto. A partire dalla versione 2.0 gli ID unici sono utilizzati invece dei nomi dei dispositivi. A causa di questo la struttura dell'oggetto cambierà completamente. Si prega di eliminare gli oggetti attuali idealmente prima dell'aggiornamento. Inoltre, l'autenticazione con Netatmo è stata modificata perché il primo modo usato sarà disabilitato nell'ottobre 2022. Le versioni più vecchie dell'adattatore potrebbero non funzionare più.",
-                    "es": "Debido a los cambios necesarios de API y también debido a la disponibilidad de más y más dispositivos Netatmo decidimos cambiar la estructura del objeto. A partir de la versión 2.0 se utilizan los IDs únicos en lugar de los nombres de los dispositivos. Debido a esto la estructura del objeto cambiará completamente. Por favor, eliminar los objetos actuales idealmente antes de la actualización. Además, la autenticación con Netatmo se cambió porque la antigua forma utilizada será deshabilitada en octubre de 2022. Las versiones más antiguas del adaptador podrían no funcionar más.",
-                    "pl": "Z powodu potrzebnych zmian API, a także z powodu dostępności częściej i innych urządzeń Netatmo zdecydowały się zmienić strukturę obiektu. Począwszy od wersji 2.0 używa się unikalnych identyfikatorów zamiast nazw urządzenia. Z tego powodu struktura obiektu zmienia się całkowicie. Okazuje się, że aktualne obiekty są idealne przed ulepszaniem. Zmieniono również autentyczność z Netatmo, ponieważ w październiku 2022 r. zostaną zdegradowane. Starsze wersje adaptera nie mogą już pracować.",
-                    "zh-cn": "由于需要的知识产权变化,而且由于我们决定改变目标结构的更多和更净的装置。 从第2.0版本开始,独有的开发者不用装置名称。 由于这个目标结构将完全改变。 请在升级之前删除目前的目标。 此外,由于原用方式将于2022年10月残疾,净树的核证有所改变。 适应者的旧版本可能不再工作。."
-                },
-                "level": "warn",
-                "buttons": [
-                    "agree",
-                    "cancel"
-                ]
-            }
-        ]
+  "common": {
+    "name": "netatmo",
+    "version": "2.0.2",
+    "title": "Netatmo",
+    "titleLang": {
+      "en": "Netatmo",
+      "de": "Netatmo",
+      "ru": "Нетатмо",
+      "pt": "Netatmo",
+      "nl": "Netatmo",
+      "fr": "Netatmo",
+      "it": "Nettmo",
+      "es": "Netatmo",
+      "pl": "Netatmo",
+      "zh-cn": "内塔莫"
     },
-    "protectedNative": [
-        "secret",
-        "id",
-        "username",
-        "password"
+    "news": {
+      "2.0.2": {
+        "en": "IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!\n* BREAKING: Object structure changes completely and now uses unique IDs instead of names!\n* Change the Authentication method as requested by Netatmo till October 2022\n* Doorbell integration\n* more, see changelog!",
+        "de": "WICHTIG: Dieser Adapter benötigt Admin 6.2.14+, um konfiguriert zu werden!\n* BREAKING: Objektstruktur ändert sich komplett und verwendet jetzt einzigartige IDs anstelle von Namen!\n* Ändern Sie die Authentication Methode, wie von Netatmo bis Oktober 2022 angefordert\n* Türbell-Integration\n* mehr, siehe changelog!",
+        "ru": "ВАЖНО: Этот адаптер требует Admin 6.2.14+ для настройки!\n* ЗАВТРАК: Структура объекта полностью меняется и теперь использует уникальные ID вместо имен!\n* Измените метод аутентификации по запросу Netatmo до октября 2022\n* Интеграция Doorbell\n* больше, см. changelog!",
+        "pt": "IMPORTANTE: Este adaptador requer que o Admin 6.2.14+ seja configurado!\n* BREAKING: Estrutura de objetos muda completamente e agora usa IDs únicos em vez de nomes!\n* Alterar o método de Autenticação conforme solicitado pela Netatmo até outubro 2022\n* Integração da campainha\n* mais, veja changelog!",
+        "nl": "Deze Adapter vereist administratie 6,2,14 + om in beslag genomen te worden!\nObject structuur verandert compleet en gebruikt nu unieke ID's in plaats van namen!\n♪ Verander de Authenticatie methode zoals gevraagd door Netatmo tot 20 oktober\n♪ Doorbell integratie ♪\n♪ more, see changelog!",
+        "fr": "IMPORTANT: Cet adaptateur nécessite que l'administration 6.2.14+ soit configurée!\n* BREAKING: La structure des objets change complètement et utilise maintenant des identifiants uniques au lieu des noms!\n* Modifier la méthode d'authentification comme demandé par Netatmo jusqu'en octobre 2022\n* Intégration de la porte\n* plus, voir changelog!",
+        "it": "IMPORTANTE: Questo adattatore richiede Admin 6.2.14+ da configurare!\n* BREAKING: La struttura degli oggetti cambia completamente e ora utilizza ID unici invece di nomi!\n# Modificare il metodo di autenticazione come richiesto da Netatmo fino a ottobre 2022\n* Integrazione del campanello\n* di più, vedi changelog!",
+        "es": "IMPORTANTE: Este adaptador requiere que Admin 6.2.14+ sea configurado!\n* BREAKING: La estructura de objetos cambia completamente y ahora utiliza IDs únicas en lugar de nombres!\n* Cambiar el método de autenticación solicitado por Netatmo hasta octubre 2022\n* Integración de Doorbell\n* more, see changelog!",
+        "pl": "IMPORTANT: Ta adapter wymaga, aby Admin 6.2.14+ został skonfigurowany!\nBREAKING – struktura obiektów zmienia się całkowicie i obecnie wykorzystuje unikalne identyfikatory zamiast nazw!\n* Zmiana metody Authentication przez Netatmo do października 2022 r\nDoorbell integration\n* – zobacz zmiany!",
+        "zh-cn": "IMPORTANT:The Adapter需要 Admin 6.2.14+ 配置!\n* BREAK:目标结构完全改变,现在使用独特的国际发展部而不是名称!\n* A/64/50。 第2022条\n* 候补成员\n* 更多人,见《变革》!"
+      },
+      "1.7.1": {
+        "en": "Fix Event cleanup",
+        "de": "Ereignisbereinigung behoben",
+        "ru": "Исправить очистку событий",
+        "pt": "Corrigir a limpeza do evento",
+        "nl": "Fix Evenement opschonen",
+        "fr": "Réparer Nettoyage des événements",
+        "it": "Risolto il problema con la pulizia dell'evento",
+        "es": "Arreglar la limpieza de eventos",
+        "pl": "Napraw czyszczenie wydarzenia",
+        "zh-cn": "修复事件清理"
+      },
+      "1.7.0": {
+        "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
+        "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
+        "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
+        "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
+        "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
+        "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
+        "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
+        "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
+        "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
+        "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
+      },
+      "1.6.0": {
+        "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
+        "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
+        "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
+        "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
+        "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
+        "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
+        "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
+        "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
+        "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
+        "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
+      },
+      "1.5.1": {
+        "en": "Fix jsonconfig for Client secret",
+        "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
+        "ru": "Исправить jsonconfig для секрета клиента",
+        "pt": "Corrigir jsonconfig para segredo do cliente",
+        "nl": "jsonconfig voor clientgeheim repareren",
+        "fr": "Correction de jsonconfig pour le secret client",
+        "it": "Correggi jsonconfig per il segreto del client",
+        "es": "Arreglar jsonconfig para el secreto del cliente",
+        "pl": "Napraw jsonconfig dla tajnego klienta",
+        "zh-cn": "修复客户端密码的 jsonconfig"
+      },
+      "1.5.0": {
+        "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
+        "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
+        "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
+        "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
+        "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
+        "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
+        "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
+        "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
+        "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
+        "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
+      },
+      "1.4.4": {
+        "en": "Fix typo that lead to a crash",
+        "de": "Tippfehler behoben, der zu einem Absturz führte",
+        "ru": "Исправить опечатку, приводившую к сбою",
+        "pt": "Corrigir erros de digitação que levam a uma falha",
+        "nl": "Typefout herstellen die tot een crash leidde",
+        "fr": "Correction d'une faute de frappe entraînant un plantage",
+        "it": "Risolto un errore di battitura che causava un arresto anomalo",
+        "es": "Corregir error tipográfico que provocó un bloqueo",
+        "pl": "Napraw literówkę, która doprowadziła do awarii",
+        "zh-cn": "修复导致崩溃的错字"
+      }
+    },
+    "desc": {
+      "en": "Netatmo",
+      "de": "Netatmo",
+      "ru": "Нетатмо",
+      "pt": "Netatmo",
+      "nl": "Netatmo",
+      "fr": "Netatmo",
+      "it": "Nettmo",
+      "es": "Netatmo",
+      "pl": "Netatmo",
+      "zh-cn": "内塔莫"
+    },
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "netatmo.png",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "tier": 2,
+    "enabled": true,
+    "messagebox": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+    "keywords": [
+      "netatmo"
     ],
-    "native": {
-        "netatmoWeather": true,
-        "netatmoWelcome": false,
-        "netatmoCoach": false,
-        "netatmoSmokedetector": false,
-        "netatmoCOSensor": false,
-        "netatmoDoorBell": false,
-        "check_interval": 5,
-        "cleanup_interval": 60,
-        "event_time": 12,
-        "unknown_person_time": 24,
-        "location_elevation": 0,
-        "id": "",
-        "secret": ""
+    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+    "loglevel": "info",
+    "type": "weather",
+    "authors": [
+      "Patrick Arns <iobroker@patrick-arns.de>"
+    ],
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.19"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=6.2.13"
+      }
+    ],
+    "plugins": {
+      "sentry": {
+        "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
+      }
     },
-    "objects": []
+    "messages": [
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<2.0.0",
+            "newVersion>=2.0.0"
+          ]
+        },
+        "title": {
+          "en": "Object structure changes!",
+          "de": "Objektstruktur ändert sich!",
+          "ru": "Изменения структуры объекта!",
+          "pt": "Mudanças de estrutura de objetos!",
+          "nl": "Object structuur verandert!",
+          "fr": "La structure des objets change !",
+          "it": "La struttura degli oggetti cambia!",
+          "es": "¡La estructura de objetos cambia!",
+          "pl": "Zmiany obiektów!",
+          "zh-cn": "目标结构变化!"
+        },
+        "text": {
+          "en": "Because of needed API changes and also because of the availability of more and more Netatmo devices we decided to change the object structure. Starting with version 2.0 the unique IDs are used instead of the device names. Because of this the object structure will change completely. Please delete the current objects ideally before the upgrade. Additionally the authentication with Netatmo was changed because the former used way will be disabled in October 2022. Older versions of the adapter might not work any longer.",
+          "de": "Aufgrund von erforderlichen API-Änderungen und auch aufgrund der Verfügbarkeit von mehr und mehr Netatmo-Geräten haben wir uns entschlossen, die Objektstruktur zu ändern. Ab Version 2.0 werden die eindeutigen IDs anstelle der Gerätenamen verwendet. Dadurch ändert sich die Objektstruktur vollständig. Die aktuellen Objekte sollten idealerweise vor dem Upgrade gelöscht werden. Zusätzlich wurde die Authentifizierung mit Netatmo geändert, da der frühere Gebrauchsweg im Oktober 2022 deaktiviert wird. Ältere Versionen des Adapters funktionieren möglicherweise nicht mehr.",
+          "ru": "Из-за необходимых изменений API, а также из-за наличия более и более устройств Netatmo мы решили изменить структуру объекта. Начиная с версии 2.0 уникальные идентификаторы используются вместо названия устройств. Из-за этой структуры объекта полностью изменится. Пожалуйста, удалите текущие объекты в идеале перед обновлением. Дополнительно была изменена аутентификация с Netatmo, потому что бывший использованный способ будет отключен в октябре 2022 года. Более старые версии адаптера могут больше не работать.",
+          "pt": "Por causa das mudanças de API necessárias e também por causa da disponibilidade de mais e mais dispositivos Netatmo decidimos mudar a estrutura do objeto. Começando com a versão 2.0 os IDs exclusivos são usados em vez dos nomes dos dispositivos. Por causa disso, a estrutura do objeto mudará completamente. Por favor, exclua os objetos atuais idealmente antes da atualização. Além disso, a autenticação com Netatmo foi alterada porque a antiga maneira usada será desativada em outubro de 2022. Versões mais antigas do adaptador podem não funcionar mais.",
+          "nl": "Omdat API veranderingen nodig had en ook vanwege de vermogen van meer en meer Netatmo apparaten die we besloten hebben om de objectstructuur te veranderen. Begin met versie 2.0 de unieke ID's worden gebruikt in plaats van de apparaatnamen. Hierdoor zal de objectstructuur volledig veranderen. Verwijder de huidige objecten ideaal voor de upgrade. De authenticatie met Netatmo is veranderd omdat de vroegere manier gehandicapt zal worden in oktober 2022. Oudere versies van de adapter werken misschien niet meer.",
+          "fr": "En raison des changements d'API nécessaires et aussi en raison de la disponibilité de plus en plus de Netatmo appareils nous avons décidé de changer la structure de l'objet. À partir de la version 2.0, les identifiants uniques sont utilisés au lieu des noms de périphériques. En raison de cela la structure de l'objet va changer complètement. Veuillez supprimer les objets courants idéalement avant la mise à niveau. En outre, l'authentification avec Netatmo a été changée parce que l'ancienne méthode utilisée sera désactivée en octobre 2022. Les versions plus anciennes de l'adaptateur pourraient ne plus fonctionner.",
+          "it": "A causa dei necessari cambiamenti API e anche a causa della disponibilità di sempre più dispositivi Netatmo abbiamo deciso di cambiare la struttura dell'oggetto. A partire dalla versione 2.0 gli ID unici sono utilizzati invece dei nomi dei dispositivi. A causa di questo la struttura dell'oggetto cambierà completamente. Si prega di eliminare gli oggetti attuali idealmente prima dell'aggiornamento. Inoltre, l'autenticazione con Netatmo è stata modificata perché il primo modo usato sarà disabilitato nell'ottobre 2022. Le versioni più vecchie dell'adattatore potrebbero non funzionare più.",
+          "es": "Debido a los cambios necesarios de API y también debido a la disponibilidad de más y más dispositivos Netatmo decidimos cambiar la estructura del objeto. A partir de la versión 2.0 se utilizan los IDs únicos en lugar de los nombres de los dispositivos. Debido a esto la estructura del objeto cambiará completamente. Por favor, eliminar los objetos actuales idealmente antes de la actualización. Además, la autenticación con Netatmo se cambió porque la antigua forma utilizada será deshabilitada en octubre de 2022. Las versiones más antiguas del adaptador podrían no funcionar más.",
+          "pl": "Z powodu potrzebnych zmian API, a także z powodu dostępności częściej i innych urządzeń Netatmo zdecydowały się zmienić strukturę obiektu. Począwszy od wersji 2.0 używa się unikalnych identyfikatorów zamiast nazw urządzenia. Z tego powodu struktura obiektu zmienia się całkowicie. Okazuje się, że aktualne obiekty są idealne przed ulepszaniem. Zmieniono również autentyczność z Netatmo, ponieważ w październiku 2022 r. zostaną zdegradowane. Starsze wersje adaptera nie mogą już pracować.",
+          "zh-cn": "由于需要的知识产权变化,而且由于我们决定改变目标结构的更多和更净的装置。 从第2.0版本开始,独有的开发者不用装置名称。 由于这个目标结构将完全改变。 请在升级之前删除目前的目标。 此外,由于原用方式将于2022年10月残疾,净树的核证有所改变。 适应者的旧版本可能不再工作。."
+        },
+        "level": "warn",
+        "buttons": [
+          "agree",
+          "cancel"
+        ]
+      }
+    ]
+  },
+  "protectedNative": [
+    "secret",
+    "id",
+    "username",
+    "password"
+  ],
+  "native": {
+    "netatmoWeather": true,
+    "netatmoWelcome": false,
+    "netatmoCoach": false,
+    "netatmoSmokedetector": false,
+    "netatmoCOSensor": false,
+    "netatmoDoorBell": false,
+    "check_interval": 5,
+    "cleanup_interval": 60,
+    "event_time": 12,
+    "unknown_person_time": 24,
+    "location_elevation": 0,
+    "id": "",
+    "secret": ""
+  },
+  "objects": []
 }

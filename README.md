@@ -69,8 +69,7 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 2.0.2 (2022-09-12)
 IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * BREAKING: Object structure changes completely and now uses unique IDs instead of names!
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022

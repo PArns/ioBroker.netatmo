@@ -75,6 +75,9 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * BREAKING: Object structure changes completely and now uses unique IDs instead of names!
 * (Apollon77) Change the Authentication method as requested by Netatmo till October 2022
 * (Apollon77) Doorbell integration
+* more, see changelog!
+
+### 2.0.1 (2021-10-18)
 * (Apollon77) Converted to new APIs, values of several objects might be different
 * (Apollon77) Fix crash cases reported by Sentry
 * (Apollon77) Adjust setAway to the current API

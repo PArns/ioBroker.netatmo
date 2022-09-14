@@ -69,8 +69,7 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 2.0.3 (2022-09-14)
 * (Apollon77) Fixes and Optimizations for Doorbell devices
 
 ### 2.0.2 (2022-09-12)

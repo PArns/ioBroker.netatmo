@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,18 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.0.3": {
+        "en": "Fixes and Optimizations for Doorbell devices",
+        "de": "Befestigungen und Optimierungen für Türklingelgeräte",
+        "ru": "Исправления и оптимизация для устройств Doorbell",
+        "pt": "Correções e Otimizações para dispositivos da campainha",
+        "nl": "Vertaling:",
+        "fr": "Fixes et optimisations pour les appareils de sonnerie",
+        "it": "Fissi e ottimizzazioni per i dispositivi Doorbell",
+        "es": "Fijaciones y optimizaciones para dispositivos Doorbell",
+        "pl": "Fixes and Optimization dla urządzeń Doorbell",
+        "zh-cn": "对多尔布尔装置的配件和利用"
+      },
       "2.0.2": {
         "en": "IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!\n* BREAKING: Object structure changes completely and now uses unique IDs instead of names!\n* Change the Authentication method as requested by Netatmo till October 2022\n* Doorbell integration\n* more, see changelog!",
         "de": "WICHTIG: Dieser Adapter benötigt Admin 6.2.14+, um konfiguriert zu werden!\n* BREAKING: Objektstruktur ändert sich komplett und verwendet jetzt einzigartige IDs anstelle von Namen!\n* Ändern Sie die Authentication Methode, wie von Netatmo bis Oktober 2022 angefordert\n* Türbell-Integration\n* mehr, siehe changelog!",
@@ -87,18 +99,6 @@
         "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
         "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
         "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
-      },
-      "1.4.4": {
-        "en": "Fix typo that lead to a crash",
-        "de": "Tippfehler behoben, der zu einem Absturz führte",
-        "ru": "Исправить опечатку, приводившую к сбою",
-        "pt": "Corrigir erros de digitação que levam a uma falha",
-        "nl": "Typefout herstellen die tot een crash leidde",
-        "fr": "Correction d'une faute de frappe entraînant un plantage",
-        "it": "Risolto un errore di battitura che causava un arresto anomalo",
-        "es": "Corregir error tipográfico que provocó un bloqueo",
-        "pl": "Napraw literówkę, która doprowadziła do awarii",
-        "zh-cn": "修复导致崩溃的错字"
       }
     },
     "desc": {

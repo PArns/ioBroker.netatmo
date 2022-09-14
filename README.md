@@ -69,6 +69,10 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Fixes and Optimizations for Doorbell devices
+
 ### 2.0.2 (2022-09-12)
 IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 * BREAKING: Object structure changes completely and now uses unique IDs instead of names!

@@ -69,6 +69,10 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Fix crash case with Smoke detector events
+
 ### 2.0.3 (2022-09-14)
 * (Apollon77) Fixes and Optimizations for Doorbell devices
 

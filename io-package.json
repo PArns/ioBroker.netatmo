@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,18 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.0.4": {
+        "en": "Fix crash case with Smoke detector events",
+        "de": "Crashfall mit Smoke-Detektorereignissen beheben",
+        "ru": "Исправление случай аварии с событиями детектора дыма",
+        "pt": "Corrigir caso de acidente com eventos de detector de fumaça",
+        "nl": "Vertaling:",
+        "fr": "Boîtier de crash fixe avec des événements de détecteur de fumée",
+        "it": "Fix caso crash con gli eventi del rilevatore di fumo",
+        "es": "Caso de choque fijo con eventos de detector de humo",
+        "pl": "W przypadku katastrofy Fix z wykrywcami Smoke’a",
+        "zh-cn": "Smoke探测器事故"
+      },
       "2.0.3": {
         "en": "Fixes and Optimizations for Doorbell devices",
         "de": "Befestigungen und Optimierungen für Türklingelgeräte",
@@ -87,18 +99,6 @@
         "es": "Arreglar jsonconfig para el secreto del cliente",
         "pl": "Napraw jsonconfig dla tajnego klienta",
         "zh-cn": "修复客户端密码的 jsonconfig"
-      },
-      "1.5.0": {
-        "en": "Added support for netatmo carbon monoxide sensor.\nAdded support for netatmo smoke alarm.\nprevent crashes if application limit reached\nAllow to specify own id/secret in all cases\nensure that minimum polling interval of 10 minutes is respected if no individual ID/Secret is provided\nSeveral pother fixes and optimizations\nAdd Sentry for crash reporting",
-        "de": "Unterstützung für netatmo Kohlenmonoxidsensor hinzugefügt.\nUnterstützung für Netatmo-Rauchmelder hinzugefügt.\nverhindert Abstürze, wenn das Anwendungslimit erreicht ist\nIn allen Fällen die Angabe einer eigenen ID/eines eigenen Geheimnisses zulassen\nStellen Sie sicher, dass ein Mindestabfrageintervall von 10 Minuten eingehalten wird, wenn keine individuelle ID/geheimes Geheimnis angegeben wird\nMehrere Fehlerbehebungen und Optimierungen\nFügen Sie Sentry für Absturzberichte hinzu",
-        "ru": "Добавлена поддержка датчика угарного газа netatmo.\nДобавлена поддержка дымовой сигнализации netatmo.\nпредотвратить сбои, если достигнут лимит приложений\nРазрешить указывать собственный идентификатор/секрет во всех случаях\nубедитесь, что минимальный интервал опроса 10 минут соблюдается, если не указан индивидуальный идентификатор/секрет\nНесколько других исправлений и оптимизаций\nДобавьте Sentry для отчетов о сбоях",
-        "pt": "Adicionado suporte para sensor de monóxido de carbono netatmo.\nAdicionado suporte para alarme de fumaça netatmo.\nevitar falhas se o limite do aplicativo for atingido\nPermitir especificar o próprio id/segredo em todos os casos\ngarantir que o intervalo mínimo de pesquisa de 10 minutos seja respeitado se nenhum ID/Segredo individual for fornecido\nVárias correções e otimizações de pother\nAdicionar Sentinela para relatórios de falhas",
-        "nl": "Ondersteuning toegevoegd voor de netatmo-koolmonoxidesensor.\nOndersteuning toegevoegd voor netatmo rookmelder.\ncrashes voorkomen als de applicatielimiet is bereikt\nSta toe om in alle gevallen een eigen id/geheim te specificeren\nzorg ervoor dat het minimale polling-interval van 10 minuten wordt gerespecteerd als er geen individuele ID/geheim wordt verstrekt\nVerschillende andere oplossingen en optimalisaties\nSentry toevoegen voor crashrapportage",
-        "fr": "Ajout de la prise en charge du capteur de monoxyde de carbone netatmo.\nAjout de la prise en charge du détecteur de fumée netatmo.\néviter les plantages si la limite d'application est atteinte\nAutoriser à spécifier son propre identifiant/secret dans tous les cas\ns'assurer que l'intervalle d'interrogation minimum de 10 minutes est respecté si aucun identifiant individuel/secret n'est fourni\nPlusieurs autres corrections et optimisations\nAjouter Sentry pour les rapports de plantage",
-        "it": "Aggiunto supporto per sensore di monossido di carbonio netatmo.\nAggiunto supporto per rilevatore di fumo netatmo.\nprevenire arresti anomali se viene raggiunto il limite dell'applicazione\nConsenti di specificare il proprio id/segreto in tutti i casi\nassicurarsi che venga rispettato un intervallo minimo di polling di 10 minuti se non viene fornito alcun ID/Segreto individuale\nDiverse correzioni e ottimizzazioni\nAggiungi Sentinella per la segnalazione degli arresti anomali",
-        "es": "Se agregó soporte para el sensor de monóxido de carbono netatmo.\nSe agregó compatibilidad con la alarma de humo netatmo.\nevitar bloqueos si se alcanza el límite de la aplicación\nPermitir especificar su propia identificación/secreto en todos los casos\nasegúrese de que se respete el intervalo de sondeo mínimo de 10 minutos si no se proporciona una identificación/secreto individual\nVarias correcciones y optimizaciones.\nAgregar Sentry para informes de fallas",
-        "pl": "Dodano obsługę czujnika tlenku węgla netatmo.\nDodano obsługę czujnika dymu netatmo.\nzapobiegaj awariom, jeśli osiągnięto limit aplikacji\nZezwalaj na określenie własnego identyfikatora/sekretu we wszystkich przypadkach\nupewnij się, że przestrzegany jest minimalny interwał odpytywania wynoszący 10 minut, jeśli nie podano indywidualnego identyfikatora/sekretu\nKilka dalszych poprawek i optymalizacji\nDodaj Sentry do zgłaszania awarii",
-        "zh-cn": "添加了对 netatmo 一氧化碳传感器的支持。\n添加了对 netatmo 烟雾报警器的支持。\n如果达到应用程序限制，防止崩溃\n允许在所有情况下指定自己的 id/secret\n如果未提供个人 ID/秘密，请确保遵守 10 分钟的最小轮询间隔\n其他几个修复和优化\n添加 Sentry 以进行崩溃报告"
       }
     },
     "desc": {

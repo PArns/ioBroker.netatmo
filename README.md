@@ -69,6 +69,10 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Catch communication errors better
+
 ### 2.0.4 (2022-09-15)
 * (Apollon77) Fix crash case with Smoke detector events
 

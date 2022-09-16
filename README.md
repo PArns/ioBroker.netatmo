@@ -69,8 +69,7 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 2.0.5 (2022-09-16)
 * (Apollon77) Catch communication errors better
 
 ### 2.0.4 (2022-09-15)

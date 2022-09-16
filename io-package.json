@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,18 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.0.5": {
+        "en": "Catch communication errors better",
+        "de": "Kommunikationsfehler besser einfangen",
+        "ru": "Поймать ошибки общения лучше",
+        "pt": "Apanhar erros de comunicação melhor",
+        "nl": "Vertaling:",
+        "fr": "Attrapez les erreurs de communication mieux",
+        "it": "Cattura errori di comunicazione migliore",
+        "es": "Errores de comunicación de captura mejor",
+        "pl": "Błędy komunikacji",
+        "zh-cn": "失误"
+      },
       "2.0.4": {
         "en": "Fix crash case with Smoke detector events",
         "de": "Crashfall mit Smoke-Detektorereignissen beheben",
@@ -87,18 +99,6 @@
         "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
         "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
         "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
-      },
-      "1.5.1": {
-        "en": "Fix jsonconfig for Client secret",
-        "de": "Korrigieren Sie jsonconfig für das Clientgeheimnis",
-        "ru": "Исправить jsonconfig для секрета клиента",
-        "pt": "Corrigir jsonconfig para segredo do cliente",
-        "nl": "jsonconfig voor clientgeheim repareren",
-        "fr": "Correction de jsonconfig pour le secret client",
-        "it": "Correggi jsonconfig per il segreto del client",
-        "es": "Arreglar jsonconfig para el secreto del cliente",
-        "pl": "Napraw jsonconfig dla tajnego klienta",
-        "zh-cn": "修复客户端密码的 jsonconfig"
       }
     },
     "desc": {

@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.0.5",
+    "version": "2.1.0",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,18 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.1.0": {
+        "en": "Fix setAway\nAdjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
+        "de": "Fix Weg\nEinstellen der Einstellungen Home-Nachrichtantworten, um alle Fehler / Antworten zurückzugeben, wenn mehrere Anrufe, wo für mehrere Häuser oder Personen getan",
+        "ru": "Fix набор Вдали\nНастройка setAway/set Ответы на домашнее сообщение, чтобы вернуть все ошибки/ответы, когда несколько звонков, где это сделано для нескольких домов или людей",
+        "pt": "Conjunto de fixação A caminho\nAjuste setAway/set Respostas de mensagem inicial para retornar todos os erros/respostas quando várias chamadas feitas para várias casas ou pessoas",
+        "nl": "Fix set Weg\nVertaling: Thuisberichten reageren om alle fouten en verantwoordelijkheden terug te brengen wanneer meerdere gesprekken plaatsvinden voor meerdere huizen of personen",
+        "fr": "Correction Away\nRéglage Accueil Messages réponses pour retourner toutes les erreurs/réponses lorsque plusieurs appels sont faits pour plusieurs maisons ou personnes",
+        "it": "Set di fissaggio Via\nRegolare il setAway/set Risposte del messaggio di casa per restituire tutti gli errori / risposte quando più chiamate dove fatto per più case o persone",
+        "es": "Juego fijo Away\nAjuste ajustadoAway/set Home message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
+        "pl": "Fix set Away\nAdjust setAway (ang.). Odpowiedź komunikatu na powrót wszystkich błędów i odpowiedzi w przypadku wielokrotnych połączeń, w których przeprowadzano wiele domów lub osób",
+        "zh-cn": "九. 固定装置 A. 公路\n调整 当多家住宅或个人要求多家住房或多人做多家事时,家庭对返回所有错误/反应作出反应"
+      },
       "2.0.5": {
         "en": "Catch communication errors better",
         "de": "Kommunikationsfehler besser einfangen",
@@ -87,18 +99,6 @@
         "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
         "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
         "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
-      },
-      "1.6.0": {
-        "en": "Important: In person names (Welcome) in state IDs forbidden characters are now replaces by _!!\nFix another potential crash case reported by sentry",
-        "de": "Wichtig: In Personennamen (Welcome) in State IDs werden verbotene Zeichen jetzt durch _ ersetzt!!\nBeheben Sie einen weiteren potenziellen Absturzfall, der von Sentry gemeldet wurde",
-        "ru": "Важно: В именах людей (Добро пожаловать) в идентификаторах состояний запрещенные символы теперь заменяются на _!!\nИсправить еще один потенциальный случай сбоя, о котором сообщил часовой.",
-        "pt": "Importante: Nomes pessoais (Bem-vindo) em IDs de estado, caracteres proibidos agora são substituídos por _!!\nCorrigir outro possível caso de falha relatado pela sentinela",
-        "nl": "Belangrijk: persoonlijke namen (welkom) in staat-ID's verboden tekens worden nu vervangen door _!!\nRepareer een ander potentieel crashgeval gemeld door schildwacht",
-        "fr": "Important : Dans les noms de personne (Bienvenue) dans les identifiants d'état, les caractères interdits sont désormais remplacés par _ !!\nCorrection d'un autre cas de crash potentiel signalé par la sentinelle",
-        "it": "Importante: i nomi di persona (Benvenuto) negli ID di stato i caratteri proibiti sono ora sostituiti da _!!\nRisolvi un altro potenziale caso di crash segnalato dalla sentinella",
-        "es": "Importante: ¡En los nombres de personas (Bienvenido) en las identificaciones estatales, los caracteres prohibidos ahora se reemplazan por _!\nArreglar otro posible caso de bloqueo informado por centinela",
-        "pl": "Ważne: Osobiste imiona (Witamy) w identyfikatorach państwowych zabronione znaki są teraz zastępowane przez _!!\nNapraw kolejną potencjalną awarię zgłoszoną przez wartownika",
-        "zh-cn": "重要提示：州 ID 中的人名（欢迎）现在被 _ 替换！\n修复哨兵报告的另一个潜在崩溃案例"
       }
     },
     "desc": {

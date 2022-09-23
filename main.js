@@ -134,7 +134,7 @@ function startAdapter(options) {
                                 adapter.log.error(`Cannot write token file: ${err}`);
                             }
 
-                            obj.callback && adapter.sendTo(obj.from, obj.command, {result: 'Tokens updated successfully. Please reload configuration.'}, obj.callback);
+                            obj.callback && adapter.sendTo(obj.from, obj.command, {result: 'Tokens updated successfully.'}, obj.callback);
 
                             adapter.log.info('Update data in adapter configuration ... restarting ...');
                             adapter.extendForeignObject(`system.adapter.${adapter.namespace}`, {

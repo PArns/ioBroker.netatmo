@@ -69,6 +69,11 @@ Basically the same functionality as described for "setAway" above also is existi
 	### __WORK IN PROGRESS__
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (Apollon77) Fix setAway
+* (Apollon77) Adjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons
+
 ### 2.0.5 (2022-09-16)
 * (Apollon77) Catch communication errors better
 

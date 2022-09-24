@@ -26,6 +26,7 @@
          "netatmoSmokedetector": {
             "type": "checkbox",
             "label": "Smokedetector",
+            "disabled": "data.id === '' || data.secret === ''",
             "sm": 12,
             "md": 6,
             "lg": 3
@@ -33,6 +34,7 @@
         "netatmoCOSensor": {
             "type": "checkbox",
             "label": "netatmoCOSensor",
+            "disabled": "data.id === '' || data.secret === ''",
             "sm": 12,
             "md": 6,
             "lg": 3
@@ -40,6 +42,7 @@
         "netatmoDoorBell": {
             "type": "checkbox",
             "label": "netatmoDoorBell",
+            "disabled": "data.id === '' || data.secret === ''",
             "sm": 12,
             "md": 6,
             "lg": 3

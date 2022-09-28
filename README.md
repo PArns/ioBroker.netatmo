@@ -72,7 +72,7 @@ Basically the same functionality as described for "setAway" above also is existi
 
 ### __WORK IN PROGRESS__
 * (Apollon77) Make sure device types that require custom credentials are not selectable in UI without entering them
-* 
+* (Apollon77) Fix a potential crash case
 
 ### 2.1.0 (2022-09-23)
 * (Apollon77) Fix setAway

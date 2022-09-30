@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,18 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.1.1": {
+        "en": "Make sure device types that require custom credentials are not selectable in UI without entering them\nFix a potential crash case",
+        "de": "Stellen Sie sicher, dass Gerätetypen, die benutzerdefinierte Anmeldeinformationen benötigen, in UI nicht wählbar sind, ohne sie einzugeben\nEin potenzieller Crashfall beheben",
+        "ru": "Убедитесь, что типы устройств, которые требуют пользовательские учетные данные не выбираются в UI, не входя в них\nИсправление потенциального случай аварии",
+        "pt": "Certifique-se de que os tipos de dispositivo que exigem credenciais personalizadas não são selecionáveis na interface do usuário sem entrar neles\nCorrigir um caso de acidente potencial",
+        "nl": "Zorg ervoor dat apparaattypes die gebruikelijke referenties nodig hebben niet geselecteerd in UI zonder ze binnen te komen\nMaak een mogelijke crash zaak",
+        "fr": "Assurez-vous que les types de périphériques qui nécessitent des identifiants personnalisés ne sont pas sélectionnables dans l'interface utilisateur sans les entrer\nCorrection d'un cas d'accident potentiel",
+        "it": "Assicurarsi che i tipi di dispositivo che richiedono credenziali personalizzate non siano selezionabili in UI senza immetterli\nFissare un potenziale caso di crash",
+        "es": "Asegúrese de que los tipos de dispositivo que requieren credenciales personalizadas no son seleccionables en UI sin entrar en ellos\nArreglar un caso de accidente potencial",
+        "pl": "Umożliwia to, że pewne typy urządzeń wymagające konkretnych kredentialów nie są wybierane w interfejsie użytkownika bez wchodzenia do nich\nFix – przypadek katastrofy potencjalnej",
+        "zh-cn": "确定需要定有证书的设备类型在UI不能选择,而不准他们进入。\n确定潜在事故"
+      },
       "2.1.0": {
         "en": "Fix setAway\nAdjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
         "de": "Fix Weg\nEinstellen der Einstellungen Home-Nachrichtantworten, um alle Fehler / Antworten zurückzugeben, wenn mehrere Anrufe, wo für mehrere Häuser oder Personen getan",
@@ -87,18 +99,6 @@
         "es": "Arreglar la limpieza de eventos",
         "pl": "Napraw czyszczenie wydarzenia",
         "zh-cn": "修复事件清理"
-      },
-      "1.7.0": {
-        "en": "IMPORTANT: js-controller 3.3.19 is needed at least!\nActivate events again (manually delete objects once if you get type errors)\nAdjust some roles and written data to prevent warnings in logs",
-        "de": "WICHTIG: js-controller 3.3.19 wird mindestens benötigt!\nEreignisse erneut aktivieren (bei Tippfehlern Objekte einmalig manuell löschen)\nPassen Sie einige Rollen und geschriebene Daten an, um Warnungen in Protokollen zu vermeiden",
-        "ru": "ВАЖНО: нужен js-контроллер версии не ниже 3.3.19!\nАктивируйте события снова (вручную удалите объекты один раз, если вы получаете ошибки типа)\nНастройте некоторые роли и записанные данные, чтобы предотвратить появление предупреждений в журналах.",
-        "pt": "IMPORTANTE: o js-controller 3.3.19 é necessário pelo menos!\nAtive os eventos novamente (exclua manualmente os objetos uma vez se você receber erros de tipo)\nAjuste algumas funções e dados escritos para evitar avisos em logs",
-        "nl": "BELANGRIJK: js-controller 3.3.19 is minimaal nodig!\nActiveer gebeurtenissen opnieuw (verwijder objecten één keer handmatig als u typefouten krijgt)\nPas enkele rollen en geschreven gegevens aan om waarschuwingen in logs te voorkomen",
-        "fr": "IMPORTANT : il faut au moins js-controller 3.3.19 !\nActivez à nouveau les événements (supprimez manuellement les objets une fois si vous obtenez des erreurs de type)\nAjuster certains rôles et données écrites pour éviter les avertissements dans les journaux",
-        "it": "IMPORTANTE: è necessario almeno js-controller 3.3.19!\nAttiva nuovamente gli eventi (elimina manualmente gli oggetti una volta se ricevi errori di digitazione)\nModifica alcuni ruoli e dati scritti per evitare avvisi nei log",
-        "es": "IMPORTANTE: ¡se necesita js-controller 3.3.19 al menos!\nVuelva a activar los eventos (elimine manualmente los objetos una vez si obtiene errores de tipo)\nAjuste algunos roles y datos escritos para evitar advertencias en los registros",
-        "pl": "WAŻNE: potrzebny jest przynajmniej js-controller 3.3.19!\nAktywuj zdarzenia ponownie (ręcznie usuń obiekty raz, jeśli pojawią się błędy typu)\nDostosuj niektóre role i zapisane dane, aby zapobiec ostrzeżeniom w dziennikach",
-        "zh-cn": "重要提示：至少需要 js-controller 3.3.19！\n再次激活事件（如果遇到类型错误，请手动删除一次对象）\n调整部分角色和写入数据，防止日志出现警告"
       }
     },
     "desc": {

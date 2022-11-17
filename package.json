@@ -39,6 +39,13 @@
     "socket.io-client": "^1.7.4"
   },
   "main": "main.js",
+  "files": [
+    "admin/",
+    "lib/",
+    "io-package.json",
+    "main.js",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@alcalzone/release-script": "^3.5.9",
     "@alcalzone/release-script-plugin-iobroker": "^3.5.9",

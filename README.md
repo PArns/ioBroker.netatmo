@@ -69,8 +69,8 @@ Basically the same functionality as described for "setAway" above also is existi
 	### **WORK IN PROGRESS**
 -->
 ## Changelog
-### **WORK IN PROGRESS**
-* (bluefox) Added missing objects for `Welcome` devices 
+### 2.1.2 (2022-11-17)
+* (bluefox) Added missing objects for `Welcome` devices
 
 ### 2.1.1 (2022-09-30)
 * (Apollon77) Make sure device types that require custom credentials are not selectable in UI without entering them

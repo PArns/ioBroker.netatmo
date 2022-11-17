@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "netatmo",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
@@ -16,6 +16,19 @@
       "zh-cn": "内塔莫"
     },
     "news": {
+      "2.1.2": {
+        "en": "Added missing objects for `Welcome` devices",
+        "de": "Fehlende Objekte für Welcome-Geräte hinzugefügt",
+        "ru": "Добавлены недостающие объекты для Welcome устройств",
+        "pt": "Adicionados objetos em falta para dispositivos de boas-vindas",
+        "nl": "Vermiste objecten toegevoegd voor welkome apparaten",
+        "fr": "Ajout d'objets manquants pour les dispositifs de bienvenue",
+        "it": "Aggiunti gli oggetti mancanti per i dispositivi Welcome",
+        "es": "Añadido objetos perdidos para dispositivos de bienvenida",
+        "pl": "Zamknięte przedmioty dla urządzeń Welcome",
+        "uk": "Додано відсутні об'єкти для вітальних пристроїв",
+        "zh-cn": "添加用于湿度装置的缺失物品"
+      },
       "2.1.1": {
         "en": "Make sure device types that require custom credentials are not selectable in UI without entering them\nFix a potential crash case",
         "de": "Stellen Sie sicher, dass Gerätetypen, die benutzerdefinierte Anmeldeinformationen benötigen, in UI nicht wählbar sind, ohne sie einzugeben\nEin potenzieller Crashfall beheben",
@@ -87,18 +100,6 @@
         "es": "IMPORTANTE: Este adaptador requiere que Admin 6.2.14+ sea configurado!\n* BREAKING: La estructura de objetos cambia completamente y ahora utiliza IDs únicas en lugar de nombres!\n* Cambiar el método de autenticación solicitado por Netatmo hasta octubre 2022\n* Integración de Doorbell\n* more, see changelog!",
         "pl": "IMPORTANT: Ta adapter wymaga, aby Admin 6.2.14+ został skonfigurowany!\nBREAKING – struktura obiektów zmienia się całkowicie i obecnie wykorzystuje unikalne identyfikatory zamiast nazw!\n* Zmiana metody Authentication przez Netatmo do października 2022 r\nDoorbell integration\n* – zobacz zmiany!",
         "zh-cn": "IMPORTANT:The Adapter需要 Admin 6.2.14+ 配置!\n* BREAK:目标结构完全改变,现在使用独特的国际发展部而不是名称!\n* A/64/50。 第2022条\n* 候补成员\n* 更多人,见《变革》!"
-      },
-      "1.7.1": {
-        "en": "Fix Event cleanup",
-        "de": "Ereignisbereinigung behoben",
-        "ru": "Исправить очистку событий",
-        "pt": "Corrigir a limpeza do evento",
-        "nl": "Fix Evenement opschonen",
-        "fr": "Réparer Nettoyage des événements",
-        "it": "Risolto il problema con la pulizia dell'evento",
-        "es": "Arreglar la limpieza de eventos",
-        "pl": "Napraw czyszczenie wydarzenia",
-        "zh-cn": "修复事件清理"
       }
     },
     "desc": {

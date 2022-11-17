@@ -32,7 +32,7 @@
     "url": "https://github.com/PArns/ioBroker.netatmo"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.6",
+    "@iobroker/adapter-core": "^2.6.7",
     "dewpoint": "^1.0.0",
     "moment": "^2.29.4",
     "request": "^2.88.2",
@@ -43,11 +43,11 @@
     "@alcalzone/release-script": "^3.5.9",
     "@alcalzone/release-script-plugin-iobroker": "^3.5.9",
     "@alcalzone/release-script-plugin-license": "^3.5.9",
-    "@iobroker/adapter-dev": "^1.1.0",
+    "@iobroker/adapter-dev": "^1.2.0",
     "@iobroker/testing": "^4.1.0",
-    "@iobroker/dev-server": "^0.5.0",
-    "mocha": "^10.0.0",
-    "chai": "^4.3.6"
+    "@iobroker/dev-server": "^0.6.0",
+    "mocha": "^10.1.0",
+    "chai": "^4.3.7"
   },
   "bugs": {
     "url": "https://github.com/ioBroker/ioBroker.netatmo/issues"

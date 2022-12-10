@@ -109,6 +109,43 @@
             "sm": 6,
             "lg": 3
         },
+        "_realtimeEventHeader": {
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
+            "type": "header",
+            "newLine":  true,
+            "size": 4,
+            "style": {
+                "marginTop": 20
+            },
+            "sm": 12,
+            "text": "_realtimeEventHeader"
+        },
+        "_realtimeEventInfo": {
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
+            "type": "staticText",
+            "newLine":  true,
+            "text": "_realtimeEventInfo"
+        },
+        "iotInstance": {
+            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
+            "newLine": true,
+            "type": "instance",
+            "adapter": "iot",
+            "label": "iotInstanceLabel",
+            "help": "hours",
+            "sm": 6,
+            "lg": 3
+        },
+        "_additionalSettingsHeader": {
+            "type": "header",
+            "newLine":  true,
+            "size": 4,
+            "style": {
+                "marginTop": 20
+            },
+            "sm": 12,
+            "text": "_additionalSettingsHeader"
+        },
         "location_elevation": {
             "hidden": "!data.netatmoWeather && !data.netatmoCoach",
             "newLine": true,

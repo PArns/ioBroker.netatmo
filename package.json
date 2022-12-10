@@ -35,8 +35,7 @@
     "@iobroker/adapter-core": "^2.6.7",
     "dewpoint": "^1.0.0",
     "moment": "^2.29.4",
-    "request": "^2.88.2",
-    "socket.io-client": "^1.7.4"
+    "request": "^2.88.2"
   },
   "main": "main.js",
   "files": [

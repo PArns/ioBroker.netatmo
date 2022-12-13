@@ -14,7 +14,7 @@
 Netatmo adapter for ioBroker
 
 ## __Important Note for Realtime events (Doorbell, Welcome, Presence, CO2/Smoke-Alarm)__
-To receive realtime events from Netatmo you need an iot/Pro-Cloud Account with an Assistent- or Remote-License and an installed iot Instance connected to this account. The iot Instance needs to have v1.14.0 or higher.
+To receive realtime events from Netatmo you need an iot/Pro-Cloud Account with an Assistent- or Remote-License and an installed iot Instance connected to this account. The iot Instance needs to have v1.13.1 or higher.
 
 Please select the iot Instance in the adapter settings and restart the adapter.
 
@@ -78,7 +78,7 @@ Basically the same functionality as described for "setAway" above also is existi
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (Apollon77/bluefox) BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.14.0)
+* (Apollon77/bluefox) BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.13.1)
 
 ### 2.1.2 (2022-11-17)
 * (bluefox) Added missing objects for `Welcome` devices

@@ -76,8 +76,7 @@ Basically the same functionality as described for "setAway" above also is existi
 	### **WORK IN PROGRESS**
 -->
 ## Changelog
-
-### __WORK IN PROGRESS__
+### 3.0.0 (2022-12-14)
 * (Apollon77/bluefox) BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.14.0 required)
 
 ### 2.1.2 (2022-11-17)

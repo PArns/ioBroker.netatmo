@@ -47,6 +47,13 @@
             "md": 6,
             "lg": 3
         },
+        "netatmoBubendorff": {
+            "type": "checkbox",
+            "label": "netatmoBubendorff",
+            "sm": 12,
+            "md": 6,
+            "lg": 3
+        },
         "_authenticate": {
             "newLine": true,
             "variant": "contained",
@@ -58,7 +65,7 @@
             },
             "icon": "auth",
             "command": "getOAuthStartLink",
-            "jsonData": "{\"client_id\": \"${data.id}\",\"client_secret\": \"${data.secret}\",\"redirect_uri_base\": \"${data._origin}\", \"scopes\": {\"netatmoCoach\": ${data.netatmoCoach}, \"netatmoWeather\": ${data.netatmoWeather}, \"netatmoWelcome\": ${data.netatmoWelcome}, \"netatmoSmokedetector\": ${data.netatmoSmokedetector}, \"netatmoCOSensor\": ${data.netatmoCOSensor}, \"netatmoDoorBell\": ${data.netatmoDoorBell} }}",
+            "jsonData": "{\"client_id\": \"${data.id}\",\"client_secret\": \"${data.secret}\",\"redirect_uri_base\": \"${data._origin}\", \"scopes\": {\"netatmoCoach\": ${data.netatmoCoach}, \"netatmoWeather\": ${data.netatmoWeather}, \"netatmoWelcome\": ${data.netatmoWelcome}, \"netatmoSmokedetector\": ${data.netatmoSmokedetector}, \"netatmoCOSensor\": ${data.netatmoCOSensor}, \"netatmoDoorBell\": ${data.netatmoDoorBell}, \"netatmoBubendorff\": ${data.netatmoBubendorff} }}",
             "label": "Authenticate with Netatmo",
             "openUrl": true,
             "window": "Login with Netatmo"

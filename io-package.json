@@ -270,6 +270,7 @@
     "netatmoSmokedetector": false,
     "netatmoCOSensor": false,
     "netatmoDoorBell": false,
+    "netatmoBubendorff": false,
     "check_interval": 5,
     "cleanup_interval": 60,
     "event_time": 12,

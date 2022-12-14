@@ -28,6 +28,9 @@ let cosensor = null;
 const NetatmoDoorBell = require('./lib/netatmoDoorBell');
 let doorbell = null;
 
+const NetatmoBubendorff = require('./lib/netatmoBubendorff');
+let bubendorff = null;
+
 let _coachUpdateInterval;
 let _weatherUpdateInterval;
 let _welcomeUpdateInterval;
@@ -194,11 +197,13 @@ function cleanupResources() {
         _smokedetectorUpdateInterval && clearInterval(_smokedetectorUpdateInterval);
         _cosensorUpdateInterval && clearInterval(_cosensorUpdateInterval);
         _doorbellUpdateInterval && clearInterval(_doorbellUpdateInterval);
+        _bubendorffUpdateInterval && clearInterval(_bubendorffUpdateInterval);
 
         welcome && welcome.finalize();
         smokedetector && smokedetector.finalize();
         cosensor && cosensor.finalize();
         doorbell && doorbell.finalize();
+        bubendorff && bubendorff.finalize();
     } catch (err) {
         // ignore
     }
@@ -248,8 +253,12 @@ function getScopeList(scopes, individualCredentials) {
         }
     }
 
+    if (scopes.netatmoBubendorff) {
+        scope += ' read_bubendorff';
+    }
+
     // If nothing is set, activate at least the Weatherstation
-    if (!(scopes.netatmoCoach || scopes.netatmoWeather || scopes.netatmoWelcome || scopes.netatmoSmokedetector || scopes.netatmoCOSensor || scopes.netatmoDoorBell)) {
+    if (!(scopes.netatmoCoach || scopes.netatmoWeather || scopes.netatmoWelcome || scopes.netatmoSmokedetector || scopes.netatmoCOSensor || scopes.netatmoDoorBell || scopes.netatmoBubendorff)) {
         adapter.log.info('No product was chosen, using Weather station as default!');
         scopes.netatmoWeather = true;
     }
@@ -494,6 +503,15 @@ function initialize() {
 
         _doorbellUpdateInterval = setInterval(() =>
             doorbell.requestUpdateDoorBell(), adapter.config.check_interval * 2 * 60 * 1000);
+    }
+
+    if (adapter.config.netatmoBubendorff) {
+        doorbell = new NetatmoBubendorff(api, adapter);
+        doorbell.init();
+        doorbell.requestUpdateBubendorff();
+
+        _doorbellUpdateInterval = setInterval(() =>
+            doorbell.requestUpdateBubendorff(), adapter.config.check_interval * 2 * 60 * 1000);
     }
 }
 

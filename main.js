@@ -254,7 +254,7 @@ function getScopeList(scopes, individualCredentials) {
     }
 
     if (scopes.netatmoBubendorff) {
-        scope += ' read_bubendorff';
+        scope += ' read_bubendorff write_bubendorff';
     }
 
     // If nothing is set, activate at least the Weatherstation

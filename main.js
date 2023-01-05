@@ -37,6 +37,7 @@ let _welcomeUpdateInterval;
 let _smokedetectorUpdateInterval;
 let _cosensorUpdateInterval;
 let _doorbellUpdateInterval;
+let _bubendorffUpdateInterval;
 
 let usedClientId;
 let usedClientSecret;
@@ -175,12 +176,26 @@ function startAdapter(options) {
         adapter.log.debug(`stateChange ${id} ${JSON.stringify(state)}`);
         if (state && !state.ack) {
             if (id.startsWith(adapter.namespace)) {
-                id = id.substring(adapter.namespace.length + 2);
+                id = id.substring(adapter.namespace.length + 1);
             }
             if (extendedObjects[id] && extendedObjects[id].native && extendedObjects[id].native.homeId) {
                 const obj = extendedObjects[id];
-                api.setState(obj.native.homeId, obj.native.moduleId, obj.native.field, state.val, (err,res) => {
-                    err && adapter.log.error(`Cannot set state ${id}: ${err}`);
+                adapter.log.debug(`set state for field ${obj.native.field}`);
+                api.setState(
+                    obj.native.homeId,
+                    obj.native.moduleId,
+                    obj.native.field,
+                    obj.native.setValue !== undefined ? obj.native.setValue : state.val,
+                    obj.native.bridgeId,
+                    (err, res) => {
+                    if (err) {
+                        adapter.log.error(`Cannot set state ${id}: ${err}`);
+                    } else {
+                        adapter.log.debug(`State ${id} set successfully`);
+                        // update data if set was successful
+                        welcome && welcome.situativeUpdate(obj.native.homeId, obj.native.moduleId);
+                        bubendorff && bubendorff.situativeUpdate(obj.native.homeId, obj.native.moduleId);
+                    }
                 });
             }
         }
@@ -327,12 +342,12 @@ function main() {
     adapter.extendOrSetObjectNotExistsAsync = async (id, obj, options) => {
         if (!extendedObjects[id]) {
             adapter.log.debug(`Initially Check/Extend object ${id} ...`);
-            extendedObjects[id] = obj;
+            extendedObjects[id] = JSON.parse(JSON.stringify(obj));
             return adapter.extendObjectAsync(id, obj, options);
         } else {
             if (!isEquivalent(extendedObjects[id], obj)) {
                 adapter.log.debug(`Update object ${id} ...${JSON.stringify(extendedObjects[id])} => ${JSON.stringify(obj)}`);
-                extendedObjects[id] = obj;
+                extendedObjects[id] = JSON.parse(JSON.stringify(obj));
                 return adapter.extendObjectAsync(id, obj, options);
             }
         }
@@ -506,12 +521,12 @@ function initialize() {
     }
 
     if (adapter.config.netatmoBubendorff) {
-        doorbell = new NetatmoBubendorff(api, adapter);
-        doorbell.init();
-        doorbell.requestUpdateBubendorff();
+        bubendorff = new NetatmoBubendorff(api, adapter);
+        bubendorff.init();
+        bubendorff.requestUpdateBubendorff();
 
-        _doorbellUpdateInterval = setInterval(() =>
-            doorbell.requestUpdateBubendorff(), adapter.config.check_interval * 2 * 60 * 1000);
+        _bubendorffUpdateInterval = setInterval(() =>
+            bubendorff.requestUpdateBubendorff(), adapter.config.check_interval * 2 * 60 * 1000);
     }
 }
 

@@ -77,8 +77,9 @@ Basically the same functionality as described for "setAway" above also is existi
 -->
 ## Changelog
 ### __WORK IN PROGRESS__
-* (Apollon77) Add support for Bubendorff shutters
+* (Apollon77) Add support for Bubendorff roller shutters
 * (Apollon77) Fix Monitoring State for Welcomes
+* (Apollon77) Allow to just use CO2/Smoke sensors
 
 ### 3.0.0 (2022-12-14)
 * (Apollon77/bluefox) BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.14.0 required)

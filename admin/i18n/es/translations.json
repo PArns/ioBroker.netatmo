@@ -16,15 +16,15 @@
     "Smokedetector": "detector de humo",
     "Weather station": "Estación meteorológica",
     "Welcome indoor cam": "Welcome Cámara interior/exterior",
+    "_additionalSettingsHeader": "Ajustes adicionales",
+    "_realtimeEventHeader": "Eventos en tiempo real",
+    "_realtimeEventInfo": "Para recibir eventos en tiempo real de Bienvenida y presencia o recibir alertas de humo, timbre o sensor de CO en tiempo real, debe seleccionar una instancia de adaptador iot que tenga un asistente activo o una licencia remota para pasar los datos del evento.",
     "auth_info_individual_credentials": "Después de ingresar o cambiar una identificación de cliente dedicada, repita el proceso de autenticación usando el botón anterior.",
     "clean minutes": "(minutos)",
     "hours": "(horas)",
+    "iotInstanceLabel": "Instancia iot para eventos en tiempo real",
     "live_stream1": "Para aumentar el intervalo de actualización o recibir transmisiones en vivo de Welcome & Presencia o para recibir alertas de humo en tiempo real, timbre o el sensor de CO, ¡debe solicitar su propia clave API de Netatmo!",
     "live_stream2": "Para ello, acceda a la siguiente URL, inicie sesión con su cuenta Netatmo y rellene el formulario solicitado",
     "load minutes": "(minutos)",
-    "meters": "metros sobre nN",
-    "iotInstanceLabel": "Instancia iot para eventos en tiempo real",
-    "_realtimeEventInfo": "Para recibir eventos en tiempo real de Bienvenida y presencia o recibir alertas de humo, timbre o sensor de CO en tiempo real, debe seleccionar una instancia de adaptador iot que tenga un asistente activo o una licencia remota para pasar los datos del evento.",
-    "_realtimeEventHeader": "Eventos en tiempo real",
-    "_additionalSettingsHeader": "Ajustes adicionales"
+    "meters": "metros sobre nN"
 }

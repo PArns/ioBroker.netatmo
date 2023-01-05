@@ -16,15 +16,15 @@
     "Smokedetector": "Czujnik dymu",
     "Weather station": "Stacja pogodowa",
     "Welcome indoor cam": "Welcome kamera wewnętrzna",
+    "_additionalSettingsHeader": "Dodatkowe ustawienia",
+    "_realtimeEventHeader": "Zdarzenia w czasie rzeczywistym",
+    "_realtimeEventInfo": "Aby otrzymywać zdarzenia w czasie rzeczywistym z Welcome & Presence lub otrzymywać powiadomienia o dymie, dzwonek do drzwi lub czujnik CO w czasie rzeczywistym, musisz wybrać instancję adaptera iot, która ma aktywnego asystenta lub licencję zdalną, aby przekazywać dane zdarzeń!",
     "auth_info_individual_credentials": "Po wprowadzeniu lub zmianie dedykowanego identyfikatora klienta należy powtórzyć proces Uwierzytelniania za pomocą powyższego przycisku.",
     "clean minutes": "(minuty)",
     "hours": "(godziny)",
+    "iotInstanceLabel": "Instancja iot dla zdarzeń w czasie rzeczywistym",
     "live_stream1": "Aby wydłużyć interwał aktualizacji lub odbierać transmisje na żywo z Welcome & Obecność lub aby otrzymywać powiadomienia o dymie w czasie rzeczywistym, dzwonek do drzwi lub czujnik CO, musisz poprosić Netatmo o własny klucz API!",
     "live_stream2": "Aby to zrobić, przejdź pod następujący adres URL, zaloguj się na swoje konto Netatmo i wypełnij żądany formularz",
     "load minutes": "(minuty)",
-    "meters": "metry ponad nN",
-    "iotInstanceLabel": "Instancja iot dla zdarzeń w czasie rzeczywistym",
-    "_realtimeEventInfo": "Aby otrzymywać zdarzenia w czasie rzeczywistym z Welcome & Presence lub otrzymywać powiadomienia o dymie, dzwonek do drzwi lub czujnik CO w czasie rzeczywistym, musisz wybrać instancję adaptera iot, która ma aktywnego asystenta lub licencję zdalną, aby przekazywać dane zdarzeń!",
-    "_realtimeEventHeader": "Zdarzenia w czasie rzeczywistym",
-    "_additionalSettingsHeader": "Dodatkowe ustawienia"
+    "meters": "metry ponad nN"
 }

@@ -26,5 +26,6 @@
     "live_stream1": "Um das Aktualisierungsintervall zu erhöhen oder Livestreams von Welcome & Anwesenheit oder um Echtzeit-Rauchalarme, Türklingel oder den CO-Sensor zu erhalten, müssen Sie Ihren eigenen API-Schlüssel von Netatmo anfordern!",
     "live_stream2": "Gehen Sie dazu auf die folgende URL, melden Sie sich mit Ihrem Netatmo-Konto an und füllen Sie das angeforderte Formular aus",
     "load minutes": "(Minuten)",
-    "meters": "Meter über nN"
+    "meters": "Meter über nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

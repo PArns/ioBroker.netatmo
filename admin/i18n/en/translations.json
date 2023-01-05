@@ -26,5 +26,6 @@
     "live_stream1": "In order to increase update interval or receive livestreams from Welcome & Presence or to get realtime smoke alerts, doorbell or the CO sensor, you've to request your own API key from Netatmo!",
     "live_stream2": "To do so, go to the following URL, login with your Netatmo account and fill out the requested form",
     "load minutes": "(minutes)",
-    "meters": "meters over nN"
+    "meters": "meters over nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

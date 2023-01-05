@@ -26,5 +26,6 @@
     "live_stream1": "Para aumentar o intervalo de atualização ou receber transmissões ao vivo de Welcome & Presença ou para obter alertas de fumaça em tempo real, campainha ou sensor de CO, você deve solicitar sua própria chave de API da Netatmo!",
     "live_stream2": "Para isso, acesse a seguinte URL, faça login com sua conta Netatmo e preencha o formulário solicitado",
     "load minutes": "(minutos)",
-    "meters": "metros sobre nN"
+    "meters": "metros sobre nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

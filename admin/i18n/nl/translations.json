@@ -26,5 +26,6 @@
     "live_stream1": "Om het update-interval te verlengen of livestreams te ontvangen van Welcome & Aanwezigheid of om realtime rookwaarschuwingen, deurbel of de CO-sensor te krijgen, moet u uw eigen API-sleutel bij Netatmo aanvragen!",
     "live_stream2": "Ga hiervoor naar de volgende URL, log in met uw Netatmo-account en vul het gevraagde formulier in",
     "load minutes": "(minuten)",
-    "meters": "meter boven nN"
+    "meters": "meter boven nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

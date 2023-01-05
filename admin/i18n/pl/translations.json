@@ -26,5 +26,6 @@
     "live_stream1": "Aby wydłużyć interwał aktualizacji lub odbierać transmisje na żywo z Welcome & Obecność lub aby otrzymywać powiadomienia o dymie w czasie rzeczywistym, dzwonek do drzwi lub czujnik CO, musisz poprosić Netatmo o własny klucz API!",
     "live_stream2": "Aby to zrobić, przejdź pod następujący adres URL, zaloguj się na swoje konto Netatmo i wypełnij żądany formularz",
     "load minutes": "(minuty)",
-    "meters": "metry ponad nN"
+    "meters": "metry ponad nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

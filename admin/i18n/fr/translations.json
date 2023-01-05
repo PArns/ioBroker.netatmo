@@ -26,5 +26,6 @@
     "live_stream1": "Afin d'augmenter l'intervalle de mise à jour ou de recevoir des flux en direct de Welcome & Présence ou pour recevoir les alertes fumées en temps réel, la sonnette ou le capteur de CO, il faut demander sa propre clé API à Netatmo !",
     "live_stream2": "Pour cela, rendez-vous sur l'URL suivante, connectez-vous avec votre compte Netatmo et remplissez le formulaire demandé",
     "load minutes": "(minutes)",
-    "meters": "mètres sur nN"
+    "meters": "mètres sur nN",
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

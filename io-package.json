@@ -1,283 +1,284 @@
 {
-  "common": {
-    "name": "netatmo",
-    "version": "3.0.0",
-    "title": "Netatmo",
-    "titleLang": {
-      "en": "Netatmo",
-      "de": "Netatmo",
-      "ru": "Нетатмо",
-      "pt": "Netatmo",
-      "nl": "Netatmo",
-      "fr": "Netatmo",
-      "it": "Nettmo",
-      "es": "Netatmo",
-      "pl": "Netatmo",
-      "zh-cn": "内塔莫",
-      "uk": "Netatmo"
-    },
-    "news": {
-      "3.0.0": {
-        "en": "BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.14.0 required)",
-        "de": "BREAKING CHANGE: Restructure Realtime-Ereignisse, die über iot-Instanz empfangen werden (iot >= 1,14,0 erforderlich)",
-        "ru": "ЗАВТРАК ИЗМЕНЕНИЯ: Реструктуризация событий в режиме реального времени, которые должны быть получены через iot экземпляр (iot >= 1.14.0 требуется)",
-        "pt": "CHANGE DE BREAKING: Reestruturar Eventos em tempo real a serem recebidos via iot instance (iot >= 1.14.0 obrigatório)",
-        "nl": "Restructure Retime evenementen worden ontvangen via iot instance 01:14,0 vereist",
-        "fr": "CHANGEMENT DE BREAKING: Restructurer les événements en temps réel à recevoir via l'instance iot (iot ACIA= 1.14.0 requis)",
-        "it": "PRESTAZIONI: ristrutturazione eventi in tempo reale da ricevere tramite istanza iot (iot >= 1.14.0 richiesto)",
-        "es": "CAMBIO DE BREAKING: Reestructurar eventos en tiempo real para ser recibidos por instancia iot (iot ю= 1.14.0 requerido)",
-        "pl": "BREAKING CHANGE: Restructure Realtime (ang.)",
-        "uk": "BREAKING CHANGE: Реструктуризація подій в режимі реального часу, щоб отримати через iot екземпляр (iot >= 1.14.0 потрібно)",
-        "zh-cn": "BAKREANGE:通过iot 例如(iot >=1.14.0 要求)接收的结构实时活动"
-      },
-      "2.1.2": {
-        "en": "Added missing objects for `Welcome` devices",
-        "de": "Fehlende Objekte für Welcome-Geräte hinzugefügt",
-        "ru": "Добавлены недостающие объекты для Welcome устройств",
-        "pt": "Adicionados objetos em falta para dispositivos de boas-vindas",
-        "nl": "Vermiste objecten toegevoegd voor welkome apparaten",
-        "fr": "Ajout d'objets manquants pour les dispositifs de bienvenue",
-        "it": "Aggiunti gli oggetti mancanti per i dispositivi Welcome",
-        "es": "Añadido objetos perdidos para dispositivos de bienvenida",
-        "pl": "Zamknięte przedmioty dla urządzeń Welcome",
-        "uk": "Додано відсутні об'єкти для вітальних пристроїв",
-        "zh-cn": "添加用于湿度装置的缺失物品"
-      },
-      "2.1.1": {
-        "en": "Make sure device types that require custom credentials are not selectable in UI without entering them\nFix a potential crash case",
-        "de": "Stellen Sie sicher, dass Gerätetypen, die benutzerdefinierte Anmeldeinformationen benötigen, in UI nicht wählbar sind, ohne sie einzugeben\nEin potenzieller Crashfall beheben",
-        "ru": "Убедитесь, что типы устройств, которые требуют пользовательские учетные данные не выбираются в UI, не входя в них\nИсправление потенциального случай аварии",
-        "pt": "Certifique-se de que os tipos de dispositivo que exigem credenciais personalizadas não são selecionáveis na interface do usuário sem entrar neles\nCorrigir um caso de acidente potencial",
-        "nl": "Zorg ervoor dat apparaattypes die gebruikelijke referenties nodig hebben niet geselecteerd in UI zonder ze binnen te komen\nMaak een mogelijke crash zaak",
-        "fr": "Assurez-vous que les types de périphériques qui nécessitent des identifiants personnalisés ne sont pas sélectionnables dans l'interface utilisateur sans les entrer\nCorrection d'un cas d'accident potentiel",
-        "it": "Assicurarsi che i tipi di dispositivo che richiedono credenziali personalizzate non siano selezionabili in UI senza immetterli\nFissare un potenziale caso di crash",
-        "es": "Asegúrese de que los tipos de dispositivo que requieren credenciales personalizadas no son seleccionables en UI sin entrar en ellos\nArreglar un caso de accidente potencial",
-        "pl": "Umożliwia to, że pewne typy urządzeń wymagające konkretnych kredentialów nie są wybierane w interfejsie użytkownika bez wchodzenia do nich\nFix – przypadek katastrofy potencjalnej",
-        "zh-cn": "确定需要定有证书的设备类型在UI不能选择,而不准他们进入。\n确定潜在事故",
-        "uk": "Переконайтеся, що типи пристроїв, для яких потрібні спеціальні облікові дані, не можна вибрати в інтерфейсі користувача, не ввівши їх\nВиправте потенційний випадок збою"
-      },
-      "2.1.0": {
-        "en": "Fix setAway\nAdjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
-        "de": "Fix Weg\nEinstellen der Einstellungen Home-Nachrichtantworten, um alle Fehler / Antworten zurückzugeben, wenn mehrere Anrufe, wo für mehrere Häuser oder Personen getan",
-        "ru": "Fix набор Вдали\nНастройка setAway/set Ответы на домашнее сообщение, чтобы вернуть все ошибки/ответы, когда несколько звонков, где это сделано для нескольких домов или людей",
-        "pt": "Conjunto de fixação A caminho\nAjuste setAway/set Respostas de mensagem inicial para retornar todos os erros/respostas quando várias chamadas feitas para várias casas ou pessoas",
-        "nl": "Fix set Weg\nVertaling: Thuisberichten reageren om alle fouten en verantwoordelijkheden terug te brengen wanneer meerdere gesprekken plaatsvinden voor meerdere huizen of personen",
-        "fr": "Correction Away\nRéglage Accueil Messages réponses pour retourner toutes les erreurs/réponses lorsque plusieurs appels sont faits pour plusieurs maisons ou personnes",
-        "it": "Set di fissaggio Via\nRegolare il setAway/set Risposte del messaggio di casa per restituire tutti gli errori / risposte quando più chiamate dove fatto per più case o persone",
-        "es": "Juego fijo Away\nAjuste ajustadoAway/set Home message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
-        "pl": "Fix set Away\nAdjust setAway (ang.). Odpowiedź komunikatu na powrót wszystkich błędów i odpowiedzi w przypadku wielokrotnych połączeń, w których przeprowadzano wiele domów lub osób",
-        "zh-cn": "九. 固定装置 A. 公路\n调整 当多家住宅或个人要求多家住房或多人做多家事时,家庭对返回所有错误/反应作出反应",
-        "uk": "Виправити setAway\nНалаштуйте відповіді на повідомлення setAway/setHome, щоб повертати всі помилки/відповіді під час кількох дзвінків для кількох будинків або людей"
-      },
-      "2.0.5": {
-        "en": "Catch communication errors better",
-        "de": "Kommunikationsfehler besser einfangen",
-        "ru": "Поймать ошибки общения лучше",
-        "pt": "Apanhar erros de comunicação melhor",
-        "nl": "Vertaling:",
-        "fr": "Attrapez les erreurs de communication mieux",
-        "it": "Cattura errori di comunicazione migliore",
-        "es": "Errores de comunicación de captura mejor",
-        "pl": "Błędy komunikacji",
-        "zh-cn": "失误",
-        "uk": "Краще вловлюйте помилки спілкування"
-      },
-      "2.0.4": {
-        "en": "Fix crash case with Smoke detector events",
-        "de": "Crashfall mit Smoke-Detektorereignissen beheben",
-        "ru": "Исправление случай аварии с событиями детектора дыма",
-        "pt": "Corrigir caso de acidente com eventos de detector de fumaça",
-        "nl": "Vertaling:",
-        "fr": "Boîtier de crash fixe avec des événements de détecteur de fumée",
-        "it": "Fix caso crash con gli eventi del rilevatore di fumo",
-        "es": "Caso de choque fijo con eventos de detector de humo",
-        "pl": "W przypadku katastrofy Fix z wykrywcami Smoke’a",
-        "zh-cn": "Smoke探测器事故",
-        "uk": "Виправте випадки збою з подіями детектора диму"
-      },
-      "2.0.3": {
-        "en": "Fixes and Optimizations for Doorbell devices",
-        "de": "Befestigungen und Optimierungen für Türklingelgeräte",
-        "ru": "Исправления и оптимизация для устройств Doorbell",
-        "pt": "Correções e Otimizações para dispositivos da campainha",
-        "nl": "Vertaling:",
-        "fr": "Fixes et optimisations pour les appareils de sonnerie",
-        "it": "Fissi e ottimizzazioni per i dispositivi Doorbell",
-        "es": "Fijaciones y optimizaciones para dispositivos Doorbell",
-        "pl": "Fixes and Optimization dla urządzeń Doorbell",
-        "zh-cn": "对多尔布尔装置的配件和利用",
-        "uk": "Виправлення та оптимізація пристроїв дверного дзвінка"
-      }
-    },
-    "desc": {
-      "en": "Netatmo",
-      "de": "Netatmo",
-      "ru": "Нетатмо",
-      "pt": "Netatmo",
-      "nl": "Netatmo",
-      "fr": "Netatmo",
-      "it": "Nettmo",
-      "es": "Netatmo",
-      "pl": "Netatmo",
-      "zh-cn": "内塔莫",
-      "uk": "Netatmo"
-    },
-    "license": "MIT",
-    "platform": "Javascript/Node.js",
-    "mode": "daemon",
-    "icon": "netatmo.png",
-    "compact": true,
-    "connectionType": "cloud",
-    "dataSource": "poll",
-    "tier": 2,
-    "enabled": true,
-    "messagebox": true,
-    "adminUI": {
-      "config": "json"
-    },
-    "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
-    "keywords": [
-      "netatmo"
-    ],
-    "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
-    "loglevel": "info",
-    "type": "weather",
-    "authors": [
-      "Patrick Arns <iobroker@patrick-arns.de>"
-    ],
-    "dependencies": [
-      {
-        "js-controller": ">=3.3.19"
-      }
-    ],
-    "globalDependencies": [
-      {
-        "admin": ">=6.2.13"
-      }
-    ],
-    "plugins": {
-      "sentry": {
-        "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
-      }
-    },
-    "messages": [
-      {
-        "condition": {
-          "operand": "and",
-          "rules": [
-            "oldVersion<2.0.0",
-            "newVersion>=2.0.0"
-          ]
+    "common": {
+        "name": "netatmo",
+        "version": "3.0.0",
+        "title": "Netatmo",
+        "titleLang": {
+            "en": "Netatmo",
+            "de": "Netatmo",
+            "ru": "Нетатмо",
+            "pt": "Netatmo",
+            "nl": "Netatmo",
+            "fr": "Netatmo",
+            "it": "Nettmo",
+            "es": "Netatmo",
+            "pl": "Netatmo",
+            "zh-cn": "内塔莫",
+            "uk": "Netatmo"
         },
-        "title": {
-          "en": "Object structure changes!",
-          "de": "Objektstruktur ändert sich!",
-          "ru": "Изменения структуры объекта!",
-          "pt": "Mudanças de estrutura de objetos!",
-          "nl": "Object structuur verandert!",
-          "fr": "La structure des objets change !",
-          "it": "La struttura degli oggetti cambia!",
-          "es": "¡La estructura de objetos cambia!",
-          "pl": "Zmiany obiektów!",
-          "zh-cn": "目标结构变化!",
-          "uk": "Змінюється структура об'єкта!"
+        "news": {
+            "3.0.0": {
+                "en": "BREAKING CHANGE: Restructure Realtime events to be received via iot instance (iot >= 1.14.0 required)",
+                "de": "BREAKING CHANGE: Restructure Realtime-Ereignisse, die über iot-Instanz empfangen werden (iot >= 1,14,0 erforderlich)",
+                "ru": "ЗАВТРАК ИЗМЕНЕНИЯ: Реструктуризация событий в режиме реального времени, которые должны быть получены через iot экземпляр (iot >= 1.14.0 требуется)",
+                "pt": "CHANGE DE BREAKING: Reestruturar Eventos em tempo real a serem recebidos via iot instance (iot >= 1.14.0 obrigatório)",
+                "nl": "Restructure Retime evenementen worden ontvangen via iot instance 01:14,0 vereist",
+                "fr": "CHANGEMENT DE BREAKING: Restructurer les événements en temps réel à recevoir via l'instance iot (iot ACIA= 1.14.0 requis)",
+                "it": "PRESTAZIONI: ristrutturazione eventi in tempo reale da ricevere tramite istanza iot (iot >= 1.14.0 richiesto)",
+                "es": "CAMBIO DE BREAKING: Reestructurar eventos en tiempo real para ser recibidos por instancia iot (iot ю= 1.14.0 requerido)",
+                "pl": "BREAKING CHANGE: Restructure Realtime (ang.)",
+                "uk": "BREAKING CHANGE: Реструктуризація подій в режимі реального часу, щоб отримати через iot екземпляр (iot >= 1.14.0 потрібно)",
+                "zh-cn": "BAKREANGE:通过iot 例如(iot >=1.14.0 要求)接收的结构实时活动"
+            },
+            "2.1.2": {
+                "en": "Added missing objects for `Welcome` devices",
+                "de": "Fehlende Objekte für Welcome-Geräte hinzugefügt",
+                "ru": "Добавлены недостающие объекты для Welcome устройств",
+                "pt": "Adicionados objetos em falta para dispositivos de boas-vindas",
+                "nl": "Vermiste objecten toegevoegd voor welkome apparaten",
+                "fr": "Ajout d'objets manquants pour les dispositifs de bienvenue",
+                "it": "Aggiunti gli oggetti mancanti per i dispositivi Welcome",
+                "es": "Añadido objetos perdidos para dispositivos de bienvenida",
+                "pl": "Zamknięte przedmioty dla urządzeń Welcome",
+                "uk": "Додано відсутні об'єкти для вітальних пристроїв",
+                "zh-cn": "添加用于湿度装置的缺失物品"
+            },
+            "2.1.1": {
+                "en": "Make sure device types that require custom credentials are not selectable in UI without entering them\nFix a potential crash case",
+                "de": "Stellen Sie sicher, dass Gerätetypen, die benutzerdefinierte Anmeldeinformationen benötigen, in UI nicht wählbar sind, ohne sie einzugeben\nEin potenzieller Crashfall beheben",
+                "ru": "Убедитесь, что типы устройств, которые требуют пользовательские учетные данные не выбираются в UI, не входя в них\nИсправление потенциального случай аварии",
+                "pt": "Certifique-se de que os tipos de dispositivo que exigem credenciais personalizadas não são selecionáveis na interface do usuário sem entrar neles\nCorrigir um caso de acidente potencial",
+                "nl": "Zorg ervoor dat apparaattypes die gebruikelijke referenties nodig hebben niet geselecteerd in UI zonder ze binnen te komen\nMaak een mogelijke crash zaak",
+                "fr": "Assurez-vous que les types de périphériques qui nécessitent des identifiants personnalisés ne sont pas sélectionnables dans l'interface utilisateur sans les entrer\nCorrection d'un cas d'accident potentiel",
+                "it": "Assicurarsi che i tipi di dispositivo che richiedono credenziali personalizzate non siano selezionabili in UI senza immetterli\nFissare un potenziale caso di crash",
+                "es": "Asegúrese de que los tipos de dispositivo que requieren credenciales personalizadas no son seleccionables en UI sin entrar en ellos\nArreglar un caso de accidente potencial",
+                "pl": "Umożliwia to, że pewne typy urządzeń wymagające konkretnych kredentialów nie są wybierane w interfejsie użytkownika bez wchodzenia do nich\nFix – przypadek katastrofy potencjalnej",
+                "zh-cn": "确定需要定有证书的设备类型在UI不能选择,而不准他们进入。\n确定潜在事故",
+                "uk": "Переконайтеся, що типи пристроїв, для яких потрібні спеціальні облікові дані, не можна вибрати в інтерфейсі користувача, не ввівши їх\nВиправте потенційний випадок збою"
+            },
+            "2.1.0": {
+                "en": "Fix setAway\nAdjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
+                "de": "Fix Weg\nEinstellen der Einstellungen Home-Nachrichtantworten, um alle Fehler / Antworten zurückzugeben, wenn mehrere Anrufe, wo für mehrere Häuser oder Personen getan",
+                "ru": "Fix набор Вдали\nНастройка setAway/set Ответы на домашнее сообщение, чтобы вернуть все ошибки/ответы, когда несколько звонков, где это сделано для нескольких домов или людей",
+                "pt": "Conjunto de fixação A caminho\nAjuste setAway/set Respostas de mensagem inicial para retornar todos os erros/respostas quando várias chamadas feitas para várias casas ou pessoas",
+                "nl": "Fix set Weg\nVertaling: Thuisberichten reageren om alle fouten en verantwoordelijkheden terug te brengen wanneer meerdere gesprekken plaatsvinden voor meerdere huizen of personen",
+                "fr": "Correction Away\nRéglage Accueil Messages réponses pour retourner toutes les erreurs/réponses lorsque plusieurs appels sont faits pour plusieurs maisons ou personnes",
+                "it": "Set di fissaggio Via\nRegolare il setAway/set Risposte del messaggio di casa per restituire tutti gli errori / risposte quando più chiamate dove fatto per più case o persone",
+                "es": "Juego fijo Away\nAjuste ajustadoAway/set Home message responses to return all errors/responses when multiple calls where done for multiple homes or persons",
+                "pl": "Fix set Away\nAdjust setAway (ang.). Odpowiedź komunikatu na powrót wszystkich błędów i odpowiedzi w przypadku wielokrotnych połączeń, w których przeprowadzano wiele domów lub osób",
+                "zh-cn": "九. 固定装置 A. 公路\n调整 当多家住宅或个人要求多家住房或多人做多家事时,家庭对返回所有错误/反应作出反应",
+                "uk": "Виправити setAway\nНалаштуйте відповіді на повідомлення setAway/setHome, щоб повертати всі помилки/відповіді під час кількох дзвінків для кількох будинків або людей"
+            },
+            "2.0.5": {
+                "en": "Catch communication errors better",
+                "de": "Kommunikationsfehler besser einfangen",
+                "ru": "Поймать ошибки общения лучше",
+                "pt": "Apanhar erros de comunicação melhor",
+                "nl": "Vertaling:",
+                "fr": "Attrapez les erreurs de communication mieux",
+                "it": "Cattura errori di comunicazione migliore",
+                "es": "Errores de comunicación de captura mejor",
+                "pl": "Błędy komunikacji",
+                "zh-cn": "失误",
+                "uk": "Краще вловлюйте помилки спілкування"
+            },
+            "2.0.4": {
+                "en": "Fix crash case with Smoke detector events",
+                "de": "Crashfall mit Smoke-Detektorereignissen beheben",
+                "ru": "Исправление случай аварии с событиями детектора дыма",
+                "pt": "Corrigir caso de acidente com eventos de detector de fumaça",
+                "nl": "Vertaling:",
+                "fr": "Boîtier de crash fixe avec des événements de détecteur de fumée",
+                "it": "Fix caso crash con gli eventi del rilevatore di fumo",
+                "es": "Caso de choque fijo con eventos de detector de humo",
+                "pl": "W przypadku katastrofy Fix z wykrywcami Smoke’a",
+                "zh-cn": "Smoke探测器事故",
+                "uk": "Виправте випадки збою з подіями детектора диму"
+            },
+            "2.0.3": {
+                "en": "Fixes and Optimizations for Doorbell devices",
+                "de": "Befestigungen und Optimierungen für Türklingelgeräte",
+                "ru": "Исправления и оптимизация для устройств Doorbell",
+                "pt": "Correções e Otimizações para dispositivos da campainha",
+                "nl": "Vertaling:",
+                "fr": "Fixes et optimisations pour les appareils de sonnerie",
+                "it": "Fissi e ottimizzazioni per i dispositivi Doorbell",
+                "es": "Fijaciones y optimizaciones para dispositivos Doorbell",
+                "pl": "Fixes and Optimization dla urządzeń Doorbell",
+                "zh-cn": "对多尔布尔装置的配件和利用",
+                "uk": "Виправлення та оптимізація пристроїв дверного дзвінка"
+            }
         },
-        "text": {
-          "en": "Because of needed API changes and also because of the availability of more and more Netatmo devices we decided to change the object structure. Starting with version 2.0 the unique IDs are used instead of the device names. Because of this the object structure will change completely. Please delete the current objects ideally before the upgrade. Additionally the authentication with Netatmo was changed because the former used way will be disabled in October 2022. Older versions of the adapter might not work any longer.",
-          "de": "Aufgrund von erforderlichen API-Änderungen und auch aufgrund der Verfügbarkeit von mehr und mehr Netatmo-Geräten haben wir uns entschlossen, die Objektstruktur zu ändern. Ab Version 2.0 werden die eindeutigen IDs anstelle der Gerätenamen verwendet. Dadurch ändert sich die Objektstruktur vollständig. Die aktuellen Objekte sollten idealerweise vor dem Upgrade gelöscht werden. Zusätzlich wurde die Authentifizierung mit Netatmo geändert, da der frühere Gebrauchsweg im Oktober 2022 deaktiviert wird. Ältere Versionen des Adapters funktionieren möglicherweise nicht mehr.",
-          "ru": "Из-за необходимых изменений API, а также из-за наличия более и более устройств Netatmo мы решили изменить структуру объекта. Начиная с версии 2.0 уникальные идентификаторы используются вместо названия устройств. Из-за этой структуры объекта полностью изменится. Пожалуйста, удалите текущие объекты в идеале перед обновлением. Дополнительно была изменена аутентификация с Netatmo, потому что бывший использованный способ будет отключен в октябре 2022 года. Более старые версии адаптера могут больше не работать.",
-          "pt": "Por causa das mudanças de API necessárias e também por causa da disponibilidade de mais e mais dispositivos Netatmo decidimos mudar a estrutura do objeto. Começando com a versão 2.0 os IDs exclusivos são usados em vez dos nomes dos dispositivos. Por causa disso, a estrutura do objeto mudará completamente. Por favor, exclua os objetos atuais idealmente antes da atualização. Além disso, a autenticação com Netatmo foi alterada porque a antiga maneira usada será desativada em outubro de 2022. Versões mais antigas do adaptador podem não funcionar mais.",
-          "nl": "Omdat API veranderingen nodig had en ook vanwege de vermogen van meer en meer Netatmo apparaten die we besloten hebben om de objectstructuur te veranderen. Begin met versie 2.0 de unieke ID's worden gebruikt in plaats van de apparaatnamen. Hierdoor zal de objectstructuur volledig veranderen. Verwijder de huidige objecten ideaal voor de upgrade. De authenticatie met Netatmo is veranderd omdat de vroegere manier gehandicapt zal worden in oktober 2022. Oudere versies van de adapter werken misschien niet meer.",
-          "fr": "En raison des changements d'API nécessaires et aussi en raison de la disponibilité de plus en plus de Netatmo appareils nous avons décidé de changer la structure de l'objet. À partir de la version 2.0, les identifiants uniques sont utilisés au lieu des noms de périphériques. En raison de cela la structure de l'objet va changer complètement. Veuillez supprimer les objets courants idéalement avant la mise à niveau. En outre, l'authentification avec Netatmo a été changée parce que l'ancienne méthode utilisée sera désactivée en octobre 2022. Les versions plus anciennes de l'adaptateur pourraient ne plus fonctionner.",
-          "it": "A causa dei necessari cambiamenti API e anche a causa della disponibilità di sempre più dispositivi Netatmo abbiamo deciso di cambiare la struttura dell'oggetto. A partire dalla versione 2.0 gli ID unici sono utilizzati invece dei nomi dei dispositivi. A causa di questo la struttura dell'oggetto cambierà completamente. Si prega di eliminare gli oggetti attuali idealmente prima dell'aggiornamento. Inoltre, l'autenticazione con Netatmo è stata modificata perché il primo modo usato sarà disabilitato nell'ottobre 2022. Le versioni più vecchie dell'adattatore potrebbero non funzionare più.",
-          "es": "Debido a los cambios necesarios de API y también debido a la disponibilidad de más y más dispositivos Netatmo decidimos cambiar la estructura del objeto. A partir de la versión 2.0 se utilizan los IDs únicos en lugar de los nombres de los dispositivos. Debido a esto la estructura del objeto cambiará completamente. Por favor, eliminar los objetos actuales idealmente antes de la actualización. Además, la autenticación con Netatmo se cambió porque la antigua forma utilizada será deshabilitada en octubre de 2022. Las versiones más antiguas del adaptador podrían no funcionar más.",
-          "pl": "Z powodu potrzebnych zmian API, a także z powodu dostępności częściej i innych urządzeń Netatmo zdecydowały się zmienić strukturę obiektu. Począwszy od wersji 2.0 używa się unikalnych identyfikatorów zamiast nazw urządzenia. Z tego powodu struktura obiektu zmienia się całkowicie. Okazuje się, że aktualne obiekty są idealne przed ulepszaniem. Zmieniono również autentyczność z Netatmo, ponieważ w październiku 2022 r. zostaną zdegradowane. Starsze wersje adaptera nie mogą już pracować.",
-          "zh-cn": "由于需要的知识产权变化,而且由于我们决定改变目标结构的更多和更净的装置。 从第2.0版本开始,独有的开发者不用装置名称。 由于这个目标结构将完全改变。 请在升级之前删除目前的目标。 此外,由于原用方式将于2022年10月残疾,净树的核证有所改变。 适应者的旧版本可能不再工作。.",
-          "uk": "Через необхідні зміни в API, а також через доступність все більшої кількості пристроїв Netatmo ми вирішили змінити структуру об’єкта. Починаючи з версії 2.0 замість імен пристроїв використовуються унікальні ідентифікатори. Через це повністю зміниться структура об'єкта. В ідеалі видаліть поточні об’єкти перед оновленням. Крім того, змінено автентифікацію за допомогою Netatmo, оскільки попередній спосіб буде вимкнено в жовтні 2022 року. Старіші версії адаптера можуть більше не працювати."
+        "desc": {
+            "en": "Netatmo",
+            "de": "Netatmo",
+            "ru": "Нетатмо",
+            "pt": "Netatmo",
+            "nl": "Netatmo",
+            "fr": "Netatmo",
+            "it": "Nettmo",
+            "es": "Netatmo",
+            "pl": "Netatmo",
+            "zh-cn": "内塔莫",
+            "uk": "Netatmo"
         },
-        "level": "warn",
-        "buttons": [
-          "agree",
-          "cancel"
-        ]
-      },
-      {
-        "condition": {
-          "operand": "and",
-          "rules": [
-            "oldVersion<3.0.0",
-            "newVersion>=3.0.0"
-          ]
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "mode": "daemon",
+        "icon": "netatmo.png",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "tier": 2,
+        "enabled": true,
+        "messagebox": true,
+        "adminUI": {
+            "config": "json"
         },
-        "title": {
-          "en": "Realtime events now require an iot License",
-          "de": "Realtime-Ereignisse benötigen jetzt eine iot-Lizenz",
-          "ru": "Мероприятия в режиме реального времени теперь требуют лицензии iot",
-          "pt": "Eventos em tempo real agora exigem uma licença iot",
-          "nl": "Realtime evenementen hebben nu een iot License nodig",
-          "fr": "Les événements en temps réel nécessitent maintenant une licence iot",
-          "it": "Gli eventi in tempo reale richiedono ora una licenza iot",
-          "es": "Eventos en tiempo real ahora requieren una licencia iot",
-          "pl": "Wydarzenia rzeczywiste wymagają teraz iot License",
-          "uk": "В режимі реального часу зажадає iot ліцензія",
-          "zh-cn": "实际事件现在需要一分钟的Lcense"
-        },
-        "text": {
-          "en": "To receive realtime events from Netatmo for your Welcome/Presence, Doorbell or CO2/Smoke Sensors you need a Pro Cloud Account with an Assistent- or Remote-License and an installed iot instance connected to this account. The iot instance needs to have v1.14.0 or higher.",
-          "de": "Um Echtzeit-Events von Netatmo für die Welcome/Presence, Doorbell oder CO2/Smoke Sensoren zu erhalten, wird ein Pro Cloud-Konto mit einer Assistenten- oder Remote-License und eine installierte Iot-Instanz benötigt, die mit diesem Konto verbunden ist. Die iot Instanz muss v1.14.0 oder höher haben.",
-          "ru": "Чтобы получать события в режиме реального времени от Netatmo для вашего Welcome/Presence, Doorbell или CO2/Smoke Sensors, вам нужен Pro Cloud Account с помощью Assistent- или Remote-License и установленной iot-пример, подключенный к этой учетной записи. Иот пример должен иметь v1.14.0 или выше.",
-          "pt": "Para receber eventos em tempo real da Netatmo para seus sensores de boas-vindas/presença, campainha ou CO2/Smoke, você precisa de uma conta Pro Cloud com um Assistent- ou Remote-License e uma instância de iot instalada conectada a esta conta. A instância iot precisa ter v1.14.0 ou superior.",
-          "nl": "Om echte gebeurtenissen van Netatmo te ontvangen voor uw welkom/Presence, Deurbell of CO2/Smoke Sensors je hebt een Pro Cloud Account nodig met een assistent of Remote-Lic geïnstalleerd met deze rekening. Het iot instance moet v1.14.0 of hoger.",
-          "fr": "Pour recevoir des événements en temps réel de Netatmo pour votre Welcome/Presence, Doorbell ou CO2/Smoke Sensors, vous avez besoin d'un Compte Pro Cloud avec un Helpent- ou Remote-License et une instance iot installée connectée à ce compte. L'instance iot doit avoir v1.14.0 ou supérieur.",
-          "it": "Per ricevere eventi in tempo reale da Netatmo per il tuo Welcome/Presence, Doorbell o CO2/Smoke Sensors è necessario un account Pro Cloud con un Assistent- o Remote-License e un'istanza di iot installata collegata a questo account. L'istanza iot deve avere v1.14.0 o superiore.",
-          "es": "Para recibir eventos en tiempo real de Netatmo para su Sensores de Bienvenida/Presencia, Doorbell o CO2/Smoke necesita una cuenta Pro Cloud con un Assistent- or Remote-License y una instancia iot instalada conectada a esta cuenta. La instancia iot debe tener v1.14.0 o superior.",
-          "pl": "Aby otrzymać rzeczywiste wydarzenia z Netatmo dla twoich Welcome/Presence, Doorbell lub CO2/Smoke Sensors potrzebują księgozbiorów Pro Cloud Account z Assistent- lub Remote-License oraz zainstalowanym iotem. Na przykład iot musi mieć v1.14.0 lub więcej.",
-          "uk": "Щоб отримувати події в режимі реального часу від Netatmo для вашого Welcome/Presence, Doorbell або CO2/Smoke Sensors, вам потрібно обліковий запис Pro Cloud з Assistent- або Remote-License і встановленим екземпляром iot, підключеним до цього облікового запису. Іо екземпляр повинен мати v1.14.0 або вище.",
-          "zh-cn": "你们需要一个辅助性或遥感账户和一个与该账户有关的安装的iot例子,以便从网上摩托运到实时活动。 举例需要有1 1104.0或更高。."
-        },
-        "level": "warn",
-        "buttons": [
-          "agree",
-          "cancel"
+        "extIcon": "https://raw.githubusercontent.com/PArns/ioBroker.netatmo/master/admin/netatmo.png",
+        "keywords": [
+            "netatmo"
         ],
-        "link": "https://github.com/PArns/ioBroker.netatmo#readme",
-        "linkText": {
-          "en": "More details",
-          "de": "Mehr Details",
-          "ru": "Подробнее",
-          "pt": "Mais detalhes",
-          "nl": "Meer details",
-          "fr": "Plus de détails",
-          "it": "Maggiori dettagli",
-          "es": "Más detalles",
-          "pl": "Szczegóły",
-          "uk": "Детальніше",
-          "zh-cn": "详情"
-        }
-      }
-    ]
-  },
-  "protectedNative": [
-    "secret",
-    "id",
-    "username",
-    "password"
-  ],
-  "native": {
-    "netatmoWeather": true,
-    "netatmoWelcome": false,
-    "netatmoCoach": false,
-    "netatmoSmokedetector": false,
-    "netatmoCOSensor": false,
-    "netatmoDoorBell": false,
-    "check_interval": 5,
-    "cleanup_interval": 60,
-    "event_time": 12,
-    "unknown_person_time": 24,
-    "location_elevation": 0,
-    "id": "",
-    "secret": "",
-    "iotInstance": ""
-  },
-  "objects": []
+        "readme": "https://github.com/PArns/ioBroker.netatmo/blob/master/README.md",
+        "loglevel": "info",
+        "type": "weather",
+        "authors": [
+            "Patrick Arns <iobroker@patrick-arns.de>"
+        ],
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.19"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=6.2.13"
+            }
+        ],
+        "plugins": {
+            "sentry": {
+                "dsn": "https://2e16cd8e23654a428905f0066a1a6569@sentry.iobroker.net/173"
+            }
+        },
+        "messages": [
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<2.0.0",
+                        "newVersion>=2.0.0"
+                    ]
+                },
+                "title": {
+                    "en": "Object structure changes!",
+                    "de": "Objektstruktur ändert sich!",
+                    "ru": "Изменения структуры объекта!",
+                    "pt": "Mudanças de estrutura de objetos!",
+                    "nl": "Object structuur verandert!",
+                    "fr": "La structure des objets change !",
+                    "it": "La struttura degli oggetti cambia!",
+                    "es": "¡La estructura de objetos cambia!",
+                    "pl": "Zmiany obiektów!",
+                    "zh-cn": "目标结构变化!",
+                    "uk": "Змінюється структура об'єкта!"
+                },
+                "text": {
+                    "en": "Because of needed API changes and also because of the availability of more and more Netatmo devices we decided to change the object structure. Starting with version 2.0 the unique IDs are used instead of the device names. Because of this the object structure will change completely. Please delete the current objects ideally before the upgrade. Additionally the authentication with Netatmo was changed because the former used way will be disabled in October 2022. Older versions of the adapter might not work any longer.",
+                    "de": "Aufgrund von erforderlichen API-Änderungen und auch aufgrund der Verfügbarkeit von mehr und mehr Netatmo-Geräten haben wir uns entschlossen, die Objektstruktur zu ändern. Ab Version 2.0 werden die eindeutigen IDs anstelle der Gerätenamen verwendet. Dadurch ändert sich die Objektstruktur vollständig. Die aktuellen Objekte sollten idealerweise vor dem Upgrade gelöscht werden. Zusätzlich wurde die Authentifizierung mit Netatmo geändert, da der frühere Gebrauchsweg im Oktober 2022 deaktiviert wird. Ältere Versionen des Adapters funktionieren möglicherweise nicht mehr.",
+                    "ru": "Из-за необходимых изменений API, а также из-за наличия более и более устройств Netatmo мы решили изменить структуру объекта. Начиная с версии 2.0 уникальные идентификаторы используются вместо названия устройств. Из-за этой структуры объекта полностью изменится. Пожалуйста, удалите текущие объекты в идеале перед обновлением. Дополнительно была изменена аутентификация с Netatmo, потому что бывший использованный способ будет отключен в октябре 2022 года. Более старые версии адаптера могут больше не работать.",
+                    "pt": "Por causa das mudanças de API necessárias e também por causa da disponibilidade de mais e mais dispositivos Netatmo decidimos mudar a estrutura do objeto. Começando com a versão 2.0 os IDs exclusivos são usados em vez dos nomes dos dispositivos. Por causa disso, a estrutura do objeto mudará completamente. Por favor, exclua os objetos atuais idealmente antes da atualização. Além disso, a autenticação com Netatmo foi alterada porque a antiga maneira usada será desativada em outubro de 2022. Versões mais antigas do adaptador podem não funcionar mais.",
+                    "nl": "Omdat API veranderingen nodig had en ook vanwege de vermogen van meer en meer Netatmo apparaten die we besloten hebben om de objectstructuur te veranderen. Begin met versie 2.0 de unieke ID's worden gebruikt in plaats van de apparaatnamen. Hierdoor zal de objectstructuur volledig veranderen. Verwijder de huidige objecten ideaal voor de upgrade. De authenticatie met Netatmo is veranderd omdat de vroegere manier gehandicapt zal worden in oktober 2022. Oudere versies van de adapter werken misschien niet meer.",
+                    "fr": "En raison des changements d'API nécessaires et aussi en raison de la disponibilité de plus en plus de Netatmo appareils nous avons décidé de changer la structure de l'objet. À partir de la version 2.0, les identifiants uniques sont utilisés au lieu des noms de périphériques. En raison de cela la structure de l'objet va changer complètement. Veuillez supprimer les objets courants idéalement avant la mise à niveau. En outre, l'authentification avec Netatmo a été changée parce que l'ancienne méthode utilisée sera désactivée en octobre 2022. Les versions plus anciennes de l'adaptateur pourraient ne plus fonctionner.",
+                    "it": "A causa dei necessari cambiamenti API e anche a causa della disponibilità di sempre più dispositivi Netatmo abbiamo deciso di cambiare la struttura dell'oggetto. A partire dalla versione 2.0 gli ID unici sono utilizzati invece dei nomi dei dispositivi. A causa di questo la struttura dell'oggetto cambierà completamente. Si prega di eliminare gli oggetti attuali idealmente prima dell'aggiornamento. Inoltre, l'autenticazione con Netatmo è stata modificata perché il primo modo usato sarà disabilitato nell'ottobre 2022. Le versioni più vecchie dell'adattatore potrebbero non funzionare più.",
+                    "es": "Debido a los cambios necesarios de API y también debido a la disponibilidad de más y más dispositivos Netatmo decidimos cambiar la estructura del objeto. A partir de la versión 2.0 se utilizan los IDs únicos en lugar de los nombres de los dispositivos. Debido a esto la estructura del objeto cambiará completamente. Por favor, eliminar los objetos actuales idealmente antes de la actualización. Además, la autenticación con Netatmo se cambió porque la antigua forma utilizada será deshabilitada en octubre de 2022. Las versiones más antiguas del adaptador podrían no funcionar más.",
+                    "pl": "Z powodu potrzebnych zmian API, a także z powodu dostępności częściej i innych urządzeń Netatmo zdecydowały się zmienić strukturę obiektu. Począwszy od wersji 2.0 używa się unikalnych identyfikatorów zamiast nazw urządzenia. Z tego powodu struktura obiektu zmienia się całkowicie. Okazuje się, że aktualne obiekty są idealne przed ulepszaniem. Zmieniono również autentyczność z Netatmo, ponieważ w październiku 2022 r. zostaną zdegradowane. Starsze wersje adaptera nie mogą już pracować.",
+                    "zh-cn": "由于需要的知识产权变化,而且由于我们决定改变目标结构的更多和更净的装置。 从第2.0版本开始,独有的开发者不用装置名称。 由于这个目标结构将完全改变。 请在升级之前删除目前的目标。 此外,由于原用方式将于2022年10月残疾,净树的核证有所改变。 适应者的旧版本可能不再工作。.",
+                    "uk": "Через необхідні зміни в API, а також через доступність все більшої кількості пристроїв Netatmo ми вирішили змінити структуру об’єкта. Починаючи з версії 2.0 замість імен пристроїв використовуються унікальні ідентифікатори. Через це повністю зміниться структура об'єкта. В ідеалі видаліть поточні об’єкти перед оновленням. Крім того, змінено автентифікацію за допомогою Netatmo, оскільки попередній спосіб буде вимкнено в жовтні 2022 року. Старіші версії адаптера можуть більше не працювати."
+                },
+                "level": "warn",
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ]
+            },
+            {
+                "condition": {
+                    "operand": "and",
+                    "rules": [
+                        "oldVersion<3.0.0",
+                        "newVersion>=3.0.0"
+                    ]
+                },
+                "title": {
+                    "en": "Realtime events now require an iot License",
+                    "de": "Realtime-Ereignisse benötigen jetzt eine iot-Lizenz",
+                    "ru": "Мероприятия в режиме реального времени теперь требуют лицензии iot",
+                    "pt": "Eventos em tempo real agora exigem uma licença iot",
+                    "nl": "Realtime evenementen hebben nu een iot License nodig",
+                    "fr": "Les événements en temps réel nécessitent maintenant une licence iot",
+                    "it": "Gli eventi in tempo reale richiedono ora una licenza iot",
+                    "es": "Eventos en tiempo real ahora requieren una licencia iot",
+                    "pl": "Wydarzenia rzeczywiste wymagają teraz iot License",
+                    "uk": "В режимі реального часу зажадає iot ліцензія",
+                    "zh-cn": "实际事件现在需要一分钟的Lcense"
+                },
+                "text": {
+                    "en": "To receive realtime events from Netatmo for your Welcome/Presence, Doorbell or CO2/Smoke Sensors you need a Pro Cloud Account with an Assistent- or Remote-License and an installed iot instance connected to this account. The iot instance needs to have v1.14.0 or higher.",
+                    "de": "Um Echtzeit-Events von Netatmo für die Welcome/Presence, Doorbell oder CO2/Smoke Sensoren zu erhalten, wird ein Pro Cloud-Konto mit einer Assistenten- oder Remote-License und eine installierte Iot-Instanz benötigt, die mit diesem Konto verbunden ist. Die iot Instanz muss v1.14.0 oder höher haben.",
+                    "ru": "Чтобы получать события в режиме реального времени от Netatmo для вашего Welcome/Presence, Doorbell или CO2/Smoke Sensors, вам нужен Pro Cloud Account с помощью Assistent- или Remote-License и установленной iot-пример, подключенный к этой учетной записи. Иот пример должен иметь v1.14.0 или выше.",
+                    "pt": "Para receber eventos em tempo real da Netatmo para seus sensores de boas-vindas/presença, campainha ou CO2/Smoke, você precisa de uma conta Pro Cloud com um Assistent- ou Remote-License e uma instância de iot instalada conectada a esta conta. A instância iot precisa ter v1.14.0 ou superior.",
+                    "nl": "Om echte gebeurtenissen van Netatmo te ontvangen voor uw welkom/Presence, Deurbell of CO2/Smoke Sensors je hebt een Pro Cloud Account nodig met een assistent of Remote-Lic geïnstalleerd met deze rekening. Het iot instance moet v1.14.0 of hoger.",
+                    "fr": "Pour recevoir des événements en temps réel de Netatmo pour votre Welcome/Presence, Doorbell ou CO2/Smoke Sensors, vous avez besoin d'un Compte Pro Cloud avec un Helpent- ou Remote-License et une instance iot installée connectée à ce compte. L'instance iot doit avoir v1.14.0 ou supérieur.",
+                    "it": "Per ricevere eventi in tempo reale da Netatmo per il tuo Welcome/Presence, Doorbell o CO2/Smoke Sensors è necessario un account Pro Cloud con un Assistent- o Remote-License e un'istanza di iot installata collegata a questo account. L'istanza iot deve avere v1.14.0 o superiore.",
+                    "es": "Para recibir eventos en tiempo real de Netatmo para su Sensores de Bienvenida/Presencia, Doorbell o CO2/Smoke necesita una cuenta Pro Cloud con un Assistent- or Remote-License y una instancia iot instalada conectada a esta cuenta. La instancia iot debe tener v1.14.0 o superior.",
+                    "pl": "Aby otrzymać rzeczywiste wydarzenia z Netatmo dla twoich Welcome/Presence, Doorbell lub CO2/Smoke Sensors potrzebują księgozbiorów Pro Cloud Account z Assistent- lub Remote-License oraz zainstalowanym iotem. Na przykład iot musi mieć v1.14.0 lub więcej.",
+                    "uk": "Щоб отримувати події в режимі реального часу від Netatmo для вашого Welcome/Presence, Doorbell або CO2/Smoke Sensors, вам потрібно обліковий запис Pro Cloud з Assistent- або Remote-License і встановленим екземпляром iot, підключеним до цього облікового запису. Іо екземпляр повинен мати v1.14.0 або вище.",
+                    "zh-cn": "你们需要一个辅助性或遥感账户和一个与该账户有关的安装的iot例子,以便从网上摩托运到实时活动。 举例需要有1 1104.0或更高。."
+                },
+                "level": "warn",
+                "buttons": [
+                    "agree",
+                    "cancel"
+                ],
+                "link": "https://github.com/PArns/ioBroker.netatmo#readme",
+                "linkText": {
+                    "en": "More details",
+                    "de": "Mehr Details",
+                    "ru": "Подробнее",
+                    "pt": "Mais detalhes",
+                    "nl": "Meer details",
+                    "fr": "Plus de détails",
+                    "it": "Maggiori dettagli",
+                    "es": "Más detalles",
+                    "pl": "Szczegóły",
+                    "uk": "Детальніше",
+                    "zh-cn": "详情"
+                }
+            }
+        ]
+    },
+    "protectedNative": [
+        "secret",
+        "id",
+        "username",
+        "password"
+    ],
+    "native": {
+        "netatmoWeather": true,
+        "netatmoWelcome": false,
+        "netatmoCoach": false,
+        "netatmoSmokedetector": false,
+        "netatmoCOSensor": false,
+        "netatmoDoorBell": false,
+        "netatmoBubendorff": false,
+        "check_interval": 5,
+        "cleanup_interval": 60,
+        "event_time": 12,
+        "unknown_person_time": 24,
+        "location_elevation": 0,
+        "id": "",
+        "secret": "",
+        "iotInstance": ""
+    },
+    "objects": []
 }

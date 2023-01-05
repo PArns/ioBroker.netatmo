@@ -16,15 +16,16 @@
     "Smokedetector": "détecteur de fumée",
     "Weather station": "Station météo",
     "Welcome indoor cam": "Caméra intérieure/extérieure Welcome",
+    "_additionalSettingsHeader": "Paramètres additionnels",
+    "_realtimeEventHeader": "Événements en temps réel",
+    "_realtimeEventInfo": "Afin de recevoir des événements en temps réel de Welcome & Presence ou d'obtenir des alertes de fumée en temps réel, une sonnette ou le capteur de CO, vous devez sélectionner une instance d'adaptateur iot disposant d'un assistant actif ou d'une licence à distance pour transmettre les données d'événement !",
     "auth_info_individual_credentials": "Après avoir saisi ou modifié un ID client dédié, veuillez répéter le processus d'authentification à l'aide du bouton ci-dessus.",
     "clean minutes": "(minutes)",
     "hours": "(les heures)",
+    "iotInstanceLabel": "Instance iot pour les événements en temps réel",
     "live_stream1": "Afin d'augmenter l'intervalle de mise à jour ou de recevoir des flux en direct de Welcome & Présence ou pour recevoir les alertes fumées en temps réel, la sonnette ou le capteur de CO, il faut demander sa propre clé API à Netatmo !",
     "live_stream2": "Pour cela, rendez-vous sur l'URL suivante, connectez-vous avec votre compte Netatmo et remplissez le formulaire demandé",
     "load minutes": "(minutes)",
     "meters": "mètres sur nN",
-    "iotInstanceLabel": "Instance iot pour les événements en temps réel",
-    "_realtimeEventInfo": "Afin de recevoir des événements en temps réel de Welcome & Presence ou d'obtenir des alertes de fumée en temps réel, une sonnette ou le capteur de CO, vous devez sélectionner une instance d'adaptateur iot disposant d'un assistant actif ou d'une licence à distance pour transmettre les données d'événement !",
-    "_realtimeEventHeader": "Événements en temps réel",
-    "_additionalSettingsHeader": "Paramètres additionnels"
+    "netatmoBubendorff": "iDiamant/Bubendorff"
 }

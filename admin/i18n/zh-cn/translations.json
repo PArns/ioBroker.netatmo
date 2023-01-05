@@ -16,15 +16,16 @@
     "Smokedetector": "烟雾探测器",
     "Weather station": "气象站",
     "Welcome indoor cam": "世界自然协会",
+    "_additionalSettingsHeader": "其他设置",
+    "_realtimeEventHeader": "实时事件",
+    "_realtimeEventInfo": "为了从 Welcome & Presence 接收实时事件或获得实时烟雾警报、门铃或 CO 传感器，您需要选择一个具有活动助手或远程许可证的物联网适配器实例来传递事件数据！",
     "auth_info_individual_credentials": "输入或更改专用客户端 ID 后，请使用上述按钮重复验证过程。",
     "clean minutes": "（分钟）",
     "hours": "（小时）",
+    "iotInstanceLabel": "实时事件的物联网实例",
     "live_stream1": "为了增加更新间隔或接收来自 Welcome &存在或获取实时烟雾警报、门铃或 CO 传感器，您必须向 Netatmo 请求您自己的 API 密钥！",
     "live_stream2": "为此，请访问以下 URL，使用您的 Netatmo 帐户登录并填写请求的表格",
     "load minutes": "（分钟）",
     "meters": "米超过 nN",
-    "iotInstanceLabel": "实时事件的物联网实例",
-    "_realtimeEventInfo": "为了从 Welcome & Presence 接收实时事件或获得实时烟雾警报、门铃或 CO 传感器，您需要选择一个具有活动助手或远程许可证的物联网适配器实例来传递事件数据！",
-    "_realtimeEventHeader": "实时事件",
-    "_additionalSettingsHeader": "其他设置"
+    "netatmoBubendorff": "iDiamant/布本多夫"
 }

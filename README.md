@@ -76,7 +76,7 @@ Basically the same functionality as described for "setAway" above also is existi
 	### **WORK IN PROGRESS**
 -->
 ## Changelog
-### __WORK IN PROGRESS__
+### 3.1.0 (2023-01-06)
 * (Apollon77) Add support for Bubendorff roller shutters
 * (Apollon77) Fix Monitoring State for Welcomes
 * (Apollon77) Allow to just use CO2/Smoke sensors

@@ -214,6 +214,8 @@ function cleanupResources() {
         _doorbellUpdateInterval && clearInterval(_doorbellUpdateInterval);
         _bubendorffUpdateInterval && clearInterval(_bubendorffUpdateInterval);
 
+        station && station.finalize();
+        coach && coach.finalize();
         welcome && welcome.finalize();
         smokedetector && smokedetector.finalize();
         cosensor && cosensor.finalize();
@@ -391,13 +393,13 @@ function main() {
 
     // we do not allow intervals below 5 minutes
     if (!individualCredentials && (isNaN(adapter.config.check_interval) || adapter.config.check_interval < 10)) {
-        adapter.config.check_interval = 10;
         adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 10 minutes`);
+        adapter.config.check_interval = 10;
     }
 
     if (!individualCredentials && (isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < 20)) {
-        adapter.config.cleanup_interval = 60;
         adapter.log.warn(`Invalid cleanup interval "${adapter.config.cleanup_interval}", fallback to 60 minutes`);
+        adapter.config.cleanup_interval = 60;
     }
 
     adapter.config.unknown_person_time = adapter.config.unknown_person_time || 24;

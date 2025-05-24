@@ -147,7 +147,7 @@
     ],
     "dependencies": [
       {
-        "js-controller": ">=3.3.19"
+        "js-controller": ">=6.0.0"
       }
     ],
     "globalDependencies": [
@@ -255,7 +255,11 @@
           "zh-cn": "详情"
         }
       }
-    ]
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    }
   },
   "protectedNative": [
     "secret",

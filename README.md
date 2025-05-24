@@ -93,7 +93,9 @@ Basically the same functionality as described for "setAway" above also is existi
 ## Changelog
 
 ### __WORK IN PROGRESS__
-* (@Apollon77) Removed the usage of a deprecated  API from Netatmo which was used to enrich person data
+* (@Apollon77) Removed the usage of a deprecated API from Netatmo which was used to enrich person data
+* (@Apollon77) Added product type NACamDoorTag
+* (@Apollon77) Allows value -2 for target position of Bubendorff roller shutters to put a Bubendorff shutter with jalousieable slats in jalousie mode
 
 ### 3.1.0 (2023-01-06)
 * (Apollon77) Add support for Bubendorff roller shutters

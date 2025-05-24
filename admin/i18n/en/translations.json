@@ -1,5 +1,5 @@
 {
-    "Authentication information": "Please press the above button to authenticate with your Netatmo Account to allow to access the data. You need to authenticate again whenever you add more device-types to your account, else you might miss data!",
+    "Authentication information": "Please press the above button to open a window to authenticate with your Netatmo Account to allow to access the data. You need to authenticate again whenever you add more device-types to your account, else you might miss data! if no window opens please check your Popup blocker settings!",
     "CO": "CO sensor",
     "CheckIntervall": "Data update interval",
     "CleanupIntervall": "Data cleanup interval",

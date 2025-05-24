@@ -91,6 +91,10 @@ Basically the same functionality as described for "setAway" above also is existi
 	### **WORK IN PROGRESS**
 -->
 ## Changelog
+
+### __WORK IN PROGRESS__
+* (@Apollon77) Removed the usage of a deprecated  API from Netatmo which was used to enrich person data
+
 ### 3.1.0 (2023-01-06)
 * (Apollon77) Add support for Bubendorff roller shutters
 * (Apollon77) Fix Monitoring State for Welcomes
@@ -280,4 +284,4 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 ## License
 MIT
 
-Copyright (c) 2016-2023 Patrick Arns <iobroker@patrick-arns.de>
+Copyright (c) 2016-2025 Patrick Arns <iobroker@patrick-arns.de>

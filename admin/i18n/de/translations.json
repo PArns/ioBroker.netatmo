@@ -1,5 +1,5 @@
 {
-    "Authentication information": "Mit dem obigen Button erfolgt eine Authentifizierung mit dem Netatmo-Konto, um Zugriff auf die Daten zu ermöglichen. Dies muss wiederholt werden, wenn weitere Gerätetypen zum Netatmo-Konto hinzugefügt werden, sonst könnten Daten fehlen!",
+    "Authentication information": "Mit dem obigen Button öffnet sich ein Fenster für eine Authentifizierung mit dem Netatmo-Konto, um Zugriff auf die Daten zu ermöglichen. Dies muss wiederholt werden, wenn weitere Gerätetypen zum Netatmo-Konto hinzugefügt werden, sonst könnten Daten fehlen! Wenn sich kein Fenster öffnet bitte die Popup-Blocker-Einstellungen prüfen!",
     "CO": "CO-Sensor",
     "CheckIntervall": "Datenaktualisierungsintervall",
     "CleanupIntervall": "Datenbereinigungsintervall",

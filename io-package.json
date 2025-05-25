@@ -122,7 +122,6 @@
       "zh-cn": "内塔莫",
       "uk": "Netatmo"
     },
-    "license": "MIT",
     "platform": "Javascript/Node.js",
     "mode": "daemon",
     "icon": "netatmo.png",

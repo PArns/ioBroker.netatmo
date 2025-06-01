@@ -53,7 +53,7 @@
     "@iobroker/testing": "^5.0.4",
     "@iobroker/dev-server": "^0.7.8",
     "mocha": "^11.5.0",
-    "chai": "^4.5.0"
+    "chai": "^5.2.0"
   },
   "bugs": {
     "url": "https://github.com/ioBroker/ioBroker.netatmo/issues"

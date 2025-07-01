@@ -52,7 +52,7 @@
     "@iobroker/adapter-dev": "^1.4.0",
     "@iobroker/testing": "^5.0.4",
     "@iobroker/dev-server": "^0.7.8",
-    "mocha": "^11.5.0",
+    "mocha": "^11.7.1",
     "chai": "^4.5.0"
   },
   "bugs": {

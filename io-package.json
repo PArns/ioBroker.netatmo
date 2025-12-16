@@ -2,7 +2,6 @@
   "common": {
     "name": "netatmo",
     "version": "3.1.0",
-    "title": "Netatmo",
     "titleLang": {
       "en": "Netatmo",
       "de": "Netatmo",

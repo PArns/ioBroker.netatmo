@@ -286,4 +286,4 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 ## License
 MIT
 
-Copyright (c) 2016-2025 Patrick Arns <iobroker@patrick-arns.de>
+Copyright (c) 2016-2026 Patrick Arns <iobroker@patrick-arns.de>

@@ -5,7 +5,7 @@
 
 const adapterName = require('./package.json').name.split('.').pop();
 const utils = require('@iobroker/adapter-core');
-const fs = require('fs');
+const fs = require('node:fs');
 
 const netatmo = require('./lib/netatmoLib');
 let api = null;

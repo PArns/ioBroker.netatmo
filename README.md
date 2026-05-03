@@ -283,6 +283,8 @@ IMPORTANT: This Adapter requires Admin 6.2.14+ to be configured!
 ### 0.0.1
 * (PArns) Initial release
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT
 

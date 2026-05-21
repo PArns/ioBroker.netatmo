@@ -92,6 +92,10 @@ Basically the same functionality as described for "setAway" above also is existi
 -->
 ## Changelog
 
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### __WORK IN PROGRESS__
 * (@Apollon77) Removed the usage of a deprecated API from Netatmo which was used to enrich person data
 * (@Apollon77) Added product type NACamDoorTag

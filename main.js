@@ -61,6 +61,9 @@ function startAdapter(options) {
 
     adapter = new utils.Adapter(options);
     adapter.on('message', obj => {
+        if (!obj) {
+            return true;
+        }
         if (obj.command === 'send') {
             obj.command = obj.message;
             obj.message = null;
@@ -114,9 +117,16 @@ function startAdapter(options) {
                         return;
                     }
 
+                    if (!storedOAuthData[args.state]) {
+                        adapter.log.warn('OAuth callback with unknown state, please start the authentication again');
+                        obj.callback && adapter.sendTo(obj.from, obj.command, {error: 'Unknown or expired OAuth state. Please try again.'}, obj.callback);
+                        return;
+                    }
+
                     api.authenticate(args, async err => {
-                        if (!err && storedOAuthData[args.state]) {
+                        if (!err) {
                             const storedArgs = storedOAuthData[args.state];
+                            delete storedOAuthData[args.state];
                             const native = storedArgs.scopes;
                             if (api.client_id !== DEFAULT_CLIENT_ID) {
                                 native.id = api.client_id;
@@ -132,7 +142,7 @@ function startAdapter(options) {
                                 client_id: api.client_id
                             }
                             try {
-                                adapter.log.info(`Save OAuth data: ${JSON.stringify(tokenData)}`);
+                                adapter.log.info(`Save OAuth data (scope: ${tokenData.scope})`);
                                 fs.writeFileSync(`${dataDir}/tokens.json`, JSON.stringify(tokenData), 'utf8');
                             } catch (err) {
                                 adapter.log.error(`Cannot write token file: ${err}`);
@@ -165,6 +175,7 @@ function startAdapter(options) {
         try {
             stopped = true;
             cleanupResources();
+            api && api.stop();
             adapter.log.info('cleaned everything up...');
             callback();
         } catch (e) {
@@ -378,7 +389,7 @@ function main() {
             } else {
                 access_token = tokens.access_token;
                 refresh_token = tokens.refresh_token;
-                adapter.log.info(`Using stored tokens to initialize ... ${JSON.stringify(tokens)}`);
+                adapter.log.info(`Using stored tokens to initialize (scope: ${tokens.scope})`);
             }
             if (tokens.scope !== scope) {
                 adapter.log.info(`Stored tokens have different scope ${tokens.scope} and not the configured scope ${scope} ... If you miss data please authenticate again!`);
@@ -391,13 +402,17 @@ function main() {
     adapter.config.check_interval = parseInt(adapter.config.check_interval, 10);
     adapter.config.cleanup_interval = parseInt(adapter.config.cleanup_interval, 10);
 
-    // we do not allow intervals below 5 minutes
-    if (!individualCredentials && (isNaN(adapter.config.check_interval) || adapter.config.check_interval < 10)) {
+    // @KI_HINWEIS: Mit eigener Client-ID wurde bisher gar nicht validiert. Ein leeres Feld ergab
+    // setInterval(NaN) -> ca. 1 ms und damit API-Flooding. Mindestwerte: 10/20 min mit dem
+    // gemeinsamen ioBroker-Client, 1/5 min mit eigener Client-ID.
+    const minCheckInterval = individualCredentials ? 1 : 10;
+    const minCleanupInterval = individualCredentials ? 5 : 20;
+    if (isNaN(adapter.config.check_interval) || adapter.config.check_interval < minCheckInterval) {
         adapter.log.warn(`Invalid check interval "${adapter.config.check_interval}", fallback to 10 minutes`);
         adapter.config.check_interval = 10;
     }
 
-    if (!individualCredentials && (isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < 20)) {
+    if (isNaN(adapter.config.cleanup_interval) || adapter.config.cleanup_interval < minCleanupInterval) {
         adapter.log.warn(`Invalid cleanup interval "${adapter.config.cleanup_interval}", fallback to 60 minutes`);
         adapter.config.cleanup_interval = 60;
     }
@@ -432,10 +447,10 @@ function main() {
         adapter.log.info(`API Warning: ${err.message}`);
     });
     api.on('access_token', access_token => {
-        adapter.log.debug(`Access Token: ${access_token}`);
+        adapter.log.debug('Access token updated');
     });
     api.on('refresh_token', refresh_token => {
-        adapter.log.debug(`Update Refresh tokens: ${refresh_token}`);
+        adapter.log.debug('Refresh token updated, saving tokens');
         const tokenData = {
             access_token: api.access_token,
             refresh_token: api.refresh_token,

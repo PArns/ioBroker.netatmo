@@ -93,6 +93,14 @@ Basically the same functionality as described for "setAway" above also is existi
 ## Changelog
 
 ### __WORK IN PROGRESS__
+* (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
+* (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)
+* (@Schimi1983) Access and refresh tokens and the client secret are no longer written to the log
+* (@Schimi1983) Update intervals are validated also with own client ID (empty value led to polling every millisecond)
+* (@Schimi1983) A failing event request no longer discards the home and device status of the update cycle
+* (@Schimi1983) Temporary Netatmo outages (5xx, timeouts, "Service temporarily unavailable") are logged as warning and only as error after 3 failed requests in a row; recovery is logged; no more duplicate log entries per error
+* (@Schimi1983) Realtime events keep working after re-authentication
+* (@Schimi1983) Doorbell: "ring" is reset automatically 60 seconds after the call (Netatmo does not reliably send accepted_call), immediately on accepted_call/missed_call, and on adapter start
 * (@Apollon77) Removed the usage of a deprecated API from Netatmo which was used to enrich person data
 * (@Apollon77) Added product type NACamDoorTag
 * (@Apollon77) Allows value -2 for target position of Bubendorff roller shutters to put a Bubendorff shutter with jalousieable slats in jalousie mode

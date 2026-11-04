@@ -1,201 +1,334 @@
 {
-    "type": "panel",
     "i18n": true,
+    "type": "tabs",
     "items": {
-        "netatmoCoach": {
-            "type": "checkbox",
-            "label": "Health Coach",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
+        "_tabDevices": {
+            "type": "panel",
+            "label": "tabDevices",
+            "items": {
+                "_headerProducts": {
+                    "type": "header",
+                    "size": 4,
+                    "text": "headerProducts",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "netatmoWeather": {
+                    "type": "checkbox",
+                    "label": "Weather station",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoCoach": {
+                    "type": "checkbox",
+                    "label": "Health Coach",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoWelcome": {
+                    "type": "checkbox",
+                    "label": "Welcome indoor cam",
+                    "help": "welcomeHelp",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoBubendorff": {
+                    "type": "checkbox",
+                    "label": "netatmoBubendorff",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoDoorBell": {
+                    "type": "checkbox",
+                    "label": "netatmoDoorBell",
+                    "help": "ownAppRequired",
+                    "disabled": "!data.id || !data.secret",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoSmokedetector": {
+                    "type": "checkbox",
+                    "label": "Smokedetector",
+                    "help": "ownAppRequired",
+                    "disabled": "!data.id || !data.secret",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "netatmoCOSensor": {
+                    "type": "checkbox",
+                    "label": "netatmoCOSensor",
+                    "help": "ownAppRequired",
+                    "disabled": "!data.id || !data.secret",
+                    "xs": 12,
+                    "sm": 6,
+                    "md": 4,
+                    "lg": 3,
+                    "xl": 3
+                },
+                "_headerOwnApp": {
+                    "type": "header",
+                    "size": 4,
+                    "text": "headerOwnApp",
+                    "newLine": true,
+                    "style": {
+                        "marginTop": 20
+                    },
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "_ownAppInfo": {
+                    "type": "infoBox",
+                    "boxType": "info",
+                    "closeable": false,
+                    "text": "ownAppInfo",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "_ownAppLink": {
+                    "type": "staticLink",
+                    "text": "ownAppLink",
+                    "href": "https://dev.netatmo.com/apps/createanapp",
+                    "target": "_blank",
+                    "button": true,
+                    "variant": "outlined",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "id": {
+                    "type": "text",
+                    "label": "ClientID",
+                    "help": "clientHelp",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "secret": {
+                    "type": "password",
+                    "repeat": false,
+                    "visible": true,
+                    "label": "ClientSecret",
+                    "help": "clientHelp",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "_headerLogin": {
+                    "type": "header",
+                    "size": 4,
+                    "text": "headerLogin",
+                    "newLine": true,
+                    "style": {
+                        "marginTop": 20
+                    },
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "_loginInfo": {
+                    "type": "infoBox",
+                    "boxType": "warning",
+                    "closeable": false,
+                    "text": "loginInfo",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "_authenticate": {
+                    "type": "sendTo",
+                    "label": "Authenticate with Netatmo",
+                    "variant": "contained",
+                    "color": "primary",
+                    "icon": "auth",
+                    "disabled": "!_alive",
+                    "help": "authHelp",
+                    "command": "getOAuthStartLink",
+                    "jsonData": "{\"client_id\": \"${data.id}\",\"client_secret\": \"${data.secret}\",\"redirect_uri_base\": \"${data._origin}\", \"scopes\": {\"netatmoCoach\": ${data.netatmoCoach}, \"netatmoWeather\": ${data.netatmoWeather}, \"netatmoWelcome\": ${data.netatmoWelcome}, \"netatmoSmokedetector\": ${data.netatmoSmokedetector}, \"netatmoCOSensor\": ${data.netatmoCOSensor}, \"netatmoDoorBell\": ${data.netatmoDoorBell}, \"netatmoBubendorff\": ${data.netatmoBubendorff} }}",
+                    "openUrl": true,
+                    "window": "Login with Netatmo",
+                    "error": {
+                        "connect timeout": "Connection timeout"
+                    },
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
         },
-        "netatmoWeather": {
-            "type": "checkbox",
-            "label": "Weather station",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-        "netatmoWelcome": {
-            "type": "checkbox",
-            "label": "Welcome indoor cam",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-         "netatmoSmokedetector": {
-            "type": "checkbox",
-            "label": "Smokedetector",
-            "disabled": "data.id === '' || data.secret === ''",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-        "netatmoCOSensor": {
-            "type": "checkbox",
-            "label": "netatmoCOSensor",
-            "disabled": "data.id === '' || data.secret === ''",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-        "netatmoDoorBell": {
-            "type": "checkbox",
-            "label": "netatmoDoorBell",
-            "disabled": "data.id === '' || data.secret === ''",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-        "netatmoBubendorff": {
-            "type": "checkbox",
-            "label": "netatmoBubendorff",
-            "sm": 12,
-            "md": 6,
-            "lg": 3
-        },
-        "_authenticate": {
-            "newLine": true,
-            "variant": "contained",
-            "color": "primary",
-            "disabled": "!_alive",
-            "type": "sendTo",
-            "error": {
-                "connect timeout": "Connection timeout"
-            },
-            "icon": "auth",
-            "command": "getOAuthStartLink",
-            "jsonData": "{\"client_id\": \"${data.id}\",\"client_secret\": \"${data.secret}\",\"redirect_uri_base\": \"${data._origin}\", \"scopes\": {\"netatmoCoach\": ${data.netatmoCoach}, \"netatmoWeather\": ${data.netatmoWeather}, \"netatmoWelcome\": ${data.netatmoWelcome}, \"netatmoSmokedetector\": ${data.netatmoSmokedetector}, \"netatmoCOSensor\": ${data.netatmoCOSensor}, \"netatmoDoorBell\": ${data.netatmoDoorBell}, \"netatmoBubendorff\": ${data.netatmoBubendorff} }}",
-            "label": "Authenticate with Netatmo",
-            "openUrl": true,
-            "window": "Login with Netatmo"
-        },
-        "_authinfo": {
-            "type": "header",
-            "size": 4,
-            "style": {
-                "marginTop": 20
-            },
-            "sm": 12,
-            "text": "Authentication information"
-        },
-        "_text1": {
-            "type": "staticText",
-            "newLine":  true,
-            "text": "live_stream1"
-        },
-        "_text2": {
-            "type": "staticText",
-            "newLine":  true,
-            "text": "live_stream2"
-        },
-        "_link": {
-            "newLine":  true,
-            "type": "staticLink",
-            "text": "https://dev.netatmo.com/apps/createanapp",
-            "href": "https://auth.netatmo.com/access/login?next_url=https%3A%2F%2Fdev.netatmo.com%2Fapps%2Fcreateanapp"
-        },
-        "_text3": {
-            "type": "staticText",
-            "newLine":  true,
-            "text": "auth_info_individual_credentials"
-        },
-        "id": {
-            "type": "text",
-            "newLine": true,
-            "label": "ClientID",
-            "help": "Netatmo App",
-            "sm": 6,
-            "lg": 3
-        },
-        "secret": {
-            "type": "password",
-            "repeat": false,
-            "help": "Netatmo App",
-            "label": "ClientSecret",
-            "sm": 6,
-            "lg": 3
-        },
-        "_realtimeEventHeader": {
+        "_tabRealtime": {
+            "type": "panel",
+            "label": "tabRealtime",
             "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
-            "type": "header",
-            "newLine":  true,
-            "size": 4,
-            "style": {
-                "marginTop": 20
-            },
-            "sm": 12,
-            "text": "_realtimeEventHeader"
+            "items": {
+                "_realtimeInfo": {
+                    "type": "infoBox",
+                    "boxType": "info",
+                    "closeable": false,
+                    "text": "realtimeInfo",
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "iotInstance": {
+                    "type": "instance",
+                    "adapter": "iot",
+                    "label": "iotInstanceLabel",
+                    "help": "iotInstanceHelp",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "_headerEvents": {
+                    "type": "header",
+                    "size": 4,
+                    "text": "headerEvents",
+                    "newLine": true,
+                    "style": {
+                        "marginTop": 20
+                    },
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 12,
+                    "lg": 12,
+                    "xl": 12
+                },
+                "event_time": {
+                    "type": "number",
+                    "label": "RemoveEvents",
+                    "unit": "hours",
+                    "min": 1,
+                    "max": 720,
+                    "default": 12,
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "cleanup_interval": {
+                    "type": "number",
+                    "label": "CleanupIntervall",
+                    "help": "cleanupHelp",
+                    "unit": "minutes",
+                    "min": 5,
+                    "max": 1440,
+                    "default": 60,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4,
+                    "validator": "(data.id && data.secret) ? data.cleanup_interval >= 5 : data.cleanup_interval >= 20",
+                    "validatorErrorText": "cleanupIntervalError",
+                    "validatorNoSaveOnError": true
+                },
+                "unknown_person_time": {
+                    "type": "number",
+                    "label": "RemoveUnknownPerson",
+                    "unit": "hours",
+                    "min": 1,
+                    "max": 720,
+                    "default": 24,
+                    "hidden": "!data.netatmoWelcome",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
         },
-        "_realtimeEventInfo": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
-            "type": "staticText",
-            "newLine":  true,
-            "text": "_realtimeEventInfo"
-        },
-        "iotInstance": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
-            "newLine": true,
-            "type": "instance",
-            "adapter": "iot",
-            "label": "iotInstanceLabel",
-            "help": "hours",
-            "sm": 6,
-            "lg": 3
-        },
-        "_additionalSettingsHeader": {
-            "type": "header",
-            "newLine":  true,
-            "size": 4,
-            "style": {
-                "marginTop": 20
-            },
-            "sm": 12,
-            "text": "_additionalSettingsHeader"
-        },
-        "location_elevation": {
-            "hidden": "!data.netatmoWeather && !data.netatmoCoach",
-            "newLine": true,
-            "type": "number",
-            "label": "Elevation",
-            "help": "meters",
-            "sm": 6,
-            "lg": 3
-        },
-        "check_interval": {
-            "newLine": true,
-            "type": "number",
-            "label": "CheckIntervall",
-            "help": "load minutes",
-            "sm": 6,
-            "lg": 3,
-            "min": 1
-        },
-        "cleanup_interval": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
-            "type": "number",
-            "label": "CleanupIntervall",
-            "help": "clean minutes",
-            "sm": 6,
-            "lg": 3,
-            "min": 1
-        },
-        "event_time": {
-            "hidden": "!data.netatmoWelcome && !data.netatmoSmokedetector && !data.netatmoCOSensor && !data.netatmoDoorBell",
-            "newLine": true,
-            "type": "number",
-            "label": "RemoveEvents",
-            "help": "clean minutes",
-            "sm": 6,
-            "lg": 3
-        },
-        "unknown_person_time": {
-            "hidden": "!data.netatmoWelcome",
-            "type": "number",
-            "label": "RemoveUnknownPerson",
-            "help": "hours",
-            "sm": 6,
-            "lg": 3
+        "_tabAdvanced": {
+            "type": "panel",
+            "label": "tabAdvanced",
+            "items": {
+                "check_interval": {
+                    "type": "number",
+                    "label": "CheckIntervall",
+                    "help": "checkIntervalHelp",
+                    "unit": "minutes",
+                    "min": 1,
+                    "max": 1440,
+                    "default": 10,
+                    "validator": "(data.id && data.secret) ? data.check_interval >= 1 : data.check_interval >= 10",
+                    "validatorErrorText": "checkIntervalError",
+                    "validatorNoSaveOnError": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                },
+                "location_elevation": {
+                    "type": "number",
+                    "label": "Elevation",
+                    "help": "elevationHelp",
+                    "unit": "meters",
+                    "min": -500,
+                    "max": 9000,
+                    "default": 0,
+                    "hidden": "!data.netatmoWeather && !data.netatmoCoach",
+                    "newLine": true,
+                    "xs": 12,
+                    "sm": 12,
+                    "md": 6,
+                    "lg": 4,
+                    "xl": 4
+                }
+            }
         }
     }
 }

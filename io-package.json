@@ -151,7 +151,7 @@
     ],
     "globalDependencies": [
       {
-        "admin": ">=6.2.13"
+        "admin": ">=7.6.19"
       }
     ],
     "plugins": {
@@ -274,7 +274,7 @@
     "netatmoCOSensor": false,
     "netatmoDoorBell": false,
     "netatmoBubendorff": false,
-    "check_interval": 5,
+    "check_interval": 10,
     "cleanup_interval": 60,
     "event_time": 12,
     "unknown_person_time": 24,

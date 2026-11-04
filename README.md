@@ -136,7 +136,7 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)
 * (@Schimi1983) Access and refresh tokens and the client secret are no longer written to the log
@@ -169,12 +169,6 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
 ### 2.1.1 (2022-09-30)
 * (Apollon77) Make sure device types that require custom credentials are not selectable in UI without entering them
 * (Apollon77) Fix a potential crash case
-
-### 2.1.0 (2022-09-23)
-* (Apollon77) Fix setAway
-* (Apollon77) Adjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons
-
-Older changelog entries can be found in [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
 
 ## License
 

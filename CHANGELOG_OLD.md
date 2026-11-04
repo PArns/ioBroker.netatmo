@@ -1,4 +1,10 @@
 # Older changes
+## 2.1.0 (2022-09-23)
+* (Apollon77) Fix setAway
+* (Apollon77) Adjust setAway/setHome message responses to return all errors/responses when multiple calls where done for multiple homes or persons
+
+Older changelog entries can be found in [CHANGELOG_OLD.md](CHANGELOG_OLD.md)
+
 ## 2.0.5 (2022-09-16)
 * (Apollon77) Catch communication errors better
 

@@ -70,7 +70,7 @@ Some devices (e.g. cameras) are initialized with the latest event per type. For 
 
 ### Doorbell
 
-* `ring` is set to `true` when somebody rings (`incoming_call`). It is reset automatically after 60 seconds, immediately on `missed_call`/`accepted_call`, and on adapter start. Netatmo does not reliably send `accepted_call` when a call is answered in the app.
+* `ring` is set to `true` when somebody rings: as soon as Netatmo starts the video call, or with `incoming_call`. If nobody answers, Netatmo often sends `incoming_call` only minutes later, after `missed_call`; such a late `incoming_call` does not set `ring` again. `ring` is reset automatically after 60 seconds, immediately on `missed_call`/`accepted_call`, and on adapter start. Netatmo does not reliably send `accepted_call` when a call is answered in the app.
 * `incoming_call`, `accepted_call` and `missed_call` contain time, event ID and snapshot URL of the last event of this type.
 * Netatmo delivers the webhook events with a delay of a few seconds up to about 2 minutes.
 
@@ -142,6 +142,7 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
 * (@Schimi1983) Fewer requests to Netatmo (Netatmo reduces the limits for polling from March 2027): cameras, doorbell, smoke/CO alarms and shutters share one request per update, the home structure is read only every 3 hours (or when Netatmo reports a change), homes without devices are skipped
 * (@Schimi1983) When Netatmo reports that the request limit is reached, requests are paused (as long as Netatmo says, at most 1 hour) and resume automatically, instead of using up the limit further
 * (@Schimi1983) Weather station is checked at most every 10 minutes, because Netatmo updates the data only about every 10 minutes
+* (@Schimi1983) Doorbell: `ring` is set immediately also when nobody answers (Netatmo then sends `incoming_call` only minutes later, after `missed_call`); a late `incoming_call` no longer sets `ring` again
 * (@Schimi1983) State roles: absolute humidity `value`, absolute pressure `value.pressure`; name of the absolute minimum temperature date corrected
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired

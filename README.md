@@ -12,130 +12,81 @@
 
 **Tests:** ![Test and Release](https://github.com/PArns/ioBroker.netatmo/workflows/Test%20and%20Release/badge.svg)
 
-**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
+**This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)!
 
-## Netatmo adapter for ioBroker
+## What does this adapter do?
 
-Connects ioBroker with the Netatmo cloud (Netatmo Connect API). Supported products:
+The adapter brings your Netatmo devices into ioBroker. You see their values (e.g. temperature, rain, doorbell ring) as states and can use them in scripts and visualizations. Some devices can also be controlled (e.g. camera on/off, roller shutters).
 
-| Product | Data | Own app required |
+| Product | What you get | Own Netatmo app needed? |
 |---|---|---|
-| Weather station (incl. outdoor, rain, wind and additional indoor modules) | measurements, min/max, trends, battery, radio/WiFi status | no |
+| Weather station with its modules (outdoor, rain, wind, indoor) | measurements, min/max, trends, battery | no |
 | Healthy Home Coach | air quality, CO2, humidity, noise | no |
-| Cameras (Welcome, Presence, Smart Door and Window Sensors) | status, events, persons, monitoring on/off | recommended (live stream and full control only with own app) |
-| iDiamant / Bubendorff roller shutters | position, control | no |
-| Smart Video Doorbell | status, ring, calls, events | yes |
-| Smart Smoke Alarm | status, alarms | yes |
-| Smart Carbon Monoxide Alarm | status, alarms | yes |
+| Cameras (Welcome, Presence) and door/window sensors | status, events, persons, camera on/off | recommended |
+| iDiamant / Bubendorff roller shutters | position, open/close/stop | no |
+| Smart Video Doorbell | ring, calls, events | yes |
+| Smart Smoke Alarm, Smart Carbon Monoxide Alarm | status, alarms | yes |
 
-Thermostats and valves (Netatmo Energy) are not supported by this adapter.
+Thermostats and valves (Netatmo Energy) are not part of this adapter.
 
-## Requirements
+## What you need
 
-* js-controller >= 6.0.0, admin >= 7.6.19
-* A Netatmo account with the devices
-* For realtime events (cameras, doorbell, smoke and CO alarm): an [iot instance](https://github.com/ioBroker/ioBroker.iot) (>= 1.14.0) connected to an ioBroker Pro account with an Assistant or Remote license. Without it, all data is only updated by polling.
-* Recommended: an own Netatmo app (client ID and client secret), see below
+* A Netatmo account with your devices.
+* Recommended: an **own Netatmo app** (free, takes about 2 minutes, see step 2 below). Without it, all ioBroker users share one common app and its request limit. Netatmo plans to reduce these limits from March 2027, so an own app is the safe choice.
+* Only for instant messages from cameras, doorbell, smoke and CO alarm: the ioBroker [iot adapter](https://github.com/ioBroker/ioBroker.iot) with an ioBroker Pro account (Assistant or Remote license). Without it, these devices are still updated, just every few minutes instead of immediately.
 
-## Configuration
+## Setup in 3 steps
 
-### Tab "Devices & login"
+Open the settings of the adapter instance.
 
-1. Select the Netatmo products you want to use.
-2. Optional, but recommended: create an own app at [dev.netatmo.com](https://dev.netatmo.com/apps/createanapp) and enter its client ID and client secret.
-   An own app is required for doorbell, smoke and CO alarm and the full camera functions, and it allows update intervals below 10 minutes. Without it, a shared ioBroker app is used, whose API quota is shared by all users.
-3. Click "Log in with Netatmo". A new window opens with the Netatmo login. After logging in and granting access, the adapter stores the tokens and restarts.
+1. **Choose your products** in the tab "Devices & login".
+2. **Own Netatmo app** (recommended):
+   * Click "Create Netatmo app" and log in with your Netatmo account.
+   * Fill in the form (e.g. name "ioBroker" and a short description) and save.
+   * Copy the "client ID" and "client secret" of the new app into the two fields of the adapter settings.
+3. **Log in**: click "Log in with Netatmo", log in and allow access. The adapter saves the login and restarts. If no window opens, allow popups for the ioBroker admin page.
 
-Log in again whenever you change the selected products or the client ID/secret, otherwise data may be missing. If no window opens, check the popup blocker of your browser.
+Repeat step 3 whenever you change the products or the app data, otherwise some data may be missing.
 
-### Tab "Realtime events"
+If you use cameras, doorbell or alarms and have the iot adapter: select your iot instance in the tab "Realtime events".
 
-Only shown if cameras, doorbell, smoke or CO alarm are selected.
+In the tab "Advanced" you can change how often the data is updated (default: every 10 minutes; Netatmo itself updates weather data only about every 10 minutes) and enter the elevation of your home for the dew point calculation.
 
-* **iot instance**: instance used to receive the webhook events from Netatmo. Leave empty to disable realtime events.
-* **Remove events older than** (hours), **Cleanup interval** (minutes), **Remove unknown persons last seen more than** (hours, cameras only)
+## Using the data
 
-### Tab "Advanced"
+You find all data in the objects tab under `netatmo.0`, sorted by home and device.
 
-* **Update interval** (minutes): at least 10 minutes with the shared app, at least 1 minute with an own app. Netatmo updates weather data about every 10 minutes, so shorter intervals do not provide more weather data. Cameras, doorbell and alarms are polled at twice this interval.
-* **Elevation** (meters above sea level): used for the dew point calculation.
+* `netatmo.0.info.connection` shows whether the connection to Netatmo works.
+* Each device shows whether it is online: `info.reachable` (weather station and its modules: `Reachable`) is `false` when the device cannot be reached, e.g. without WiFi. Next to it you find signal strength, battery and firmware, as far as Netatmo provides them. A device going offline or coming back is also written to the log.
+* **Doorbell:** `ring` becomes `true` when somebody rings and goes back to `false` after 60 seconds. `incoming_call`, `missed_call` and `accepted_call` show time and snapshot picture of the last call. Netatmo sends these messages with a delay of a few seconds up to about 2 minutes, and it does not always report an answered call.
+* **Roller shutters:** set `targetPosition` (0–100 %, `-1` = stop, `-2` = jalousie mode for shutters with tiltable slats) or use the buttons `open`, `close` and `stop`. Netatmo does not report position changes made with the remote or the Netatmo app immediately; they show up with the next update.
 
-Please respect the [Netatmo rate limits](https://dev.netatmo.com/guideline#rate-limits).
+### Mark persons as away or home (cameras)
 
-## Usage
-
-The adapter creates states for all devices of the selected products. Devices that support events additionally get event states, which are filled by the realtime events (see requirements).
-
-Some devices (e.g. cameras) are initialized with the latest event per type. For other devices (e.g. smoke/CO alarm) the event states are filled with the next event.
-
-### Doorbell
-
-* `ring` is set to `true` when somebody rings (`incoming_call`). It is reset automatically after 60 seconds, immediately on `missed_call`/`accepted_call`, and on adapter start. Netatmo does not reliably send `accepted_call` when a call is answered in the app.
-* `incoming_call`, `accepted_call` and `missed_call` contain time, event ID and snapshot URL of the last event of this type.
-* Netatmo delivers the webhook events with a delay of a few seconds up to about 2 minutes.
-
-### iDiamant/Bubendorff roller shutters
-
-### Device status
-
-For every device the adapter writes the status values Netatmo delivers. Values a device type does not provide are not created.
-
-| State | Devices | Meaning |
-|---|---|---|
-| `info.connection` (instance) | all | `true` while the Netatmo cloud is reachable and the login is valid |
-| `<device>.info.reachable` | cameras, doorbell, smoke/CO alarm, shutters | `false` if the device is offline (e.g. no WiFi) |
-| `<device>.info.error` | cameras, doorbell, smoke/CO alarm, shutters | Netatmo error of the device, e.g. `device_unreachable`, empty if ok |
-| `<device>.info.wifi_strength`, `rf_strength` | depending on device | signal strength, lower is better |
-| `<device>.info.battery_state`, `battery_level` | battery devices | battery state and voltage (mV) |
-| `<device>.info.firmware` | depending on device | firmware version |
-| `Reachable`, `Firmware` (weather station modules), `reachable` (Healthy Home Coach) | weather station, coach | reachability and firmware |
-
-A device going offline is logged once as warning, coming back as info. Doorbell and cameras also update `info.reachable` immediately from the `connection`/`disconnection` realtime events, if Netatmo sends them.
-
-The Netatmo API does not provide realtime data for roller shutters, so the values are polled with the update interval. They are not accurate in realtime when the shutters are controlled directly or via the Netatmo app.
-
-When the shutters are controlled via the adapter, the values are updated 2 s and 17 s after the command.
-
-Depending on the device the target position can be set to any value between 0 % and 100 %, or only to 0 % or 100 % (-1 = stop, -2 = jalousie mode for shutters with tiltable slats). The buttons open, close and stop can be used as well.
-
-## sendTo commands
-
-### setAway
-
-Sets all persons as away (e.g. when used as alarm system):
+For example for an alarm system, in a script:
 
 ```javascript
-sendTo('netatmo.0', 'setAway', { homeId: '1234567890abcdefg' });
-```
-
-or for all homes:
-
-```javascript
+// all persons of all homes away
 sendTo('netatmo.0', 'setAway');
-```
-
-Only specific persons:
-
-```javascript
+// all persons of one home away
+sendTo('netatmo.0', 'setAway', { homeId: '1234567890abcdefg' });
+// only certain persons away
 sendTo('netatmo.0', 'setAway', { homeId: '1234567890abcdefg', personsId: ['123123123123123'] });
+// same parameters to mark persons as home
+sendTo('netatmo.0', 'setHome', { homeId: '1234567890abcdefg' });
 ```
 
-`homeId` is the ID shown as top level folder of the home in the objects tab (optional if there is only one home), `personsId` the ID of a person in the "Known" persons folder.
-
-### setHome
-
-Same parameters as `setAway`, sets persons or complete homes as "home".
-
-## Older versions
-
-* **3.0.0**: Realtime events are received via the iot instance. The former Heroku service was shut down on 28.11.2022.
-* **2.0.0**: New object structure based on the unique device IDs instead of names. Netatmo disabled the login with username and password in October 2022, authentication is done via the "Log in with Netatmo" button.
+The `homeId` is the name of the top folder of your home in the objects tab, the person IDs are in the folder of the known persons.
 
 ## Changelog
 <!--
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@Schimi1983) README and configuration page simplified for easier setup (step-by-step guide, plain language)
+* (@Schimi1983) Removed outdated admin/words.js and the deprecated common.title
+
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)

@@ -167,7 +167,7 @@
                 },
                 "_loginInfo": {
                     "type": "infoBox",
-                    "boxType": "warning",
+                    "boxType": "info",
                     "closeable": false,
                     "text": "loginInfo",
                     "newLine": true,

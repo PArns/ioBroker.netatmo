@@ -176,6 +176,7 @@ function startAdapter(options) {
             stopped = true;
             cleanupResources();
             api && api.stop();
+            adapter.setState('info.connection', {val: false, ack: true});
             adapter.log.info('cleaned everything up...');
             callback();
         } catch (e) {
@@ -345,6 +346,8 @@ function isEquivalent(a, b) {
 
 
 function main() {
+    adapter.setState('info.connection', {val: false, ack: true});
+
     let scope = '';
     let id = DEFAULT_CLIENT_ID;
     let secret = DEFAULT_CLIENT_SECRET;

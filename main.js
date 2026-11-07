@@ -8,6 +8,9 @@ const utils = require('@iobroker/adapter-core');
 const fs = require('fs');
 
 const netatmo = require('./lib/netatmoLib');
+
+/** Minimum check interval of the weather station in minutes (Netatmo updates the data about every 10 minutes) */
+const WEATHER_MIN_INTERVAL = 10;
 let api = null;
 
 const NetatmoCoach = require('./lib/netatmoCoach');
@@ -500,8 +503,14 @@ function initialize() {
 
         station.requestUpdateWeatherStation();
 
+        // @KI_HINWEIS: Netatmo aktualisiert die Stationsdaten nur etwa alle 10 Minuten. Kuerzere
+        // Intervalle liefern keine neueren Werte, verbrauchen aber Requests (Limits ab 03/2027).
+        const weatherInterval = Math.max(adapter.config.check_interval, WEATHER_MIN_INTERVAL);
+        if (weatherInterval !== adapter.config.check_interval) {
+            adapter.log.info(`Weather station is checked every ${WEATHER_MIN_INTERVAL} minutes, because Netatmo updates the station data only about every 10 minutes`);
+        }
         _weatherUpdateInterval = setInterval(() =>
-            station.requestUpdateWeatherStation(), adapter.config.check_interval * 60 * 1000);
+            station.requestUpdateWeatherStation(), weatherInterval * 60 * 1000);
     }
 
     if (adapter.config.netatmoWelcome) {

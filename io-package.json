@@ -253,6 +253,60 @@
           "uk": "Детальніше",
           "zh-cn": "详情"
         }
+      },
+      {
+        "condition": {
+          "operand": "and",
+          "rules": [
+            "oldVersion<4.0.0",
+            "newVersion>=4.0.0"
+          ]
+        },
+        "title": {
+          "en": "Weather station: status values moved",
+          "de": "Wetterstation: Statuswerte verschoben",
+          "ru": "Метеостанция: значения состояния перемещены",
+          "pt": "Estação meteorológica: valores de estado movidos",
+          "nl": "Weerstation: statuswaarden verplaatst",
+          "fr": "Station météo : valeurs d'état déplacées",
+          "it": "Stazione meteo: valori di stato spostati",
+          "es": "Estación meteorológica: valores de estado movidos",
+          "pl": "Stacja pogodowa: wartości statusu przeniesione",
+          "uk": "Метеостанція: значення стану переміщено",
+          "zh-cn": "气象站：状态值已移动"
+        },
+        "text": {
+          "en": "For the weather station and its modules, Reachable, Firmware, WifiStatus, RfStatus and BatteryStatus are now in the info folder of each device (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), like for all other Netatmo devices. The old states are deleted. Please adjust scripts and visualizations that use them.",
+          "de": "Bei der Wetterstation und ihren Modulen liegen Reachable, Firmware, WifiStatus, RfStatus und BatteryStatus jetzt im Ordner info des jeweiligen Geräts (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), wie bei allen anderen Netatmo-Geräten. Die alten Datenpunkte werden gelöscht. Bitte Skripte und Visualisierungen anpassen, die sie nutzen.",
+          "ru": "У метеостанции и её модулей Reachable, Firmware, WifiStatus, RfStatus и BatteryStatus теперь находятся в папке info каждого устройства (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), как у всех других устройств Netatmo. Старые состояния удаляются. Пожалуйста, измените скрипты и визуализации, которые их используют.",
+          "pt": "Na estação meteorológica e nos seus módulos, Reachable, Firmware, WifiStatus, RfStatus e BatteryStatus estão agora na pasta info de cada dispositivo (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), como em todos os outros dispositivos Netatmo. Os estados antigos são eliminados. Ajuste os scripts e visualizações que os utilizam.",
+          "nl": "Bij het weerstation en de modules staan Reachable, Firmware, WifiStatus, RfStatus en BatteryStatus nu in de map info van elk apparaat (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), net als bij alle andere Netatmo-apparaten. De oude states worden verwijderd. Pas scripts en visualisaties aan die ze gebruiken.",
+          "fr": "Pour la station météo et ses modules, Reachable, Firmware, WifiStatus, RfStatus et BatteryStatus se trouvent désormais dans le dossier info de chaque appareil (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), comme pour tous les autres appareils Netatmo. Les anciens états sont supprimés. Veuillez adapter les scripts et visualisations qui les utilisent.",
+          "it": "Per la stazione meteo e i suoi moduli, Reachable, Firmware, WifiStatus, RfStatus e BatteryStatus si trovano ora nella cartella info di ciascun dispositivo (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), come per tutti gli altri dispositivi Netatmo. I vecchi stati vengono eliminati. Adattare script e visualizzazioni che li utilizzano.",
+          "es": "En la estación meteorológica y sus módulos, Reachable, Firmware, WifiStatus, RfStatus y BatteryStatus están ahora en la carpeta info de cada dispositivo (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), como en todos los demás dispositivos Netatmo. Los estados antiguos se eliminan. Adapte los scripts y visualizaciones que los usan.",
+          "pl": "W stacji pogodowej i jej modułach Reachable, Firmware, WifiStatus, RfStatus i BatteryStatus znajdują się teraz w folderze info każdego urządzenia (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), tak jak we wszystkich innych urządzeniach Netatmo. Stare stany są usuwane. Dostosuj skrypty i wizualizacje, które z nich korzystają.",
+          "uk": "У метеостанції та її модулів Reachable, Firmware, WifiStatus, RfStatus і BatteryStatus тепер знаходяться в папці info кожного пристрою (info.reachable, info.firmware, info.wifi_status, info.rf_status, info.battery), як у всіх інших пристроїв Netatmo. Старі стани видаляються. Будь ласка, змініть скрипти та візуалізації, які їх використовують.",
+          "zh-cn": "气象站及其模块的 Reachable、Firmware、WifiStatus、RfStatus 和 BatteryStatus 现在位于各设备的 info 文件夹中（info.reachable、info.firmware、info.wifi_status、info.rf_status、info.battery），与其他所有 Netatmo 设备相同。旧的状态将被删除。请调整使用这些状态的脚本和可视化。"
+        },
+        "level": "warn",
+        "buttons": [
+          "agree",
+          "cancel"
+        ],
+        "link": "https://github.com/PArns/ioBroker.netatmo#device-status",
+        "linkText": {
+          "en": "Details",
+          "de": "Details",
+          "ru": "Подробности",
+          "pt": "Detalhes",
+          "nl": "Details",
+          "fr": "Détails",
+          "it": "Dettagli",
+          "es": "Detalles",
+          "pl": "Szczegóły",
+          "uk": "Деталі",
+          "zh-cn": "详情"
+        }
       }
     ],
     "licenseInformation": {

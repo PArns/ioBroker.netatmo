@@ -70,7 +70,7 @@ Some devices (e.g. cameras) are initialized with the latest event per type. For 
 
 ### Doorbell
 
-* `ring` is set to `true` when somebody rings (`incoming_call`). It is reset automatically after 60 seconds, immediately on `missed_call`/`accepted_call`, and on adapter start. Netatmo does not reliably send `accepted_call` when a call is answered in the app.
+* `ring` is set to `true` once when somebody rings, with the first message Netatmo sends for this call (start of the video call, `incoming_call` or `missed_call`). Netatmo sends these messages in changing order, sometimes minutes late; later messages of the same call do not set `ring` again. `ring` is reset automatically after 60 seconds, immediately on `missed_call`/`accepted_call`, and on adapter start. Netatmo does not reliably send `accepted_call` when a call is answered in the app.
 * `incoming_call`, `accepted_call` and `missed_call` contain time, event ID and snapshot URL of the last event of this type.
 * Netatmo delivers the webhook events with a delay of a few seconds up to about 2 minutes.
 
@@ -83,12 +83,13 @@ For every device the adapter writes the status values Netatmo delivers. Values a
 | State | Devices | Meaning |
 |---|---|---|
 | `info.connection` (instance) | all | `true` while the Netatmo cloud is reachable and the login is valid |
-| `<device>.info.reachable` | cameras, doorbell, smoke/CO alarm, shutters | `false` if the device is offline (e.g. no WiFi) |
+| `<device>.info.reachable` | all devices (Healthy Home Coach: `reachable`) | `false` if the device is offline (e.g. no WiFi or radio connection) |
 | `<device>.info.error` | cameras, doorbell, smoke/CO alarm, shutters | Netatmo error of the device, e.g. `device_unreachable`, empty if ok |
 | `<device>.info.wifi_strength`, `rf_strength` | depending on device | signal strength, lower is better |
+| `<device>.info.wifi_status`, `rf_status` | weather station | signal as text: `good`, `average` or `bad` |
 | `<device>.info.battery_state`, `battery_level` | battery devices | battery state and voltage (mV) |
+| `<device>.info.battery` | weather station modules | battery in % |
 | `<device>.info.firmware` | depending on device | firmware version |
-| `Reachable`, `Firmware` (weather station modules), `reachable` (Healthy Home Coach) | weather station, coach | reachability and firmware |
 
 A device going offline is logged once as warning, coming back as info. Doorbell and cameras also update `info.reachable` immediately from the `connection`/`disconnection` realtime events, if Netatmo sends them.
 
@@ -136,6 +137,14 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@Schimi1983) **Breaking:** weather station status values moved into the `info` folder of each device like for all other devices (`info.reachable`, `info.firmware`, `info.wifi_status`/`wifi_strength`, `info.rf_status`/`rf_strength`, `info.battery`, new `info.battery_level`); the old states `Reachable`, `Firmware`, `WifiStatus`, `RfStatus`, `BatteryStatus` are deleted
+* (@Schimi1983) Fewer requests to Netatmo (Netatmo reduces the limits for polling from March 2027): cameras, doorbell, smoke/CO alarms and shutters share one request per update, the home structure is read only every 3 hours (or when Netatmo reports a change), homes without devices are skipped
+* (@Schimi1983) When Netatmo reports that the request limit is reached, requests are paused (as long as Netatmo says, at most 1 hour) and resume automatically, instead of using up the limit further
+* (@Schimi1983) A single failed request (Netatmo often answers "Service temporarily unavailable" once) is only logged as debug; a warning follows from the second failed request in a row
+* (@Schimi1983) Weather station is checked at most every 10 minutes, because Netatmo updates the data only about every 10 minutes
+* (@Schimi1983) Doorbell: `ring` is set also when nobody answers, with the first message Netatmo sends for the call (start of the video call, `incoming_call` or `missed_call`); late messages of the same call no longer set `ring` again
+* (@Schimi1983) State roles: absolute humidity `value`, absolute pressure `value.pressure`; name of the absolute minimum temperature date corrected
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)

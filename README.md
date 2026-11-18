@@ -64,7 +64,7 @@ Please respect the [Netatmo rate limits](https://dev.netatmo.com/guideline#rate-
 
 ## Usage
 
-The adapter creates states for all devices of the selected products. Devices that support events additionally get event states, which are filled by the realtime events (see requirements).
+The adapter creates states for all devices of the selected products. Devices that support events additionally get event states, which are filled by the realtime events (see requirements). For smoke and CO alarms, the latest events are also taken over with every update, so these states are filled without iot instance too, just delayed by the update interval.
 
 Some devices (e.g. cameras) are initialized with the latest event per type. For other devices (e.g. smoke/CO alarm) the event states are filled with the next event.
 
@@ -136,6 +136,8 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@Schimi1983) Smoke and CO alarm: events are also taken over from the regular update, so the event states are filled without iot instance too (#190); old alarms from the update are not shown as active
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)

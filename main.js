@@ -193,11 +193,18 @@ function startAdapter(options) {
             if (extendedObjects[id] && extendedObjects[id].native && extendedObjects[id].native.homeId) {
                 const obj = extendedObjects[id];
                 adapter.log.debug(`set state for field ${obj.native.field}`);
+                let value = obj.native.setValue !== undefined ? obj.native.setValue : state.val;
+                // @KI_HINWEIS: Rollladen-Positionen auf die von Netatmo gemeldete Schrittweite runden.
+                // Nur fuer 0..100, die Sonderwerte -1 (Stopp) und -2 (Jalousie) bleiben unveraendert (#281).
+                const step = Number(obj.native.positionStep);
+                if (step > 1 && typeof value === 'number' && value >= 0) {
+                    value = Math.min(100, Math.round(value / step) * step);
+                }
                 api.setState(
                     obj.native.homeId,
                     obj.native.moduleId,
                     obj.native.field,
-                    obj.native.setValue !== undefined ? obj.native.setValue : state.val,
+                    value,
                     obj.native.bridgeId,
                     (err, res) => {
                     if (err) {

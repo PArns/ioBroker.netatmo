@@ -136,6 +136,8 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@Schimi1983) Roller shutters: `targetPosition` accepts -2 (jalousie mode) and -1 (stop) again when Netatmo reports a position step of 100; positions 0–100 are rounded to the step of the shutter (#281)
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)

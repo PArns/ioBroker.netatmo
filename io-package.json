@@ -146,12 +146,12 @@
     ],
     "dependencies": [
       {
-        "js-controller": ">=6.0.0"
+        "js-controller": ">=6.0.11"
       }
     ],
     "globalDependencies": [
       {
-        "admin": ">=7.6.19"
+        "admin": ">=7.6.20"
       }
     ],
     "plugins": {

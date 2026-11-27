@@ -136,6 +136,8 @@ Same parameters as `setAway`, sets persons or complete homes as "home".
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+* (@Schimi1983) Maintenance: Node.js 22 or newer is required, js-controller 6.0.11 and admin 7.6.20 as minimum; dependencies updated; tests run with Node.js 22, 24 and 26 via the ioBroker testing actions
 ### 3.2.0 (2026-11-04)
 * (@Schimi1983) Fixed adapter crash when changing a state (e.g. camera monitoring) while the access token had expired
 * (@Schimi1983) Token refresh: an invalid refresh token is now reported (re-authentication required) instead of silently starting without data; no endless refresh loop; only one refresh at a time (Netatmo rotates refresh tokens)

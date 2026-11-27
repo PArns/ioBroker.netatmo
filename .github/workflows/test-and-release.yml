@@ -28,29 +28,14 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: ioBroker/testing-action-check@v2
         with:
-          node-version: ${{ matrix.node-version }}
-
-
-      - name: Install Dependencies
-        run: npm install
-
-#      - name: Perform a type check
-#        run: npm run check:ts
-#        env:
-#          CI: true
-      # - name: Lint TypeScript code
-      #   run: npm run lint
-      - name: Test package files
-        run: npm run test:package
+          node-version: '22.x'
+          # The adapter has no package-lock.json: install without it and without the npm cache
+          install-command: 'npm install'
+          package-cache: 'false'
+          lint: false
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
@@ -61,29 +46,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: ioBroker/testing-action-adapter@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Install Dependencies
-        run: npm install
-
-#      - name: Run local tests
-#        run: npm test
-#      - name: Run unit tests
-#        run: npm run test:unit
-      - name: Run integration tests # (linux/osx)
-        if: startsWith(runner.OS, 'windows') == false
-        run: DEBUG=testing:* npm run test:integration
-      - name: Run integration tests # (windows)
-        if: startsWith(runner.OS, 'windows')
-        run: set DEBUG=testing:* & npm run test:integration
+          os: ${{ matrix.os }}
+          install-command: 'npm install'
+          package-cache: 'false'
 
   # Deploys the final package to NPM
   deploy:
